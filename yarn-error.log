@@ -1,0 +1,66 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/bin/yarn set version 3.6.4
+
+PATH: 
+  /Users/pak/.npm/_npx/7930a8670f922cdb/node_modules/.bin:/Users/pak/Documents/ReactNative/Projects/node_modules/.bin:/Users/pak/Documents/ReactNative/node_modules/.bin:/Users/pak/Documents/node_modules/.bin:/Users/pak/node_modules/.bin:/Users/node_modules/.bin:/node_modules/.bin:/usr/local/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin:/usr/local/opt/ruby/bin:/Library/Frameworks/Python.framework/Versions/3.12/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Library/Apple/usr/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/usr/local/opt/ruby/bin:/Library/Frameworks/Python.framework/Versions/3.12/bin:/Users/pak/Library/Android/sdk/emulator:/Users/pak/Library/Android/sdk/tools:/Users/pak/Library/Android/sdk/tools/bin:/Users/pak/Library/Android/sdk/platform-tools:/Users/pak/Library/Android/sdk/emulator:/Users/pak/Library/Android/sdk/tools:/Users/pak/Library/Android/sdk/tools/bin:/Users/pak/Library/Android/sdk/platform-tools:/Users/pak/.rvm/bin
+
+Yarn version: 
+  1.22.1
+
+Node version: 
+  20.9.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: Release not found: 3.6.4
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:86213:17
+      at Generator.next (<anonymous>)
+      at step (/usr/local/lib/node_modules/yarn/lib/cli.js:310:30)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:321:13
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+
+npm manifest: 
+  {
+    "name": "VenueBot",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+      "android": "react-native run-android",
+      "ios": "react-native run-ios",
+      "lint": "eslint .",
+      "start": "react-native start",
+      "test": "jest"
+    },
+    "dependencies": {
+      "react": "18.3.1",
+      "react-native": "0.75.2"
+    },
+    "devDependencies": {
+      "@babel/core": "^7.20.0",
+      "@babel/preset-env": "^7.20.0",
+      "@babel/runtime": "^7.20.0",
+      "@react-native/babel-preset": "0.75.2",
+      "@react-native/eslint-config": "0.75.2",
+      "@react-native/metro-config": "0.75.2",
+      "@react-native/typescript-config": "0.75.2",
+      "@types/react": "^18.2.6",
+      "@types/react-test-renderer": "^18.0.0",
+      "babel-jest": "^29.6.3",
+      "eslint": "^8.19.0",
+      "jest": "^29.6.3",
+      "prettier": "2.8.8",
+      "react-test-renderer": "18.3.1",
+      "typescript": "5.0.4"
+    },
+    "engines": {
+      "node": ">=18"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
