@@ -12,7 +12,7 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 const Splash = () => {
   const {width, height} = Dimensions.get('screen');
   return (
-    <View style={{alignItems: 'center', justifyContent: 'center'}}>
+    <View style={{flex: 1}}>
       <Image
         style={{width: width, height: height}}
         source={require('../images/splash.jpg')}
