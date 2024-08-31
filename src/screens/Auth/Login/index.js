@@ -16,7 +16,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import CustomTextInput from '../../../components/customInput';
 import CustomButton from '../../../components/customButton';
-const Login = () => {
+const Login = ({navigation}) => {
   const [show, setShow] = useState(true);
   const {width, height} = Dimensions.get('screen');
   return (
@@ -34,9 +34,11 @@ const Login = () => {
           <Text style={{fontSize: 12, fontWeight: '300', color: 'black'}}>
             Don't have accout?
           </Text>
-          <Text style={{color: Colors.primary, fontWeight: '500'}}>
-            Sign up
-          </Text>
+          <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
+            <Text style={{color: Colors.primary, fontWeight: '500'}}>
+              Sign up
+            </Text>
+          </TouchableOpacity>
         </View>
         <View style={styles.googlettxt}>
           <Text>Sign in with</Text>
@@ -73,12 +75,19 @@ const Login = () => {
           rightClick={() => setShow(!show)}
         />
 
-        <Text style={styles.frgt}>Forget Password</Text>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('ForgetPassword')}
+          style={{
+            alignSelf: 'flex-end',
+          }}>
+          <Text style={styles.frgt}>Forget Password</Text>
+        </TouchableOpacity>
         <CustomButton
           title="Login"
           bgClr={Colors.primary}
           txtSize={20}
           width={'90%'}
+          onClick={() => navigation.navigate('HomeStack')}
         />
       </View>
     </ScrollView>
@@ -132,7 +141,6 @@ const styles = StyleSheet.create({
   frgt: {
     color: Colors.primary,
     fontFamily: Family,
-    alignSelf: 'flex-end',
     marginRight: '5%',
     marginVertical: 20,
   },

@@ -5,6 +5,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
 import {Family} from '../../../components/family';
@@ -15,7 +16,7 @@ import CustomRadioButton from '../../../components/customRadioButtons';
 import CustomButton from '../../../components/customButton';
 import {Colors} from '../../../components/colors';
 
-const Signup = () => {
+const Signup = ({navigation}) => {
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
   const [show, setShow] = useState(false);
@@ -104,18 +105,16 @@ const Signup = () => {
           width={'90%'}
           txtSize={20}
           marginVertical={10}
+          mBottom={30}
+          onClick={() => navigation.navigate('Login')}
         />
-        <View
-          style={{
-            marginTop: -70,
-            flexDirection: 'row',
-            gap: 15,
-            marginBottom: 100,
-          }}>
+        <View style={styles.bottom}>
           <Text style={{fontSize: 15, fontFamily: Family}}>
             Already have an accout?
           </Text>
-          <Text style={styles.btn}>Sig in</Text>
+          <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+            <Text style={styles.btn}>Sig in</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </ScrollView>
@@ -159,5 +158,10 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   btn: {color: Colors.primary, fontSize: 15, fontFamily: Family},
+  bottom: {
+    flexDirection: 'row',
+    gap: 15,
+    marginBottom: 100,
+  },
 });
 export default Signup;

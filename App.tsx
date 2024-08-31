@@ -15,11 +15,10 @@ import {
   View,
 } from 'react-native';
 import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
-import Splash from './src/screens/splash';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import Login from './src/screens/Auth/Login';
-import Signup from './src/screens/Auth/Signup';
-import ForgetPassword from './src/screens/Auth/ForgetPassword';
+
+import MainNav from './src/Navigation/mainNav';
+import {NavigationContainer} from '@react-navigation/native';
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -29,12 +28,12 @@ function App(): React.JSX.Element {
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
+    <SafeAreaView style={{...backgroundStyle, flex: 1}}>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <ForgetPassword />
+      <MainNav />
     </SafeAreaView>
   );
 }
