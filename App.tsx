@@ -6,7 +6,6 @@
  */
 
 import React from 'react';
-import type {PropsWithChildren} from 'react';
 import {
   Image,
   SafeAreaView,
@@ -20,6 +19,7 @@ import Splash from './src/screens/splash';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import Login from './src/screens/Auth/Login';
 import Signup from './src/screens/Auth/Signup';
+import ForgetPassword from './src/screens/Auth/ForgetPassword';
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -34,7 +34,7 @@ function App(): React.JSX.Element {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <Text>Hello</Text>
+      <ForgetPassword />
     </SafeAreaView>
   );
 }
