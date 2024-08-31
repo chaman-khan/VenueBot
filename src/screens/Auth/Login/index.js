@@ -14,6 +14,8 @@ import {Colors} from '../../../components/colors';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import CustomTextInput from '../../../components/customInput';
+import CustomButton from '../../../components/customButton';
 const Login = () => {
   const [show, setShow] = useState(true);
   const {width, height} = Dimensions.get('screen');
@@ -56,31 +58,28 @@ const Login = () => {
           <Text style={{fontWeight: '300'}}>or</Text>
           <View style={{flex: 1, height: 0.5, backgroundColor: 'black'}} />
         </View>
-        <View style={styles.mail}>
-          <Entypo name="mail" size={20} />
-          <TextInput
-            keyboardType="email-address"
-            placeholder="Email"
-            style={{width: '92%'}}
-          />
-        </View>
-        <View style={{...styles.mail}}>
-          <MaterialCommunityIcons name="onepassword" size={20} />
-          <TextInput
-            placeholder="Password"
-            style={{width: '82%'}}
-            secureTextEntry={show}
-          />
-          <TouchableOpacity activeOpacity={1} onPress={() => setShow(!show)}>
-            <Ionicons name={show ? 'eye' : 'eye-off'} size={20} color="grey" />
-          </TouchableOpacity>
-        </View>
+        <CustomTextInput
+          keyboardType={'email-address'}
+          leftImg={'mail'}
+          placeholder={'Email'}
+        />
+        <CustomTextInput
+          keyboardType={'default'}
+          leftImg={'lock'}
+          placeholder={'Password'}
+          widthInput={'82%'}
+          rightImg={show ? 'eye' : 'eye-with-line'}
+          secure={show}
+          rightClick={() => setShow(!show)}
+        />
+
         <Text style={styles.frgt}>Forget Password</Text>
-        <TouchableOpacity style={styles.btn}>
-          <Text style={{fontFamily: Family, fontSize: 20, color: 'white'}}>
-            Login
-          </Text>
-        </TouchableOpacity>
+        <CustomButton
+          title="Login"
+          bgClr={Colors.primary}
+          txtSize={20}
+          width={'90%'}
+        />
       </View>
     </ScrollView>
   );
@@ -130,33 +129,12 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginBottom: 10,
   },
-  mail: {
-    width: '90%',
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 10,
-    borderColor: 'lightgrey',
-    borderWidth: 2,
-    borderRadius: 10,
-    paddingHorizontal: 10,
-    paddingVertical: 15,
-    marginTop: 20,
-  },
   frgt: {
     color: Colors.primary,
     fontFamily: Family,
     alignSelf: 'flex-end',
     marginRight: '5%',
     marginVertical: 20,
-  },
-  btn: {
-    width: '90%',
-    height: 50,
-    backgroundColor: Colors.primary,
-    borderRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 100,
   },
 });
 export default Login;
