@@ -25,6 +25,7 @@ const CustomTextInput = ({
   touch,
   onPress,
   width,
+  rightColor,
 }) => {
   return (
     <TouchableOpacity
@@ -41,12 +42,16 @@ const CustomTextInput = ({
         value={value}
         placeholder={placeholder}
         secureTextEntry={secure}
-        style={{width: widthInput ? widthInput : '92%', fontFamily: Family}}
+        style={{width: rightImg ? '80%' : '92%', fontFamily: Family}}
         editable={!touch}
       />
       {rightImg && (
         <TouchableOpacity activeOpacity={1} onPress={rightClick}>
-          <Entypo name={rightImg} size={20} color="gray" />
+          <Entypo
+            name={rightImg}
+            size={20}
+            color={rightColor ? rightColor : 'gray'}
+          />
         </TouchableOpacity>
       )}
     </TouchableOpacity>

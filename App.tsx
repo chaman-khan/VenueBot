@@ -19,6 +19,7 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 import MainNav from './src/Navigation/mainNav';
 import {NavigationContainer} from '@react-navigation/native';
+import Toast from 'react-native-toast-message';
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -34,6 +35,7 @@ function App(): React.JSX.Element {
         backgroundColor={backgroundStyle.backgroundColor}
       />
       <MainNav />
+      <Toast />
     </SafeAreaView>
   );
 }
