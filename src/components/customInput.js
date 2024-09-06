@@ -26,6 +26,7 @@ const CustomTextInput = ({
   onPress,
   width,
   rightColor,
+  leftColor,
 }) => {
   return (
     <TouchableOpacity
@@ -36,10 +37,17 @@ const CustomTextInput = ({
         paddingHorizontal: touch ? 20 : 10,
         width: width ? width : '90%',
       }}>
-      {leftImg && <Entypo name={leftImg} size={20} />}
+      {leftImg && (
+        <Entypo
+          name={leftImg}
+          size={20}
+          color={leftColor ? leftColor : 'black'}
+        />
+      )}
       <TextInput
         keyboardType={keyboardType}
         value={value}
+        onChangeText={onPress}
         placeholder={placeholder}
         secureTextEntry={secure}
         style={{width: rightImg ? '80%' : '92%', fontFamily: Family}}

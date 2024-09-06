@@ -13,10 +13,14 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import CustomTextInput from '../../components/customInput';
 import Toast from 'react-native-toast-message';
 import {Colors} from '../../components/colors';
-import Hotels from '../../components/hotels';
+import {useDispatch, useSelector} from 'react-redux';
+import {toggleFavourite} from '../../Features/hotelsSlice';
 
 const Home = () => {
-  const [hotels, setHotels] = useState(Hotels);
+  const hotels = useSelector(state => state.hotels);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const dispatch = useDispatch();
   const showToast = () => {
     Toast.show({
       type: 'success',
@@ -24,14 +28,10 @@ const Home = () => {
       text1: 'Commig Soon 👋',
     });
   };
-  const toggleFavourite = key => {
-    const updatedHotels = hotels.map(hotel =>
-      hotel.key === key ? {...hotel, favourite: !hotel.favourite} : hotel,
-    );
-    console.log('updatedHotels:   ', updatedHotels);
-
-    setHotels(updatedHotels);
-  };
+  const validHotels = Object.values(hotels).filter(item => item.key);
+  const filteredHotels = validHotels.filter(hotel =>
+    hotel.name.toLowerCase().includes(searchQuery.toLowerCase()),
+  );
   const renderItem = ({item}) => {
     return (
       <View style={styles.item}>
@@ -54,7 +54,7 @@ const Home = () => {
             <Entypo name="location-pin" size={20} color={Colors.primary} />
             <Text style={{fontFamily: Family}}>{item.location}</Text>
           </View>
-          <TouchableOpacity onPress={() => toggleFavourite(item.key)}>
+          <TouchableOpacity onPress={() => dispatch(toggleFavourite(item.key))}>
             <Entypo
               name={item.favourite ? 'heart' : 'heart-outlined'}
               size={20}
@@ -62,6 +62,21 @@ const Home = () => {
             />
           </TouchableOpacity>
         </View>
+      </View>
+    );
+  };
+  const EmptyComponent = () => {
+    return (
+      <View
+        style={{
+          width: '100%',
+          height: 500,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+        <Text style={{color: 'red', fontFamily: Family, fontSize: 30}}>
+          No Relative Data
+        </Text>
       </View>
     );
   };
@@ -92,14 +107,18 @@ const Home = () => {
         rightImg={'list'}
         rightClick={showToast}
         rightColor={Colors.primary}
+        leftColor={'grey'}
+        value={searchQuery}
+        onPress={txt => setSearchQuery(txt)}
       />
       <FlatList
-        data={hotels}
+        data={filteredHotels}
         renderItem={renderItem}
         style={{width: '100%', paddingVertical: 10, marginBottom: 150}}
         keyExtractor={item => item.key}
         numColumns={2}
         columnWrapperStyle={{justifyContent: 'space-between'}}
+        ListEmptyComponent={EmptyComponent}
       />
     </View>
   );
