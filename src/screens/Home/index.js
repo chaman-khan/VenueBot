@@ -16,7 +16,7 @@ import {Colors} from '../../components/colors';
 import {useDispatch, useSelector} from 'react-redux';
 import {toggleFavourite} from '../../Features/hotelsSlice';
 
-const Home = () => {
+const Home = ({navigation}) => {
   const hotels = useSelector(state => state.hotels);
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -34,7 +34,9 @@ const Home = () => {
   );
   const renderItem = ({item}) => {
     return (
-      <View style={styles.item}>
+      <TouchableOpacity
+        style={styles.item}
+        onPress={() => navigation.navigate('VanueDetail', (props = {item}))}>
         <Image
           source={item.img}
           style={{width: '100%', height: 150, borderRadius: 20}}
@@ -50,9 +52,11 @@ const Home = () => {
             flexDirection: 'row',
             justifyContent: 'space-between',
           }}>
-          <View style={{flexDirection: 'row', gap: 5}}>
+          <View style={{flexDirection: 'row', gap: 5, width: '60%'}}>
             <Entypo name="location-pin" size={20} color={Colors.primary} />
-            <Text style={{fontFamily: Family}}>{item.location}</Text>
+            <Text numberOfLines={1} style={{fontFamily: Family}}>
+              {item.location}
+            </Text>
           </View>
           <TouchableOpacity onPress={() => dispatch(toggleFavourite(item.key))}>
             <Entypo
@@ -62,7 +66,7 @@ const Home = () => {
             />
           </TouchableOpacity>
         </View>
-      </View>
+      </TouchableOpacity>
     );
   };
   const EmptyComponent = () => {
