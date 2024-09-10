@@ -29,6 +29,7 @@ const Home = ({navigation}) => {
     });
   };
   const validHotels = Object.values(hotels).filter(item => item.key);
+
   const filteredHotels = validHotels.filter(hotel =>
     hotel.name.toLowerCase().includes(searchQuery.toLowerCase()),
   );
@@ -38,7 +39,7 @@ const Home = ({navigation}) => {
         style={styles.item}
         onPress={() => navigation.navigate('VanueDetail', (props = {item}))}>
         <Image
-          source={item.img}
+          source={item.images[0]}
           style={{width: '100%', height: 150, borderRadius: 20}}
         />
         <Text numberOfLines={1} style={styles.name}>
