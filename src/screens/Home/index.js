@@ -37,7 +37,9 @@ const Home = ({navigation}) => {
     return (
       <TouchableOpacity
         style={styles.item}
-        onPress={() => navigation.navigate('VanueDetail', (props = {item}))}>
+        onPress={() =>
+          navigation.navigate('VanueDetail', (props = {itemKey: item.key}))
+        }>
         <Image
           source={item.images[0]}
           style={{width: '100%', height: 150, borderRadius: 20}}

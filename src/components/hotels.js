@@ -6,7 +6,7 @@ const Hotels = [
         uri: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/27/62/4c/45/best-western-merrion.jpg?w=700&h=-1&s=1',
       }),
       (img2 = {
-        uri: 'https://www.kayak.com/rimg/kimg/c6/e2/73e61c90e2f3853d.jpg?width=1366&height=768&crop=true',
+        uri: 'https://www.kayak.com/rimg/kimg/c6/e2/73e61c90e2f3853d.jpg?width=1366&height=768&crop=true  ',
       }),
       (img3 = {
         uri: 'https://www.pchotels.com/asset/welcome-image/pclahore.jpg',
@@ -17,6 +17,12 @@ const Hotels = [
     location: 'Islamabad, Pakistan',
     availability: '9:00 AM to 12:00 AM',
     favourite: false,
+    stars: 4,
+    reviews: ['good', 'nice', 'good location', 'hloo', 'will see', 'oppened'],
+    managerName: 'Aiden',
+    managerDp: {
+      uri: 'https://media.licdn.com/dms/image/C5603AQHly0_mB8QTtw/profile-displayphoto-shrink_200_200/0/1653315681189?e=2147483647&v=beta&t=YQd3JI4SpooTI8NMJQZBc23UyG9mUrx_8Xinvy-Lt6I',
+    },
   },
   {
     key: 2,
@@ -36,6 +42,12 @@ const Hotels = [
     location: 'Islamabad, Pakistan',
     availability: '12:00 AM to 11:59 PM',
     favourite: false,
+    stars: 4,
+    reviews: ['good', 'nice', 'good location', 'hloo', 'will see', 'oppened'],
+    managerName: 'Bella',
+    managerDp: {
+      uri: 'https://pakistanintheworld.pk/live/wp-content/uploads/2022/05/Otto-Kurzendorfer.jpg',
+    },
   },
   {
     key: 3,
@@ -55,6 +67,12 @@ const Hotels = [
     location: 'Islamabad, Pakistan',
     availability: '12:00 AM to 11:59 PM',
     favourite: false,
+    stars: 4,
+    reviews: ['good', 'nice', 'good location', 'hloo', 'will see', 'oppened'],
+    managerName: 'Caleb',
+    managerDp: {
+      uri: 'https://media.licdn.com/dms/image/D4D03AQEePNPS2xuBtg/profile-displayphoto-shrink_200_200/0/1668795707865?e=2147483647&v=beta&t=sXZdJUY6RtXW5_WJAhhLVYYRF7uy4wiyFW4pc5sIjZM',
+    },
   },
   {
     key: 4,
@@ -74,6 +92,12 @@ const Hotels = [
     location: 'Islamabad, Pakistan',
     availability: '12:00 AM to 11:59 PM',
     favourite: false,
+    stars: 4,
+    reviews: ['good', 'nice', 'good location', 'hloo', 'will see', 'oppened'],
+    managerName: 'Daisy',
+    managerDp: {
+      uri: 'https://media.licdn.com/dms/image/v2/C5603AQH7Eq32i2ymRg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1644592960535?e=2147483647&v=beta&t=Pkz7hV3xZQbNWMcTIOLsINz-yQuQcqkZS5WQOCMmiY8',
+    },
   },
   {
     key: 5,
@@ -93,6 +117,12 @@ const Hotels = [
     location: 'Islamabad, Pakistan',
     availability: '12:00 AM to 11:59 PM',
     favourite: false,
+    stars: 4,
+    reviews: ['good', 'nice', 'good location', 'hloo', 'will see', 'oppened'],
+    managerName: 'Ethan',
+    managerDp: {
+      uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgLPmc7Z8ZoxjhmZT8yaLIZe2Ky5iOdCrPBw&s',
+    },
   },
   {
     key: 6,
@@ -112,6 +142,12 @@ const Hotels = [
     location: 'Lahore, Pakistan',
     availability: '12:00 AM to 11:59 PM',
     favourite: false,
+    stars: 4,
+    reviews: ['good', 'nice', 'good location', 'hloo', 'will see', 'oppened'],
+    managerName: 'Fiona',
+    managerDp: {
+      uri: 'https://media.licdn.com/dms/image/C4D03AQHJeTmaNDBDJg/profile-displayphoto-shrink_200_200/0/1616336108326?e=2147483647&v=beta&t=6YKOTAc22Ao4gMHMLR_jTmEGdr7rDgyM7aXlEXa2bIs',
+    },
   },
   {
     key: 7,
@@ -131,6 +167,12 @@ const Hotels = [
     location: 'Lahore, Pakistan',
     availability: '12:00 AM to 11:59 PM',
     favourite: false,
+    stars: 4,
+    reviews: ['good', 'nice', 'good location', 'hloo', 'will see', 'oppened'],
+    managerName: 'Gavin',
+    managerDp: {
+      uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5epHzce-zJe-8dJe8GPHZcJdwp4Z0ZRd4CA&s',
+    },
   },
   {
     key: 8,
@@ -150,6 +192,12 @@ const Hotels = [
     location: 'Lahore, Pakistan',
     availability: '12:00 AM to 11:59 PM',
     favourite: false,
+    stars: 4,
+    reviews: ['good', 'nice', 'good location', 'hloo', 'will see', 'oppened'],
+    managerName: 'Hannah',
+    managerDp: {
+      uri: 'https://www.nation.com.pk/print_images/large/2023-06-23/zulqarnain-chaudhry-appointed-as-gm-faletti-s-express-1687466484-5495.jpg',
+    },
   },
   {
     key: 9,
@@ -169,6 +217,12 @@ const Hotels = [
     location: 'Lahore, Pakistan',
     availability: '12:00 AM to 11:59 PM',
     favourite: false,
+    stars: 4,
+    reviews: ['good', 'nice', 'good location', 'hloo', 'will see', 'oppened'],
+    managerName: 'Isaac',
+    managerDp: {
+      uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1zNPkbYQDrxhWSf3Ow_p-izi2LbCiYmd0nA&s',
+    },
   },
   {
     key: 10,
@@ -188,6 +242,12 @@ const Hotels = [
     location: 'Lahore, Pakistan',
     availability: '9:00 AM to 12:00 AM',
     favourite: false,
+    stars: 4,
+    reviews: ['good', 'nice', 'good location', 'hloo', 'will see', 'oppened'],
+    managerName: 'Julia',
+    managerDp: {
+      uri: 'https://media.licdn.com/dms/image/v2/C5603AQGAxlC_qWrO5w/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1516509415988?e=2147483647&v=beta&t=mkBHr6Rk-bcB3db8vJ22S-5dqe0V7cdCWagcFQMTyPk',
+    },
   },
   {
     key: 11,
@@ -207,6 +267,12 @@ const Hotels = [
     location: 'Lahore, Pakistan',
     availability: '9:00 AM to 12:00 AM',
     favourite: false,
+    stars: 4,
+    reviews: ['good', 'nice', 'good location', 'hloo', 'will see', 'oppened'],
+    managerName: 'Kevin',
+    managerDp: {
+      uri: 'https://www.hartlepoolmail.co.uk/webimg/b25lY21zOjhjZjUwNzc0LTNlYjAtNGIyMC1hYjQ0LTFhN2EzZjQzYjUyYzo3NjE3MWMwYi0zM2UwLTRiODctODIxYS1hZjdjNGM3NmQ5Nzc=.jpg?crop=3:2,smart&trim=&width=640&quality=65',
+    },
   },
   {
     key: 12,
@@ -226,6 +292,12 @@ const Hotels = [
     location: 'Lahore, Pakistan',
     availability: '9:00 AM to 12:00 AM',
     favourite: false,
+    stars: 4,
+    reviews: ['good', 'nice', 'good location', 'hloo', 'will see', 'oppened'],
+    managerName: 'Lily',
+    managerDp: {
+      uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRw-5fJs2FoRdCn2XrbCD8vHPG8ReS_Cx-ffg&s',
+    },
   },
   {
     key: 13,
@@ -245,6 +317,12 @@ const Hotels = [
     location: 'Lahore, Pakistan',
     availability: '9:00 AM to 12:00 AM',
     favourite: false,
+    stars: 4,
+    reviews: ['good', 'nice', 'good location', 'hloo', 'will see', 'oppened'],
+    managerName: 'Mason',
+    managerDp: {
+      uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZcT0FGJR0GLqVrT5CveTA66hQjAdT9BRRcw&s',
+    },
   },
   {
     key: 14,
@@ -264,6 +342,12 @@ const Hotels = [
     location: 'Lahore, Pakistan',
     availability: '9:00 AM to 12:00 AM',
     favourite: false,
+    stars: 4,
+    reviews: ['good', 'nice', 'good location', 'hloo', 'will see', 'oppened'],
+    managerName: 'Nora',
+    managerDp: {
+      uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB8PnQ-CCPu0UAvndVQooMXfwv9vUK5GV5Vw&s',
+    },
   },
   {
     key: 15,
@@ -283,6 +367,12 @@ const Hotels = [
     location: 'Sargodha, Pakistan',
     availability: '9:00 AM to 12:00 AM',
     favourite: false,
+    stars: 4,
+    reviews: ['good', 'nice', 'good location', 'hloo', 'will see', 'oppened'],
+    managerName: 'Owen',
+    managerDp: {
+      uri: 'https://media.istockphoto.com/id/517013894/photo/hotel-manager.jpg?s=612x612&w=0&k=20&c=Grew_VBe4UpZzIqa7qhEYau_dEKJW_HybtCNk1m_no4=',
+    },
   },
   {
     key: 16,
@@ -302,6 +392,12 @@ const Hotels = [
     location: 'Sargodha, Pakistan',
     availability: '9:00 AM to 12:00 AM',
     favourite: false,
+    stars: 4,
+    reviews: ['good', 'nice', 'good location', 'hloo', 'will see', 'oppened'],
+    managerName: 'Penelope',
+    managerDp: {
+      uri: 'https://media.licdn.com/dms/image/D4E03AQED8l7gE8Focg/profile-displayphoto-shrink_200_200/0/1698943245700?e=2147483647&v=beta&t=vmqSBJEIl225ngzZJ1KUB18ZlGpdFKMGVdN3b_YPX5s',
+    },
   },
   {
     key: 17,
@@ -321,6 +417,12 @@ const Hotels = [
     location: 'Sargodha, Pakistan',
     availability: '9:00 AM to 12:00 AM',
     favourite: false,
+    stars: 4,
+    reviews: ['good', 'nice', 'good location', 'hloo', 'will see', 'oppened'],
+    managerName: 'Quinn',
+    managerDp: {
+      uri: 'https://media.gettyimages.com/id/585838010/photo/businesswoman-standing-in-banquet-hall.jpg?s=612x612&w=gi&k=20&c=W2ZHohqNRkUmI8c5Qsox3vFOc_zqNn2w7S1jL-9LUmY=',
+    },
   },
   {
     key: 18,
@@ -340,6 +442,12 @@ const Hotels = [
     location: 'Sargodha, Pakistan',
     availability: '9:00 AM to 12:00 AM',
     favourite: false,
+    stars: 4,
+    reviews: ['good', 'nice', 'good location', 'hloo', 'will see', 'oppened'],
+    managerName: 'Ryan',
+    managerDp: {
+      uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUOoMQ7EqOf4YioFYK8iur2skITQ30HImeXA&s',
+    },
   },
   {
     key: 19,
@@ -359,6 +467,12 @@ const Hotels = [
     location: 'Sargodha, Pakistan',
     availability: '9:00 AM to 12:00 AM',
     favourite: false,
+    stars: 4,
+    reviews: ['good', 'nice', 'good location', 'hloo', 'will see', 'oppened'],
+    managerName: 'Sophia',
+    managerDp: {
+      uri: 'https://media.licdn.com/dms/image/D5610AQEhl8N1s2eooA/image-shrink_800/0/1711969489758?e=2147483647&v=beta&t=MIySS9bJZdLcI1sEW9g0kAXHCaC0CEgO8dUboDVJGPQ',
+    },
   },
   {
     key: 20,
@@ -378,6 +492,12 @@ const Hotels = [
     location: 'Sargodha, Pakistan',
     availability: '9:00 AM to 12:00 AM',
     favourite: false,
+    stars: 4,
+    reviews: ['good', 'nice', 'good location', 'hloo', 'will see', 'oppened'],
+    managerName: 'Tyler',
+    managerDp: {
+      uri: 'https://media.licdn.com/dms/image/C5603AQFVOSyNpMUGyQ/profile-displayphoto-shrink_200_200/0/1657786081632?e=2147483647&v=beta&t=3XDdND2wzOnCiGJkLx6pWxl4Ir2iHxdQ_1ICQD47YeA',
+    },
   },
   {
     key: 21,
@@ -397,6 +517,12 @@ const Hotels = [
     location: 'Sargodha, Pakistan',
     availability: '9:00 AM to 12:00 AM',
     favourite: false,
+    stars: 4,
+    reviews: ['good', 'nice', 'good location', 'hloo', 'will see', 'oppened'],
+    managerName: 'Uma',
+    managerDp: {
+      uri: 'https://media.licdn.com/dms/image/C5603AQF3pJ-zXw2Bbg/profile-displayphoto-shrink_200_200/0/1601271258060?e=2147483647&v=beta&t=GW_qeDexL-AHF1-ydyFXX2lWVRji942NHg6RFpbC0yA',
+    },
   },
   {
     key: 22,
@@ -416,6 +542,12 @@ const Hotels = [
     location: 'Sargodha, Pakistan',
     availability: '9:00 AM to 12:00 AM',
     favourite: false,
+    stars: 4,
+    reviews: ['good', 'nice', 'good location', 'hloo', 'will see', 'oppened'],
+    managerName: 'Victor',
+    managerDp: {
+      uri: 'https://media.licdn.com/dms/image/C4E03AQH1ppQApeaoCg/profile-displayphoto-shrink_200_200/0/1523649009234?e=2147483647&v=beta&t=LLB0-MEUOiwAj0yp49qDuAoZzgmp6L8y4xwWhmLjGio',
+    },
   },
   {
     key: 23,
@@ -435,6 +567,12 @@ const Hotels = [
     location: 'Sargodha, Pakistan',
     availability: '9:00 AM to 12:00 AM',
     favourite: false,
+    stars: 4,
+    reviews: ['good', 'nice', 'good location', 'hloo', 'will see', 'oppened'],
+    managerName: 'Willow',
+    managerDp: {
+      uri: 'https://media.licdn.com/dms/image/C4E03AQGqfAtqMq8YHA/profile-displayphoto-shrink_200_200/0/1624974620746?e=2147483647&v=beta&t=1NqKxYCO87fm3i2aKShXugkUSj7ar3JLIa3kxrU5fuc',
+    },
   },
   {
     key: 24,
@@ -454,6 +592,12 @@ const Hotels = [
     location: 'Sargodha, Pakistan',
     availability: '9:00 AM to 12:00 AM',
     favourite: false,
+    stars: 4,
+    reviews: ['good', 'nice', 'good location', 'hloo', 'will see', 'oppened'],
+    managerName: 'Xavier',
+    managerDp: {
+      uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6GLF3bvVwLPR9GbvmuEqMTQ4aWI__9AXqXQ&s',
+    },
   },
   {
     key: 25,
@@ -473,6 +617,12 @@ const Hotels = [
     location: 'Islamabad, Pakistan',
     availability: '12:00 AM to 11:59 PM',
     favourite: false,
+    stars: 4,
+    reviews: ['good', 'nice', 'good location', 'hloo', 'will see', 'oppened'],
+    managerName: 'Xavier',
+    managerDp: {
+      uri: 'https://media.licdn.com/dms/image/C5603AQEWdSDBhGeEcQ/profile-displayphoto-shrink_200_200/0/1612878603904?e=2147483647&v=beta&t=BEH-iNhhFOdLWroR2wuukdlm10JjnNL6ipT6DZCoxTU',
+    },
   },
   {
     key: 26,
@@ -492,6 +642,12 @@ const Hotels = [
     location: 'Islamabad, Pakistan',
     availability: '9:00 AM to 12:00 AM',
     favourite: false,
+    stars: 4,
+    reviews: ['good', 'nice', 'good location', 'hloo', 'will see', 'oppened'],
+    managerName: 'yara',
+    managerDp: {
+      uri: 'https://media.licdn.com/dms/image/C5603AQEVvpgDCm3W_g/profile-displayphoto-shrink_200_200/0/1547762423473?e=2147483647&v=beta&t=H9qy_ojx7DBYweLDAGoXTkt8HWsIUTfIuIdJIWFr3Bg',
+    },
   },
   {
     key: 27,
@@ -509,6 +665,12 @@ const Hotels = [
     location: 'Islamabad, Pakistan',
     availability: '9:00 AM to 12:00 AM',
     favourite: false,
+    stars: 4,
+    reviews: ['good', 'nice', 'good location', 'hloo', 'will see', 'oppened'],
+    managerName: 'Aaron',
+    managerDp: {
+      uri: 'https://media.licdn.com/dms/image/D4D03AQGJXOGvNFhkBA/profile-displayphoto-shrink_200_200/0/1719218350601?e=2147483647&v=beta&t=aeQv0RzsSNH2M7UMR0lqyPp9orRlvFzpQaL90cR39S4',
+    },
   },
   {
     key: 28,
@@ -528,6 +690,12 @@ const Hotels = [
     location: 'Islamabad, Pakistan',
     availability: '9:00 AM to 12:00 AM',
     favourite: false,
+    stars: 4,
+    reviews: ['good', 'nice', 'good location', 'hloo', 'will see', 'oppened'],
+    managerName: 'Zoe',
+    managerDp: {
+      uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToS3wW72X7dpnQSvCIkJwXm21Ye8epfAic1g&s',
+    },
   },
   {
     key: 29,
@@ -547,6 +715,12 @@ const Hotels = [
     location: 'Islamabad',
     availability: '9:00 AM to 12:00 AM',
     favourite: false,
+    stars: 4,
+    reviews: ['good', 'nice', 'good location', 'hloo', 'will see', 'oppened'],
+    managerName: 'Brianna',
+    managerDp: {
+      uri: 'https://media-cdn.tripadvisor.com/media/photo-s/0d/5a/38/ff/the-shalimar-hotel.jpg',
+    },
   },
   {
     key: 30,
@@ -566,6 +740,12 @@ const Hotels = [
     location: 'Islamabad, Pakistan',
     availability: '12:00 AM to 11:59 PM',
     favourite: false,
+    stars: 4,
+    reviews: ['good', 'nice', 'good location', 'hloo', 'will see', 'oppened'],
+    managerName: 'Connor',
+    managerDp: {
+      uri: 'https://media-cdn.tripadvisor.com/media/photo-p/19/54/c9/1d/night-manager-karan-your.jpg',
+    },
   },
 ];
 
