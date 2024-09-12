@@ -187,13 +187,7 @@ const VanueDetail = ({navigation, route}) => {
           <Entypo name="share" size={30} color="white" />
         </View>
       </View>
-      <ScrollView
-        style={{
-          width: '100%',
-          paddingHorizontal: '5%',
-          height: height - 350,
-          alignSelf: 'center',
-        }}>
+      <ScrollView style={styles.scroll}>
         <Text style={styles.name}>{item.name}</Text>
         <View style={styles.line} />
 
@@ -266,6 +260,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+  },
+  scroll: {
+    width: '100%',
+    paddingHorizontal: '5%',
+    height: height - 350,
+    alignSelf: 'center',
   },
   heading: {
     fontSize: 18,
