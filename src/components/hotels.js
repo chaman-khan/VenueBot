@@ -23,6 +23,8 @@ const Hotels = [
     managerDp: {
       uri: 'https://media.licdn.com/dms/image/C5603AQHly0_mB8QTtw/profile-displayphoto-shrink_200_200/0/1653315681189?e=2147483647&v=beta&t=YQd3JI4SpooTI8NMJQZBc23UyG9mUrx_8Xinvy-Lt6I',
     },
+    latitude: 31.01405,
+    longitude: 74.20922,
   },
   {
     key: 2,
@@ -48,6 +50,8 @@ const Hotels = [
     managerDp: {
       uri: 'https://pakistanintheworld.pk/live/wp-content/uploads/2022/05/Otto-Kurzendorfer.jpg',
     },
+    latitude: 31.34605,
+    longitude: 74.19822,
   },
   {
     key: 3,
@@ -73,6 +77,8 @@ const Hotels = [
     managerDp: {
       uri: 'https://media.licdn.com/dms/image/D4D03AQEePNPS2xuBtg/profile-displayphoto-shrink_200_200/0/1668795707865?e=2147483647&v=beta&t=sXZdJUY6RtXW5_WJAhhLVYYRF7uy4wiyFW4pc5sIjZM',
     },
+    latitude: 31.34235,
+    longitude: 74.19222,
   },
   {
     key: 4,
@@ -98,6 +104,8 @@ const Hotels = [
     managerDp: {
       uri: 'https://media.licdn.com/dms/image/v2/C5603AQH7Eq32i2ymRg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1644592960535?e=2147483647&v=beta&t=Pkz7hV3xZQbNWMcTIOLsINz-yQuQcqkZS5WQOCMmiY8',
     },
+    latitude: 31.34299,
+    longitude: 74.19299,
   },
   {
     key: 5,
@@ -123,6 +131,8 @@ const Hotels = [
     managerDp: {
       uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgLPmc7Z8ZoxjhmZT8yaLIZe2Ky5iOdCrPBw&s',
     },
+    latitude: 31.32199,
+    longitude: 74.19412,
   },
   {
     key: 6,
@@ -148,6 +158,8 @@ const Hotels = [
     managerDp: {
       uri: 'https://media.licdn.com/dms/image/C4D03AQHJeTmaNDBDJg/profile-displayphoto-shrink_200_200/0/1616336108326?e=2147483647&v=beta&t=6YKOTAc22Ao4gMHMLR_jTmEGdr7rDgyM7aXlEXa2bIs',
     },
+    latitude: 31.12199,
+    longitude: 74.56412,
   },
   {
     key: 7,
@@ -173,6 +185,8 @@ const Hotels = [
     managerDp: {
       uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5epHzce-zJe-8dJe8GPHZcJdwp4Z0ZRd4CA&s',
     },
+    latitude: 31.12119,
+    longitude: 74.51912,
   },
   {
     key: 8,
@@ -198,6 +212,8 @@ const Hotels = [
     managerDp: {
       uri: 'https://www.nation.com.pk/print_images/large/2023-06-23/zulqarnain-chaudhry-appointed-as-gm-faletti-s-express-1687466484-5495.jpg',
     },
+    latitude: 31.70119,
+    longitude: 74.51123,
   },
   {
     key: 9,
@@ -223,6 +239,8 @@ const Hotels = [
     managerDp: {
       uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1zNPkbYQDrxhWSf3Ow_p-izi2LbCiYmd0nA&s',
     },
+    latitude: 31.11119,
+    longitude: 74.51003,
   },
   {
     key: 10,
@@ -248,6 +266,8 @@ const Hotels = [
     managerDp: {
       uri: 'https://media.licdn.com/dms/image/v2/C5603AQGAxlC_qWrO5w/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1516509415988?e=2147483647&v=beta&t=mkBHr6Rk-bcB3db8vJ22S-5dqe0V7cdCWagcFQMTyPk',
     },
+    latitude: 31.22119,
+    longitude: 74.59703,
   },
   {
     key: 11,
@@ -273,6 +293,8 @@ const Hotels = [
     managerDp: {
       uri: 'https://www.hartlepoolmail.co.uk/webimg/b25lY21zOjhjZjUwNzc0LTNlYjAtNGIyMC1hYjQ0LTFhN2EzZjQzYjUyYzo3NjE3MWMwYi0zM2UwLTRiODctODIxYS1hZjdjNGM3NmQ5Nzc=.jpg?crop=3:2,smart&trim=&width=640&quality=65',
     },
+    latitude: 31.32119,
+    longitude: 74.54603,
   },
   {
     key: 12,
@@ -298,6 +320,8 @@ const Hotels = [
     managerDp: {
       uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRw-5fJs2FoRdCn2XrbCD8vHPG8ReS_Cx-ffg&s',
     },
+    latitude: 31.32101,
+    longitude: 74.14603,
   },
   {
     key: 13,
@@ -323,6 +347,8 @@ const Hotels = [
     managerDp: {
       uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZcT0FGJR0GLqVrT5CveTA66hQjAdT9BRRcw&s',
     },
+    latitude: 31.32999,
+    longitude: 74.111903,
   },
   {
     key: 14,
@@ -348,6 +374,8 @@ const Hotels = [
     managerDp: {
       uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB8PnQ-CCPu0UAvndVQooMXfwv9vUK5GV5Vw&s',
     },
+    latitude: 31.32001,
+    longitude: 74.19922,
   },
   {
     key: 15,
@@ -373,6 +401,8 @@ const Hotels = [
     managerDp: {
       uri: 'https://media.istockphoto.com/id/517013894/photo/hotel-manager.jpg?s=612x612&w=0&k=20&c=Grew_VBe4UpZzIqa7qhEYau_dEKJW_HybtCNk1m_no4=',
     },
+    latitude: 31.38001,
+    longitude: 74.1125573,
   },
   {
     key: 16,
@@ -398,6 +428,8 @@ const Hotels = [
     managerDp: {
       uri: 'https://media.licdn.com/dms/image/D4E03AQED8l7gE8Focg/profile-displayphoto-shrink_200_200/0/1698943245700?e=2147483647&v=beta&t=vmqSBJEIl225ngzZJ1KUB18ZlGpdFKMGVdN3b_YPX5s',
     },
+    latitude: 31.38401,
+    longitude: 74.22573,
   },
   {
     key: 17,
@@ -423,6 +455,8 @@ const Hotels = [
     managerDp: {
       uri: 'https://media.gettyimages.com/id/585838010/photo/businesswoman-standing-in-banquet-hall.jpg?s=612x612&w=gi&k=20&c=W2ZHohqNRkUmI8c5Qsox3vFOc_zqNn2w7S1jL-9LUmY=',
     },
+    latitude: 31.38403,
+    longitude: 74.225,
   },
   {
     key: 18,
@@ -448,6 +482,8 @@ const Hotels = [
     managerDp: {
       uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUOoMQ7EqOf4YioFYK8iur2skITQ30HImeXA&s',
     },
+    latitude: 31.38463,
+    longitude: 74.2219,
   },
   {
     key: 19,
@@ -473,6 +509,8 @@ const Hotels = [
     managerDp: {
       uri: 'https://media.licdn.com/dms/image/D5610AQEhl8N1s2eooA/image-shrink_800/0/1711969489758?e=2147483647&v=beta&t=MIySS9bJZdLcI1sEW9g0kAXHCaC0CEgO8dUboDVJGPQ',
     },
+    latitude: 31.30063,
+    longitude: 74.1719,
   },
   {
     key: 20,
@@ -498,6 +536,8 @@ const Hotels = [
     managerDp: {
       uri: 'https://media.licdn.com/dms/image/C5603AQFVOSyNpMUGyQ/profile-displayphoto-shrink_200_200/0/1657786081632?e=2147483647&v=beta&t=3XDdND2wzOnCiGJkLx6pWxl4Ir2iHxdQ_1ICQD47YeA',
     },
+    latitude: 31.37063,
+    longitude: 74.1569,
   },
   {
     key: 21,
@@ -523,6 +563,8 @@ const Hotels = [
     managerDp: {
       uri: 'https://media.licdn.com/dms/image/C5603AQF3pJ-zXw2Bbg/profile-displayphoto-shrink_200_200/0/1601271258060?e=2147483647&v=beta&t=GW_qeDexL-AHF1-ydyFXX2lWVRji942NHg6RFpbC0yA',
     },
+    latitude: 31.3791,
+    longitude: 74.1199,
   },
   {
     key: 22,
@@ -548,6 +590,8 @@ const Hotels = [
     managerDp: {
       uri: 'https://media.licdn.com/dms/image/C4E03AQH1ppQApeaoCg/profile-displayphoto-shrink_200_200/0/1523649009234?e=2147483647&v=beta&t=LLB0-MEUOiwAj0yp49qDuAoZzgmp6L8y4xwWhmLjGio',
     },
+    latitude: 31.3761,
+    longitude: 74.2199,
   },
   {
     key: 23,
@@ -573,6 +617,8 @@ const Hotels = [
     managerDp: {
       uri: 'https://media.licdn.com/dms/image/C4E03AQGqfAtqMq8YHA/profile-displayphoto-shrink_200_200/0/1624974620746?e=2147483647&v=beta&t=1NqKxYCO87fm3i2aKShXugkUSj7ar3JLIa3kxrU5fuc',
     },
+    latitude: 31.3461,
+    longitude: 74.2191,
   },
   {
     key: 24,
@@ -598,6 +644,8 @@ const Hotels = [
     managerDp: {
       uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6GLF3bvVwLPR9GbvmuEqMTQ4aWI__9AXqXQ&s',
     },
+    latitude: 31.3311,
+    longitude: 74.2491,
   },
   {
     key: 25,
@@ -623,6 +671,8 @@ const Hotels = [
     managerDp: {
       uri: 'https://media.licdn.com/dms/image/C5603AQEWdSDBhGeEcQ/profile-displayphoto-shrink_200_200/0/1612878603904?e=2147483647&v=beta&t=BEH-iNhhFOdLWroR2wuukdlm10JjnNL6ipT6DZCoxTU',
     },
+    latitude: 31.3611,
+    longitude: 74.2121,
   },
   {
     key: 26,
@@ -648,6 +698,8 @@ const Hotels = [
     managerDp: {
       uri: 'https://media.licdn.com/dms/image/C5603AQEVvpgDCm3W_g/profile-displayphoto-shrink_200_200/0/1547762423473?e=2147483647&v=beta&t=H9qy_ojx7DBYweLDAGoXTkt8HWsIUTfIuIdJIWFr3Bg',
     },
+    latitude: 31.3212,
+    longitude: 74.1121,
   },
   {
     key: 27,
@@ -671,6 +723,8 @@ const Hotels = [
     managerDp: {
       uri: 'https://media.licdn.com/dms/image/D4D03AQGJXOGvNFhkBA/profile-displayphoto-shrink_200_200/0/1719218350601?e=2147483647&v=beta&t=aeQv0RzsSNH2M7UMR0lqyPp9orRlvFzpQaL90cR39S4',
     },
+    latitude: 31.32167,
+    longitude: 74.11239,
   },
   {
     key: 28,
@@ -696,6 +750,8 @@ const Hotels = [
     managerDp: {
       uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToS3wW72X7dpnQSvCIkJwXm21Ye8epfAic1g&s',
     },
+    latitude: 31.2217,
+    longitude: 74.11419,
   },
   {
     key: 29,
@@ -721,6 +777,8 @@ const Hotels = [
     managerDp: {
       uri: 'https://media-cdn.tripadvisor.com/media/photo-s/0d/5a/38/ff/the-shalimar-hotel.jpg',
     },
+    latitude: 31.22112,
+    longitude: 74.12219,
   },
   {
     key: 30,
@@ -746,6 +804,8 @@ const Hotels = [
     managerDp: {
       uri: 'https://media-cdn.tripadvisor.com/media/photo-p/19/54/c9/1d/night-manager-karan-your.jpg',
     },
+    latitude: 31.12112,
+    longitude: 74.21219,
   },
 ];
 

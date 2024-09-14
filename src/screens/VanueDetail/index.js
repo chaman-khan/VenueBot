@@ -140,7 +140,7 @@ const VanueDetail = ({navigation, route}) => {
           const {latitude, longitude} = position.coords;
           setLatitude(position.coords.latitude);
           setLongitude(position.coords.longitude);
-          const targetLocation = {latitude: 31.47405, longitude: 74.32922};
+          const targetLocation = destination;
           const distance = getDistance({latitude, longitude}, targetLocation);
           setDistance(distance);
         },
@@ -153,8 +153,8 @@ const VanueDetail = ({navigation, route}) => {
 
     requestLocationPermission();
   }, []);
-  const origin = {latitude: 31.56192, longitude: 74.348083};
-  const destination = {latitude: 32.073978, longitude: 72.686073};
+  const origin = {latitude: latitude, longitude: longitude};
+  const destination = {latitude: item.latitude, longitude: item.longitude};
   const GOOGLE_MAPS_APIKEY = 'AIzaSyA-4CW3RJxhVCSTrImtIdOJ-4k9zXMZQF4';
   return (
     <View>
@@ -239,26 +239,43 @@ const VanueDetail = ({navigation, route}) => {
             longitude: 74.32922,
             latitudeDelta: LATITUDE_DELTA,
             longitudeDelta: LONGITUDE_DELTA,
+          }}
+          ref={ref => {
+            this.mapView = ref;
           }}>
-          {/* <Marker
-            draggable
-            coordinate={{latitude: latitude, longitude: longitude}}
-            title="hello"
-          /> */}
+          <Marker draggable coordinate={destination} title="Destiation" />
           <MapViewDirections
             origin={origin}
             destination={destination}
             apikey={GOOGLE_MAPS_APIKEY}
+            strokeWidth={3}
+            strokeColor="blue"
+            onReady={result => {
+              console.log('Coordinates: ', result.coordinates);
+              this.mapView.fitToCoordinates(result.coordinates, {
+                edgePadding: {
+                  right: 20,
+                  bottom: 20,
+                  left: 20,
+                  top: 20,
+                },
+              });
+            }}
+            onError={errorMessage => {
+              console.log('Error: ', errorMessage);
+            }}
           />
         </MapView>
+        <Text style={{fontFamily: Family, fontSize: 12}}>
+          Distance from your location is{' '}
+          {distance !== null ? `${distance} meters` : 'Calculating...'}
+        </Text>
         <FlatList
           data={item.reviews}
           renderItem={({item}) => <ReviewItem review={item} />}
           keyExtractor={(item, index) => index.toString()}
         />
-        <Text>
-          distance{distance !== null ? `${distance} meters` : 'Calculating...'}
-        </Text>
+
         <CustomButton title="Booking Now" bgClr={Colors.primary} txtSize={20} />
       </ScrollView>
     </View>
