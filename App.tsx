@@ -8,7 +8,6 @@ import {
   View,
 } from 'react-native';
 import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 import MainNav from './src/Navigation/mainNav';
 import {NavigationContainer} from '@react-navigation/native';

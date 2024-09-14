@@ -50,7 +50,10 @@ const CustomTextInput = ({
         onChangeText={onPress}
         placeholder={placeholder}
         secureTextEntry={secure}
-        style={{width: rightImg ? '80%' : '92%', fontFamily: Family}}
+        style={{
+          width: rightImg ? '80%' : '92%',
+          fontFamily: Family,
+        }}
         editable={!touch}
       />
       {rightImg && (

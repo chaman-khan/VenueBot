@@ -19,8 +19,13 @@ import {useDispatch, useSelector} from 'react-redux';
 import {toggleFavourite} from '../../Features/hotelsSlice';
 import CustomButton from '../../components/customButton';
 import MapView, {Marker} from 'react-native-maps';
-import GeoLocation from 'react-native-geolocation-service';
 import {getDistance} from 'geolib';
+import Geolocation from '@react-native-community/geolocation';
+import MapViewDirections from 'react-native-maps-directions';
+const {width, height} = Dimensions.get('screen');
+const ASPECT_RATIO = width / height;
+const LATITUDE_DELTA = 0.0922;
+const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 const VanueDetail = ({navigation, route}) => {
   const itemKey = route.params.itemKey;
   const hotels = useSelector(state => state.hotels);
@@ -28,7 +33,11 @@ const VanueDetail = ({navigation, route}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [nextIndex, setNextIndex] = useState(null);
   const [distance, setDistance] = useState(null);
-  const {width, height} = Dimensions.get('screen');
+  const [latitude, setLatitude] = useState(null);
+  const [longitude, setLongitude] = useState(null);
+
+  console.log('latitude: ', latitude);
+  console.log('longitude: ', longitude);
 
   const dispatch = useDispatch();
 
@@ -126,9 +135,11 @@ const VanueDetail = ({navigation, route}) => {
     };
 
     const getCurrentLocation = () => {
-      GeoLocation.getCurrentPosition(
+      Geolocation.getCurrentPosition(
         position => {
           const {latitude, longitude} = position.coords;
+          setLatitude(position.coords.latitude);
+          setLongitude(position.coords.longitude);
           const targetLocation = {latitude: 31.47405, longitude: 74.32922};
           const distance = getDistance({latitude, longitude}, targetLocation);
           setDistance(distance);
@@ -142,6 +153,9 @@ const VanueDetail = ({navigation, route}) => {
 
     requestLocationPermission();
   }, []);
+  const origin = {latitude: 31.56192, longitude: 74.348083};
+  const destination = {latitude: 32.073978, longitude: 72.686073};
+  const GOOGLE_MAPS_APIKEY = 'AIzaSyA-4CW3RJxhVCSTrImtIdOJ-4k9zXMZQF4';
   return (
     <View>
       <View style={styles.imageContainer}>
@@ -219,17 +233,22 @@ const VanueDetail = ({navigation, route}) => {
         <MapView
           style={{width: '100%', height: 250}}
           provider="google"
-          // key={'AIzaSyDdj-1beJLCFhn_O98ugRZV-7ytcpPZ04Y'}
+          key={'AIzaSyA-4CW3RJxhVCSTrImtIdOJ-4k9zXMZQF4'}
           initialRegion={{
             latitude: 31.47405,
             longitude: 74.32922,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
+            latitudeDelta: LATITUDE_DELTA,
+            longitudeDelta: LONGITUDE_DELTA,
           }}>
-          <Marker
+          {/* <Marker
             draggable
-            coordinate={{latitude: 31.47405, longitude: 74.32922}}
+            coordinate={{latitude: latitude, longitude: longitude}}
             title="hello"
+          /> */}
+          <MapViewDirections
+            origin={origin}
+            destination={destination}
+            apikey={GOOGLE_MAPS_APIKEY}
           />
         </MapView>
         <FlatList

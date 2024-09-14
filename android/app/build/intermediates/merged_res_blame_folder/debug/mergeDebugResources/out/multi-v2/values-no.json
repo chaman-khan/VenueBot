@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.venuebot.app-mergeDebugResources-23:/values-no/values-no.xml",
+            "outputFile": "com.venuebot.app-mergeDebugResources-36:/values-no/values-no.xml",
             "map": [
                 {
                     "source": "/Users/pak/Documents/ReactNative/Projects/VenueBot/node_modules/react-native-date-picker/android/build/intermediates/packaged_res/debug/packageDebugResources/values-no/values-no.xml",

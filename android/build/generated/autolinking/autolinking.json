@@ -3,6 +3,56 @@
   "reactNativePath": "/Users/pak/Documents/ReactNative/Projects/VenueBot/node_modules/react-native",
   "reactNativeVersion": "0.75",
   "dependencies": {
+    "@react-native-async-storage/async-storage": {
+      "root": "/Users/pak/Documents/ReactNative/Projects/VenueBot/node_modules/@react-native-async-storage/async-storage",
+      "name": "@react-native-async-storage/async-storage",
+      "platforms": {
+        "ios": {
+          "podspecPath": "/Users/pak/Documents/ReactNative/Projects/VenueBot/node_modules/@react-native-async-storage/async-storage/RNCAsyncStorage.podspec",
+          "version": "2.0.0",
+          "configurations": [],
+          "scriptPhases": []
+        },
+        "android": {
+          "sourceDir": "/Users/pak/Documents/ReactNative/Projects/VenueBot/node_modules/@react-native-async-storage/async-storage/android",
+          "packageImportPath": "import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;",
+          "packageInstance": "new AsyncStoragePackage()",
+          "buildTypes": [],
+          "libraryName": "rnasyncstorage",
+          "componentDescriptors": [],
+          "cmakeListsPath": "/Users/pak/Documents/ReactNative/Projects/VenueBot/node_modules/@react-native-async-storage/async-storage/android/build/generated/source/codegen/jni/CMakeLists.txt",
+          "cxxModuleCMakeListsModuleName": null,
+          "cxxModuleCMakeListsPath": null,
+          "cxxModuleHeaderName": null,
+          "isPureCxxDependency": false
+        }
+      }
+    },
+    "@react-native-community/geolocation": {
+      "root": "/Users/pak/Documents/ReactNative/Projects/VenueBot/node_modules/@react-native-community/geolocation",
+      "name": "@react-native-community/geolocation",
+      "platforms": {
+        "ios": {
+          "podspecPath": "/Users/pak/Documents/ReactNative/Projects/VenueBot/node_modules/@react-native-community/geolocation/react-native-geolocation.podspec",
+          "version": "3.4.0",
+          "configurations": [],
+          "scriptPhases": []
+        },
+        "android": {
+          "sourceDir": "/Users/pak/Documents/ReactNative/Projects/VenueBot/node_modules/@react-native-community/geolocation/android",
+          "packageImportPath": "import com.reactnativecommunity.geolocation.GeolocationPackage;",
+          "packageInstance": "new GeolocationPackage()",
+          "buildTypes": [],
+          "libraryName": "RNCGeolocationSpec",
+          "componentDescriptors": [],
+          "cmakeListsPath": "/Users/pak/Documents/ReactNative/Projects/VenueBot/node_modules/@react-native-community/geolocation/android/build/generated/source/codegen/jni/CMakeLists.txt",
+          "cxxModuleCMakeListsModuleName": null,
+          "cxxModuleCMakeListsPath": null,
+          "cxxModuleHeaderName": null,
+          "isPureCxxDependency": false
+        }
+      }
+    },
     "react-native-date-picker": {
       "root": "/Users/pak/Documents/ReactNative/Projects/VenueBot/node_modules/react-native-date-picker",
       "name": "react-native-date-picker",
@@ -30,13 +80,65 @@
         }
       }
     },
+    "react-native-gesture-handler": {
+      "root": "/Users/pak/Documents/ReactNative/Projects/VenueBot/node_modules/react-native-gesture-handler",
+      "name": "react-native-gesture-handler",
+      "platforms": {
+        "ios": {
+          "podspecPath": "/Users/pak/Documents/ReactNative/Projects/VenueBot/node_modules/react-native-gesture-handler/RNGestureHandler.podspec",
+          "version": "2.19.0",
+          "configurations": [],
+          "scriptPhases": []
+        },
+        "android": {
+          "sourceDir": "/Users/pak/Documents/ReactNative/Projects/VenueBot/node_modules/react-native-gesture-handler/android",
+          "packageImportPath": "import com.swmansion.gesturehandler.RNGestureHandlerPackage;",
+          "packageInstance": "new RNGestureHandlerPackage()",
+          "buildTypes": [],
+          "libraryName": "rngesturehandler_codegen",
+          "componentDescriptors": [
+            "RNGestureHandlerButtonComponentDescriptor",
+            "RNGestureHandlerRootViewComponentDescriptor"
+          ],
+          "cmakeListsPath": "/Users/pak/Documents/ReactNative/Projects/VenueBot/node_modules/react-native-gesture-handler/android/build/generated/source/codegen/jni/CMakeLists.txt",
+          "cxxModuleCMakeListsModuleName": null,
+          "cxxModuleCMakeListsPath": null,
+          "cxxModuleHeaderName": null,
+          "isPureCxxDependency": false
+        }
+      }
+    },
+    "react-native-maps": {
+      "root": "/Users/pak/Documents/ReactNative/Projects/VenueBot/node_modules/react-native-maps",
+      "name": "react-native-maps",
+      "platforms": {
+        "ios": {
+          "podspecPath": "/Users/pak/Documents/ReactNative/Projects/VenueBot/node_modules/react-native-maps/react-native-maps.podspec",
+          "version": "1.18.0",
+          "configurations": [],
+          "scriptPhases": []
+        },
+        "android": {
+          "sourceDir": "/Users/pak/Documents/ReactNative/Projects/VenueBot/node_modules/react-native-maps/android",
+          "packageImportPath": "import com.rnmaps.maps.MapsPackage;",
+          "packageInstance": "new MapsPackage()",
+          "buildTypes": [],
+          "componentDescriptors": [],
+          "cmakeListsPath": "/Users/pak/Documents/ReactNative/Projects/VenueBot/node_modules/react-native-maps/android/build/generated/source/codegen/jni/CMakeLists.txt",
+          "cxxModuleCMakeListsModuleName": null,
+          "cxxModuleCMakeListsPath": null,
+          "cxxModuleHeaderName": null,
+          "isPureCxxDependency": false
+        }
+      }
+    },
     "react-native-safe-area-context": {
       "root": "/Users/pak/Documents/ReactNative/Projects/VenueBot/node_modules/react-native-safe-area-context",
       "name": "react-native-safe-area-context",
       "platforms": {
         "ios": {
           "podspecPath": "/Users/pak/Documents/ReactNative/Projects/VenueBot/node_modules/react-native-safe-area-context/react-native-safe-area-context.podspec",
-          "version": "4.10.9",
+          "version": "4.11.0",
           "configurations": [],
           "scriptPhases": []
         },
@@ -51,6 +153,41 @@
             "RNCSafeAreaViewComponentDescriptor"
           ],
           "cmakeListsPath": "/Users/pak/Documents/ReactNative/Projects/VenueBot/node_modules/react-native-safe-area-context/android/src/main/jni/CMakeLists.txt",
+          "cxxModuleCMakeListsModuleName": null,
+          "cxxModuleCMakeListsPath": null,
+          "cxxModuleHeaderName": null,
+          "isPureCxxDependency": false
+        }
+      }
+    },
+    "react-native-screens": {
+      "root": "/Users/pak/Documents/ReactNative/Projects/VenueBot/node_modules/react-native-screens",
+      "name": "react-native-screens",
+      "platforms": {
+        "ios": {
+          "podspecPath": "/Users/pak/Documents/ReactNative/Projects/VenueBot/node_modules/react-native-screens/RNScreens.podspec",
+          "version": "3.34.0",
+          "configurations": [],
+          "scriptPhases": []
+        },
+        "android": {
+          "sourceDir": "/Users/pak/Documents/ReactNative/Projects/VenueBot/node_modules/react-native-screens/android",
+          "packageImportPath": "import com.swmansion.rnscreens.RNScreensPackage;",
+          "packageInstance": "new RNScreensPackage()",
+          "buildTypes": [],
+          "libraryName": "rnscreens",
+          "componentDescriptors": [
+            "RNSFullWindowOverlayComponentDescriptor",
+            "RNSScreenContainerComponentDescriptor",
+            "RNSScreenNavigationContainerComponentDescriptor",
+            "RNSScreenStackHeaderConfigComponentDescriptor",
+            "RNSScreenStackHeaderSubviewComponentDescriptor",
+            "RNSScreenStackComponentDescriptor",
+            "RNSSearchBarComponentDescriptor",
+            "RNSScreenComponentDescriptor",
+            "RNSModalScreenComponentDescriptor"
+          ],
+          "cmakeListsPath": "/Users/pak/Documents/ReactNative/Projects/VenueBot/node_modules/react-native-screens/android/src/main/jni/CMakeLists.txt",
           "cxxModuleCMakeListsModuleName": null,
           "cxxModuleCMakeListsPath": null,
           "cxxModuleHeaderName": null,

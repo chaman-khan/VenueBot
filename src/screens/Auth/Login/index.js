@@ -87,6 +87,7 @@ const Login = ({navigation}) => {
           bgClr={Colors.primary}
           txtSize={20}
           width={'90%'}
+          mBottom={20}
           onClick={() => navigation.navigate('HomeStack')}
         />
       </View>
