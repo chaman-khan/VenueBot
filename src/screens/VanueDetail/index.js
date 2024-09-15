@@ -110,7 +110,7 @@ const VanueDetail = ({navigation, route}) => {
   const dispatch = useDispatch();
 
   const item = hotels.find(hotel => hotel.key === itemKey);
-  const ReviewItem = ({item = reviews[0]}) => (
+  const ReviewItem = ({item = reviews[reviews.length - 1]}) => (
     <View style={{marginBottom: 10}}>
       <View style={[styles.review, {marginBottom: 7}]}>
         <View style={{...styles.review, gap: 10}}>
@@ -136,14 +136,10 @@ const VanueDetail = ({navigation, route}) => {
         </View>
       </View>
       <TouchableOpacity activeOpacity={1} onPress={() => toggleText(item.id)}>
-        <Text>{getTextToShow(item.review, item.id)}</Text>
-      </TouchableOpacity>
-      {/* <TouchableOpacity onPress={() => toggleText(item.id)}>
-        <Text style={{color: 'blue', marginTop: 10}}>
-          {expandedItems[item.id] ? 'Show Less' : 'Show More'}
+        <Text style={{fontSize: 15, fontFamily: Family}}>
+          {getTextToShow(item.review, item.id)}
         </Text>
-      </TouchableOpacity> */}
-      {/* <Text style={{fontFamily: Family, fontSize: 14}}>{item.review}</Text> */}
+      </TouchableOpacity>
     </View>
   );
 
@@ -293,7 +289,18 @@ const VanueDetail = ({navigation, route}) => {
               {item.location}
             </Text>
             <Text style={styles.txtMap}>{item.location}</Text>
-            <TouchableOpacity style={styles.design}>
+            <TouchableOpacity
+              style={styles.design}
+              onPress={() =>
+                navigation.navigate(
+                  'Location',
+                  (props = {
+                    origin,
+                    destination,
+                    distance,
+                  }),
+                )
+              }>
               <Entypo name="location" size={12} color="white" />
               <Text style={{color: 'white', fontFamily: Family, fontSize: 12}}>
                 See Location on Maps
@@ -371,28 +378,6 @@ const VanueDetail = ({navigation, route}) => {
           ref={ref => {
             this.mapView = ref;
           }}>
-          {/* <MapViewDirections
-            origin={origin}
-            destination={destination}
-            apikey={GOOGLE_MAPS_APIKEY}
-            strokeWidth={3}
-            strokeColor="blue"
-            onReady={result => {
-              console.log('Coordinates: ', result.coordinates);
-              this.mapView.fitToCoordinates(result.coordinates, {
-                edgePadding: {
-                  right: 20,
-                  bottom: 20,
-                  left: 20,
-                  top: 20,
-                },
-              });
-            }}
-            onError={errorMessage => {
-              console.log('Error: ', errorMessage);
-            }}
-          /> */}
-
           <Marker draggable coordinate={destination} title="Destiation" />
         </MapView>
         <View style={styles.review}>
@@ -402,7 +387,8 @@ const VanueDetail = ({navigation, route}) => {
               {averageStars} ({reviews.length} reviews)
             </Text>
           </View>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Reviews', (props = {reviews}))}>
             <Text
               style={{
                 fontFamily: Family,
