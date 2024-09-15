@@ -35,40 +35,117 @@ const VanueDetail = ({navigation, route}) => {
   const [distance, setDistance] = useState(null);
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
+  const [expandedItems, setExpandedItems] = useState({});
 
-  console.log('latitude: ', latitude);
-  console.log('longitude: ', longitude);
+  const reviews = [
+    {
+      id: 1,
+      review:
+        'The Luxus Grand Hotel provided an exceptional experience for our corporate event. The staff was incredibly attentive, and the facilities were top-notch. Highly recommend for any professional gathering!',
+      stars: 4,
+      userName: 'John Doe',
+      userDp: {
+        uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5epHzce-zJe-8dJe8GPHZcJdwp4Z0ZRd4CA&s',
+      },
+    },
+    {
+      id: 2,
+      review:
+        'Our wedding reception at The Residency Hotel was nothing short of magical. The elegant decor and personalized service made our special day unforgettable. The team went above and beyond to ensure everything was perfect.',
+      stars: 5,
+      userName: 'Jane Smith',
+      userDp: {
+        uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1zNPkbYQDrxhWSf3Ow_p-izi2LbCiYmd0nA&s',
+      },
+    },
+    {
+      id: 3,
+      review:
+        'We hosted our annual conference at the Pearl Continental Hotel, and it was a huge success. The state-of-the-art conference center and the professional staff made the event seamless. The ambiance and amenities were outstanding.',
+      stars: 4,
+      userName: 'Michael Brown',
+      userDp: {
+        uri: 'https://media.gettyimages.com/id/585838010/photo/businesswoman-standing-in-banquet-hall.jpg?s=612x612&w=gi&k=20&c=W2ZHohqNRkUmI8c5Qsox3vFOc_zqNn2w7S1jL-9LUmY=',
+      },
+    },
+    {
+      id: 4,
+      review:
+        'EventUp made it easy to find and book the perfect venue for our party. The detailed information and reviews helped us choose a location that fit our needs perfectly. The booking process was smooth and hassle-free.',
+      stars: 3,
+      userName: 'Emily Davis',
+      userDp: {
+        uri: 'https://media.licdn.com/dms/image/C4E03AQGqfAtqMq8YHA/profile-displayphoto-shrink_200_200/0/1624974620746?e=2147483647&v=beta&t=1NqKxYCO87fm3i2aKShXugkUSj7ar3JLIa3kxrU5fuc',
+      },
+    },
+    {
+      id: 5,
+      review:
+        'Finding a wedding venue through The Knot was a breeze. The platform provided all the necessary details and reviews, making it easy to compare options. We found a beautiful venue that fit our budget and style perfectly.',
+      stars: 2,
+      userName: 'Chris Johnson',
+      userDp: {
+        uri: 'https://media-cdn.tripadvisor.com/media/photo-s/0d/5a/38/ff/the-shalimar-hotel.jpg',
+      },
+    },
+  ];
+
+  const toggleText = id => {
+    setExpandedItems(prev => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
+
+  const getTextToShow = (text, id) => {
+    const words = text.split(' ');
+    if (expandedItems[id] || words.length <= 10) {
+      return text;
+    }
+    return words.slice(0, 10).join(' ') + '...';
+  };
+  const averageStars =
+    reviews.reduce((sum, review) => sum + review.stars, 0) / reviews.length;
 
   const dispatch = useDispatch();
 
   const item = hotels.find(hotel => hotel.key === itemKey);
-  const ReviewItem = ({review}) => (
+  const ReviewItem = ({item = reviews[0]}) => (
     <View style={{marginBottom: 10}}>
-      <Text style={styles.reviewText}>{review}</Text>
-      <View style={{width: '100%', height: 1, backgroundColor: 'lightgrey'}} />
+      <View style={[styles.review, {marginBottom: 7}]}>
+        <View style={{...styles.review, gap: 10}}>
+          <Image
+            source={item.userDp}
+            style={{width: 40, height: 40, borderRadius: 20}}
+          />
+          <Text style={{fontFamily: Family, fontSize: 17, fontWeight: '900'}}>
+            {item.userName}
+          </Text>
+        </View>
+        <View style={{...styles.review, gap: 10}}>
+          <View style={styles.stars}>
+            <Entypo name="star" size={12} color={Colors.primary} />
+            <Text
+              style={{fontFamily: Family, fontSize: 13, color: Colors.primary}}>
+              {item.stars}
+            </Text>
+          </View>
+          <TouchableOpacity style={styles.threeDots}>
+            <Entypo name="dots-three-horizontal" size={15} color={'black'} />
+          </TouchableOpacity>
+        </View>
+      </View>
+      <TouchableOpacity activeOpacity={1} onPress={() => toggleText(item.id)}>
+        <Text>{getTextToShow(item.review, item.id)}</Text>
+      </TouchableOpacity>
+      {/* <TouchableOpacity onPress={() => toggleText(item.id)}>
+        <Text style={{color: 'blue', marginTop: 10}}>
+          {expandedItems[item.id] ? 'Show Less' : 'Show More'}
+        </Text>
+      </TouchableOpacity> */}
+      {/* <Text style={{fontFamily: Family, fontSize: 14}}>{item.review}</Text> */}
     </View>
   );
-  const StarRating = ({rating}) => {
-    const stars = [];
-
-    for (let i = 1; i <= 5; i++) {
-      stars.push(
-        <Entypo
-          key={i}
-          name={i <= rating ? 'star' : 'star-outlined'}
-          size={30}
-          color={i <= rating ? '#FFD700' : '#CCCCCC'}
-        />,
-      );
-    }
-
-    return (
-      <View style={styles.starContainer}>
-        {stars}
-        <Text style={{marginLeft: 10}}>({item.reviews.length})</Text>
-      </View>
-    );
-  };
 
   const panResponder = useRef(
     PanResponder.create({
@@ -156,6 +233,7 @@ const VanueDetail = ({navigation, route}) => {
   const origin = {latitude: latitude, longitude: longitude};
   const destination = {latitude: item.latitude, longitude: item.longitude};
   const GOOGLE_MAPS_APIKEY = 'AIzaSyA-4CW3RJxhVCSTrImtIdOJ-4k9zXMZQF4';
+
   return (
     <View>
       <View style={styles.imageContainer}>
@@ -205,6 +283,37 @@ const VanueDetail = ({navigation, route}) => {
         <Text style={styles.name}>{item.name}</Text>
         <View style={styles.line} />
 
+        <View style={{flexDirection: 'row', alignItems: 'center', gap: 15}}>
+          <View style={styles.locBG}>
+            <Entypo name="location" size={20} color={Colors.primary} />
+          </View>
+          <View style={{gap: 7}}>
+            <Text
+              style={{fontFamily: Family, fontSize: 20, fontWeight: 'bold'}}>
+              {item.location}
+            </Text>
+            <Text style={styles.txtMap}>{item.location}</Text>
+            <TouchableOpacity style={styles.design}>
+              <Entypo name="location" size={12} color="white" />
+              <Text style={{color: 'white', fontFamily: Family, fontSize: 12}}>
+                See Location on Maps
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View style={styles.second}>
+          <View style={styles.locBG}>
+            <Entypo name="ticket" size={20} color={Colors.primary} />
+          </View>
+          <View style={{gap: 7}}>
+            <Text
+              style={{fontFamily: Family, fontSize: 18, fontWeight: 'bold'}}>
+              PKR 250K - 400k
+            </Text>
+            <Text style={styles.txtMap}>venue Charges depends on Package</Text>
+          </View>
+        </View>
+
         <View style={styles.managerContainer}>
           <View style={{flexDirection: 'row', gap: 15, alignItems: 'center'}}>
             <Image
@@ -225,26 +334,44 @@ const VanueDetail = ({navigation, route}) => {
             </Text>
           </TouchableOpacity>
         </View>
+
+        <Text style={styles.heading}>About Vanue:</Text>
+        <Text style={{fontFamily: Family}}>
+          it is simply dummy text of the printing and typesetting industry.
+          Lorem Ipsum has been the industry's standard dummy text ever since the
+          1500s, when an unknown printer took a galley of type and scrambled it
+          to make a type specimen book
+        </Text>
         <Text style={styles.heading}>Availability:</Text>
         <Text style={{fontFamily: Family}}>{item.availability}</Text>
         <View style={styles.line} />
-        <Text style={styles.heading}>Reviews:</Text>
-        <StarRating rating={item.stars} />
+        <Text style={styles.heading}>Location</Text>
+        <View style={styles.loc}>
+          <Entypo name="location-pin" color={Colors.primary} size={20} />
+          <Text style={{fontFamily: Family, fontSize: 14}}>
+            {distance !== null ? `${distance} meters` : 'Calculating...'} away
+            from your location
+          </Text>
+        </View>
+
         <MapView
-          style={{width: '100%', height: 250}}
+          style={{width: '100%', height: 250, borderRadius: 15}}
           provider="google"
           key={'AIzaSyA-4CW3RJxhVCSTrImtIdOJ-4k9zXMZQF4'}
           initialRegion={{
-            latitude: 31.47405,
-            longitude: 74.32922,
+            latitude: destination.latitude,
+            longitude: destination.longitude,
             latitudeDelta: LATITUDE_DELTA,
             longitudeDelta: LONGITUDE_DELTA,
           }}
+          mapType="standard"
+          userInterfaceStyle="light"
+          showsUserLocation={true}
+          userLocationUpdateInterval={5000}
           ref={ref => {
             this.mapView = ref;
           }}>
-          <Marker draggable coordinate={destination} title="Destiation" />
-          <MapViewDirections
+          {/* <MapViewDirections
             origin={origin}
             destination={destination}
             apikey={GOOGLE_MAPS_APIKEY}
@@ -264,17 +391,29 @@ const VanueDetail = ({navigation, route}) => {
             onError={errorMessage => {
               console.log('Error: ', errorMessage);
             }}
-          />
+          /> */}
+
+          <Marker draggable coordinate={destination} title="Destiation" />
         </MapView>
-        <Text style={{fontFamily: Family, fontSize: 12}}>
-          Distance from your location is{' '}
-          {distance !== null ? `${distance} meters` : 'Calculating...'}
-        </Text>
-        <FlatList
-          data={item.reviews}
-          renderItem={({item}) => <ReviewItem review={item} />}
-          keyExtractor={(item, index) => index.toString()}
-        />
+        <View style={styles.review}>
+          <View style={{...styles.review, gap: 10}}>
+            <Entypo name="star" color="#f18e1e" size={25} />
+            <Text style={styles.heading}>
+              {averageStars} ({reviews.length} reviews)
+            </Text>
+          </View>
+          <TouchableOpacity>
+            <Text
+              style={{
+                fontFamily: Family,
+                fontSize: 15,
+                color: Colors.primary,
+              }}>
+              See All
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <ReviewItem />
 
         <CustomButton title="Booking Now" bgClr={Colors.primary} txtSize={20} />
       </ScrollView>
@@ -286,7 +425,6 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: '700',
     fontFamily: Family,
-    marginTop: 10,
   },
   topRow: {
     position: 'absolute',
@@ -302,16 +440,17 @@ const styles = StyleSheet.create({
     paddingHorizontal: '5%',
     height: height - 350,
     alignSelf: 'center',
+    marginTop: 10,
   },
   heading: {
     fontSize: 18,
     fontFamily: Family,
-    fontWeight: '500',
-    marginBottom: 10,
+    fontWeight: 'bold',
+    marginVertical: 10,
   },
   line: {
-    height: 1,
-    backgroundColor: 'lightgrey',
+    height: 0.8,
+    backgroundColor: 'rgba(0,0,0,0.1)',
     width: '100%',
     marginVertical: 10,
   },
@@ -328,7 +467,33 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-
+  design: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    backgroundColor: Colors.primary,
+    borderRadius: 40,
+  },
+  txtMap: {
+    fontFamily: Family,
+    fontSize: 15,
+    color: 'rgba(0,0,0,0.7)',
+  },
+  locBG: {
+    padding: 15,
+    backgroundColor: 'rgba(103, 27, 99, 0.1)',
+    borderRadius: 30,
+    alignSelf: 'flex-start',
+  },
+  second: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 15,
+    marginTop: 13,
+    marginBottom: 20,
+  },
   reviewText: {
     fontSize: 16,
     fontFamily: Family,
@@ -346,6 +511,34 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+  },
+  loc: {
+    flexDirection: 'row',
+    gap: 10,
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  review: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  stars: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 3,
+    height: 25,
+    paddingHorizontal: 12,
+    borderColor: Colors.primary,
+    borderWidth: 1,
+    borderRadius: 30,
+  },
+  threeDots: {
+    borderColor: 'black',
+    borderRadius: 30,
+    padding: 3,
+    borderWidth: 1,
   },
   chatBtn: {
     paddingHorizontal: 20,
