@@ -9,13 +9,13 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {Family} from '../../../components/family';
-import {Colors} from '../../../components/colors';
+import {Family} from '../../../components/FontFamily/family';
+import {Colors} from '../../../components/Colors/colors';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import CustomTextInput from '../../../components/customInput';
-import CustomButton from '../../../components/customButton';
+import CustomTextInput from '../../../components/Input/customInput';
+import CustomButton from '../../../components/Buttton/customButton';
 const Login = ({navigation}) => {
   const [show, setShow] = useState(true);
   const {width, height} = Dimensions.get('screen');

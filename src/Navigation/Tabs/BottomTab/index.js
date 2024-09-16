@@ -6,8 +6,8 @@ import Saved from '../../../screens/Saved';
 import Profile from '../../../screens/Profile';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {Colors} from '../../../components/colors';
-import {Family} from '../../../components/family';
+import {Colors} from '../../../components/Colors/colors';
+import {Family} from '../../../components/FontFamily/family';
 import {StyleSheet, Text, View} from 'react-native';
 
 const HomeTab = () => {

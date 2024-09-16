@@ -12,16 +12,16 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {Family} from '../../components/family';
+import {Family} from '../../components/FontFamily/family';
 import Entypo from 'react-native-vector-icons/Entypo';
-import {Colors} from '../../components/colors';
+import {Colors} from '../../components/Colors/colors';
 import {useDispatch, useSelector} from 'react-redux';
 import {toggleFavourite} from '../../Features/hotelsSlice';
-import CustomButton from '../../components/customButton';
+import CustomButton from '../../components/Buttton/customButton';
 import MapView, {Marker} from 'react-native-maps';
 import {getDistance} from 'geolib';
 import Geolocation from '@react-native-community/geolocation';
-import MapViewDirections from 'react-native-maps-directions';
+import Share from 'react-native-share';
 const {width, height} = Dimensions.get('screen');
 const ASPECT_RATIO = width / height;
 const LATITUDE_DELTA = 0.0922;
@@ -229,7 +229,15 @@ const VanueDetail = ({navigation, route}) => {
   const origin = {latitude: latitude, longitude: longitude};
   const destination = {latitude: item.latitude, longitude: item.longitude};
   const GOOGLE_MAPS_APIKEY = 'AIzaSyA-4CW3RJxhVCSTrImtIdOJ-4k9zXMZQF4';
-
+  const shareIt = () => {
+    Share.open(options)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        err && console.log(err);
+      });
+  };
   return (
     <View>
       <View style={styles.imageContainer}>
@@ -272,7 +280,9 @@ const VanueDetail = ({navigation, route}) => {
             />
           </TouchableOpacity>
 
-          <Entypo name="share" size={30} color="white" />
+          <TouchableOpacity onPress={shareIt}>
+            <Entypo name="share" size={30} color="white" />
+          </TouchableOpacity>
         </View>
       </View>
       <ScrollView style={styles.scroll}>
@@ -401,7 +411,12 @@ const VanueDetail = ({navigation, route}) => {
         </View>
         <ReviewItem />
 
-        <CustomButton title="Booking Now" bgClr={Colors.primary} txtSize={20} />
+        <CustomButton
+          title="Booking Now"
+          bgClr={Colors.primary}
+          txtSize={20}
+          onClick={() => navigation.navigate('BookEvent')}
+        />
       </ScrollView>
     </View>
   );

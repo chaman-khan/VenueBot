@@ -7,12 +7,12 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {Family} from '../../components/family';
+import {Family} from '../../components/FontFamily/family';
 import Feather from 'react-native-vector-icons/Feather';
 import Entypo from 'react-native-vector-icons/Entypo';
-import CustomTextInput from '../../components/customInput';
+import CustomTextInput from '../../components/Input/customInput';
 import Toast from 'react-native-toast-message';
-import {Colors} from '../../components/colors';
+import {Colors} from '../../components/Colors/colors';
 import {useDispatch, useSelector} from 'react-redux';
 import {toggleFavourite} from '../../Features/hotelsSlice';
 

@@ -8,8 +8,8 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {Colors} from '../../components/colors';
-import {Family} from '../../components/family';
+import {Colors} from '../../components/Colors/colors';
+import {Family} from '../../components/FontFamily/family';
 import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 
@@ -48,6 +48,7 @@ const Reviews = ({navigation, route}) => {
         </View>
       </View>
       <Text style={{fontSize: 14, fontFamily: Family}}>{item.review}</Text>
+      <Text style={{fontFamily: Family, fontSize: 12}}>(6 months ago)</Text>
     </View>
   );
   const data = ['All', 1, 2, 3, 4, 5];
@@ -76,7 +77,7 @@ const Reviews = ({navigation, route}) => {
     );
   };
   return (
-    <View style={{paddingHorizontal: 13}}>
+    <View style={{paddingHorizontal: 13, marginBottom: 100}}>
       <View style={styles.topBar}>
         <View style={{flexDirection: 'row', alignItems: 'center', gap: 10}}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -99,6 +100,7 @@ const Reviews = ({navigation, route}) => {
       />
       <FlatList
         data={filteredReviews}
+        showsVerticalScrollIndicator={false}
         renderItem={({item}) => <ReviewItem item={item} />}
         keyExtractor={item => item.id.toString()}
         ListEmptyComponent={() => {

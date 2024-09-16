@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
-import {Colors} from './colors';
-import {Family} from './family';
+import {Colors} from '../Colors/colors';
+import {Family} from '../FontFamily/family';
 
 const CustomRadioButton = ({options, selectedOption, onSelect}) => {
   return (

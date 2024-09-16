@@ -7,9 +7,8 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
-import {Colors} from './colors';
 import Entypo from 'react-native-vector-icons/Entypo';
-import {Family} from './family';
+import {Family} from '../FontFamily/family';
 
 const {width} = Dimensions.get('screen');
 

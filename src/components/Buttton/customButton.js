@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {Family} from './family';
-import {Colors} from './colors';
+import {Family} from '../FontFamily/family';
+import {Colors} from '../Colors/colors';
 
 const CustomButton = ({
   title,

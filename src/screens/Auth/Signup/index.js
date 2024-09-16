@@ -8,13 +8,13 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {Family} from '../../../components/family';
-import CustomTextInput from '../../../components/customInput';
+import {Family} from '../../../components/FontFamily/family';
+import CustomTextInput from '../../../components/Input/customInput';
 import {useState} from 'react';
 import DatePicker from 'react-native-date-picker';
-import CustomRadioButton from '../../../components/customRadioButtons';
-import CustomButton from '../../../components/customButton';
-import {Colors} from '../../../components/colors';
+import CustomRadioButton from '../../../components/RadioButtton/customRadioButtons';
+import CustomButton from '../../../components/Buttton/customButton';
+import {Colors} from '../../../components/Colors/colors';
 
 const Signup = ({navigation}) => {
   const [date, setDate] = useState(new Date());

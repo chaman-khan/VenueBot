@@ -6,10 +6,10 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import MapView, {Marker} from 'react-native-maps';
+import MapView, {Marker, Polyline} from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
-import {Colors} from '../../components/colors';
-import {Family} from '../../components/family';
+import {Colors} from '../../components/Colors/colors';
+import {Family} from '../../components/FontFamily/family';
 import Entypo from 'react-native-vector-icons/Entypo';
 const {width, height} = Dimensions.get('screen');
 const ASPECT_RATIO = width / height;
@@ -22,6 +22,7 @@ const Location = ({navigation, route}) => {
   const destination = location.destination;
   const distance = location.distance;
   const [showRoute, setShowRoute] = useState(false);
+  const [dottedLineCoordinates, setDottedLineCoordinates] = React.useState([]);
   return (
     <View>
       <MapView
@@ -42,27 +43,47 @@ const Location = ({navigation, route}) => {
           this.mapView = ref;
         }}>
         {showRoute && (
-          <MapViewDirections
-            origin={origin}
-            destination={destination}
-            apikey={GOOGLE_MAPS_APIKEY}
-            strokeWidth={3}
-            strokeColor="blue"
-            onReady={result => {
-              console.log('Coordinates: ', result.coordinates);
-              this.mapView.fitToCoordinates(result.coordinates, {
-                edgePadding: {
-                  right: 20,
-                  bottom: 20,
-                  left: 20,
-                  top: 20,
-                },
-              });
-            }}
-            onError={errorMessage => {
-              console.log('Error: ', errorMessage);
-            }}
-          />
+          <>
+            <MapViewDirections
+              origin={origin}
+              destination={destination}
+              apikey={GOOGLE_MAPS_APIKEY}
+              strokeWidth={3}
+              strokeColor="blue"
+              onReady={result => {
+                const coordinates = result.coordinates;
+
+                // Calculate the point where the solid line should stop
+                const solidLineEndIndex = coordinates.length - 2;
+                const solidLineCoordinates = coordinates.slice(
+                  0,
+                  solidLineEndIndex + 1,
+                );
+                const dottedLineCoordinates =
+                  coordinates.slice(solidLineEndIndex);
+
+                setDottedLineCoordinates(dottedLineCoordinates);
+
+                this.mapView.fitToCoordinates(coordinates, {
+                  edgePadding: {
+                    right: 20,
+                    bottom: 20,
+                    left: 20,
+                    top: 20,
+                  },
+                });
+              }}
+              onError={errorMessage => {
+                console.log('Error: ', errorMessage);
+              }}
+            />
+            <Polyline
+              coordinates={dottedLineCoordinates}
+              strokeWidth={3}
+              strokeColor="blue"
+              lineDashPattern={[1, 10]}
+            />
+          </>
         )}
 
         <Marker draggable coordinate={destination} title="Destiation" />
