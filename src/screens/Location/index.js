@@ -11,6 +11,7 @@ import MapViewDirections from 'react-native-maps-directions';
 import {Family} from '../../assets/FontFamily';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {Colors} from '../../theme';
+import {MyText} from '../../assets/Fonts';
 const {width, height} = Dimensions.get('screen');
 const ASPECT_RATIO = width / height;
 const LATITUDE_DELTA = 0.0922;
@@ -22,7 +23,6 @@ const Location = ({navigation, route}) => {
   const destination = location.destination;
   const distance = location.distance;
   const [showRoute, setShowRoute] = useState(false);
-  const [dottedLineCoordinates, setDottedLineCoordinates] = React.useState([]);
   return (
     <View>
       <MapView
@@ -59,10 +59,6 @@ const Location = ({navigation, route}) => {
                   0,
                   solidLineEndIndex + 1,
                 );
-                const dottedLineCoordinates =
-                  coordinates.slice(solidLineEndIndex);
-
-                setDottedLineCoordinates(dottedLineCoordinates);
 
                 this.mapView.fitToCoordinates(coordinates, {
                   edgePadding: {
@@ -77,12 +73,6 @@ const Location = ({navigation, route}) => {
                 console.log('Error: ', errorMessage);
               }}
             />
-            <Polyline
-              coordinates={dottedLineCoordinates}
-              strokeWidth={3}
-              strokeColor="blue"
-              lineDashPattern={[1, 10]}
-            />
           </>
         )}
 
@@ -92,11 +82,12 @@ const Location = ({navigation, route}) => {
         activeOpacity={1}
         onPress={() => setShowRoute(true)}
         style={styles.btn}>
-        <Text style={{fontSize: 20, fontFamily: Family, color: 'white'}}>
-          Get Direction
-        </Text>
+        <MyText txt={'Get Direction'} style={{color: 'white'}} heading />
       </TouchableOpacity>
-      {showRoute && <Text style={styles.distance}>{distance} METERS</Text>}
+      {showRoute && (
+        <MyText txt={`${distance} METERS`} style={styles.distance} />
+      )}
+
       <TouchableOpacity
         onPress={() => navigation.goBack()}
         style={{position: 'absolute', margin: 20}}>
@@ -123,8 +114,6 @@ const styles = StyleSheet.create({
     padding: 20,
     alignSelf: 'center',
     marginTop: height - 150,
-    fontSize: 20,
-    fontFamily: Family,
   },
 });
 export default Location;

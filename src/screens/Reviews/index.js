@@ -12,6 +12,7 @@ import {Family} from '../../assets/FontFamily';
 import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 import {Colors} from '../../theme';
+import {MyText} from '../../assets/Fonts';
 
 const {width, height} = Dimensions.get('screen');
 const Reviews = ({navigation, route}) => {
@@ -28,27 +29,22 @@ const Reviews = ({navigation, route}) => {
         <View style={{...styles.review, gap: 10}}>
           <Image
             source={item.userDp}
-            style={{width: 37, height: 37, borderRadius: 20}}
+            style={{width: 40, height: 40, borderRadius: 20}}
           />
-          <Text style={{fontFamily: Family, fontSize: 16, fontWeight: '900'}}>
-            {item.userName}
-          </Text>
+          <MyText txt={item.userName} heading />
         </View>
         <View style={{...styles.review, gap: 10}}>
           <View style={styles.stars}>
-            <Entypo name="star" size={11} color={Colors.primary} />
-            <Text
-              style={{fontFamily: Family, fontSize: 13, color: Colors.primary}}>
-              {item.stars}
-            </Text>
+            <Entypo name="star" size={12} color={Colors.primary} />
+            <MyText txt={item.stars} MyText />
           </View>
           <TouchableOpacity style={styles.threeDots}>
-            <Entypo name="dots-three-horizontal" size={12} color={'black'} />
+            <Entypo name="dots-three-horizontal" size={15} color={'black'} />
           </TouchableOpacity>
         </View>
       </View>
-      <Text style={{fontSize: 14, fontFamily: Family}}>{item.review}</Text>
-      <Text style={{fontFamily: Family, fontSize: 12}}>(6 months ago)</Text>
+      <MyText txt={item.review} paragrapgh />
+      <MyText txt={'(6 months ago)'} tiny />
     </View>
   );
   const data = ['All', 1, 2, 3, 4, 5];
@@ -65,14 +61,10 @@ const Reviews = ({navigation, route}) => {
           size={14}
           color={isSelected ? 'white' : Colors.primary}
         />
-        <Text
-          style={{
-            fontSize: 14,
-            fontFamily: Family,
-            color: isSelected ? 'white' : Colors.primary,
-          }}>
-          {item}
-        </Text>
+        <MyText
+          txt={item}
+          style={{color: isSelected ? 'white' : Colors.primary}}
+        />
       </TouchableOpacity>
     );
   };
@@ -83,9 +75,7 @@ const Reviews = ({navigation, route}) => {
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Entypo name="arrow-long-left" size={25} color="black" />
           </TouchableOpacity>
-          <Text style={{fontSize: 20, fontFamily: Family, fontWeight: 'bold'}}>
-            {averageStars} ({reviews.length} reviews)
-          </Text>
+          <MyText txt={`${averageStars} (${reviews.length} reviews)`} heading />
         </View>
         <TouchableOpacity style={styles.threeDots}>
           <Entypo name="dots-three-horizontal" size={15} color={'black'} />
@@ -106,7 +96,11 @@ const Reviews = ({navigation, route}) => {
         ListEmptyComponent={() => {
           return (
             <View style={styles.empty}>
-              <Text style={styles.txt}>No Review with this Rating</Text>
+              <MyText
+                txt={'No Review with this Rating'}
+                heading
+                style={{color: Colors.primary}}
+              />
               <FontAwesome6
                 name="face-grin-squint-tears"
                 size={30}

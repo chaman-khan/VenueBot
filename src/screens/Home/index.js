@@ -3,7 +3,6 @@ import {
   FlatList,
   Image,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -16,6 +15,7 @@ import {toggleFavourite} from '../../Features/hotelsSlice';
 import {Family} from '../../assets/FontFamily';
 import {Colors} from '../../theme';
 import {Assets} from '../../assets/images';
+import {MyText} from '../../assets/Fonts';
 
 const Home = ({navigation}) => {
   const hotels = useSelector(state => state.hotels);
@@ -44,12 +44,12 @@ const Home = ({navigation}) => {
           source={item.images[0]}
           style={{width: '100%', height: 150, borderRadius: 20}}
         />
-        <Text numberOfLines={1} style={styles.name}>
-          {item.name}
-        </Text>
-        <Text style={{color: Colors.primary, fontSize: 13, fontFamily: Family}}>
-          {item.availability}
-        </Text>
+        <MyText txt={item.name} heading lines={1} />
+        <MyText
+          txt={item.availability}
+          paragrapgh
+          style={{color: Colors.primary}}
+        />
         <View
           style={{
             flexDirection: 'row',
@@ -57,9 +57,8 @@ const Home = ({navigation}) => {
           }}>
           <View style={{flexDirection: 'row', gap: 5, width: '60%'}}>
             <Entypo name="location-pin" size={20} color={Colors.primary} />
-            <Text numberOfLines={1} style={{fontFamily: Family}}>
-              {item.location}
-            </Text>
+
+            <MyText txt={item.location} lines={1} paragrapgh />
           </View>
           <TouchableOpacity onPress={() => dispatch(toggleFavourite(item.key))}>
             <Entypo
@@ -81,9 +80,11 @@ const Home = ({navigation}) => {
           alignItems: 'center',
           justifyContent: 'center',
         }}>
-        <Text style={{color: 'red', fontFamily: Family, fontSize: 30}}>
-          No Relative Data
-        </Text>
+        <MyText
+          txt={'No Relative Data'}
+          BigHeading
+          style={{color: Colors.primary}}
+        />
       </View>
     );
   };
@@ -96,11 +97,8 @@ const Home = ({navigation}) => {
             style={{width: 50, height: 50, borderRadius: 25}}
           />
           <View>
-            <Text style={styles.morning}>Good Morning!</Text>
-            <Text
-              style={{fontSize: 20, fontWeight: 'bold', fontFamily: Family}}>
-              Chamman Khan
-            </Text>
+            <MyText txt={'Good Morning!'} style={{color: 'grey'}} />
+            <MyText txt={'Chamman Khan'} heading />
           </View>
         </View>
         <TouchableOpacity style={styles.bell}>

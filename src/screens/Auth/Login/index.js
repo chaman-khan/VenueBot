@@ -1,14 +1,5 @@
 import React, {useState} from 'react';
-import {
-  Dimensions,
-  Image,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Dimensions, Image, ScrollView, StyleSheet, View} from 'react-native';
 import {Family} from '../../../assets/FontFamily';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -17,36 +8,38 @@ import CustomTextInput from '../../../components/Input';
 import CustomButton from '../../../components/Buttton';
 import {Colors} from '../../../theme';
 import {Assets} from '../../../assets/images';
+import {MyText} from '../../../assets/Fonts';
 const Login = ({navigation}) => {
   const [show, setShow] = useState(true);
   const {width, height} = Dimensions.get('screen');
   return (
     <ScrollView style={{height: height}}>
-      <View style={{alignItems: 'center', marginVertical: 50}}>
+      <View
+        style={{
+          alignItems: 'center',
+          marginVertical: 50,
+          paddingHorizontal: '5%',
+        }}>
         <View style={styles.header}>
-          <Image
-            source={Assets.logo}
-            style={{
-              width: 40,
-              height: 40,
-              resizeMode: 'contain',
-              marginRight: 15,
-            }}
-          />
-          <Text style={styles.name}>VenueBot</Text>
+          <Image source={Assets.logo} style={styles.img} />
+          <MyText txt="VenueBot" style={{letterSpacing: 5}} BigHeading />
         </View>
-        <Text style={styles.txt}>Sign in to your account</Text>
-        <Text style={{fontSize: 11, fontWeight: '300', color: 'black'}}>
-          Don't have account?{' '}
-          <Text
-            style={{color: Colors.primary, fontWeight: '500', fontSize: 14}}>
-            Sign up
-          </Text>
-        </Text>
+        <MyText
+          txt="Sign in to your account"
+          style={{fontSize: 20, marginVertical: 10}}
+        />
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <MyText txt="Don't have account?  " tiny />
+          <MyText
+            txt="Sign up"
+            style={{color: Colors.primary, fontSize: 16}}
+            onPress={() => navigation.navigate('Signup')}
+          />
+        </View>
         <View style={styles.googlettxt}>
-          <Text>Sign in with</Text>
+          <MyText txt="Sign in with" />
           <CustomButton
-            buttonStyle={{backgroundColor: 'white', height: 40}}
+            buttonStyle={styles.googleContaier}
             width="30%"
             txtStyle={{color: 'black'}}
             icon={Assets.google}
@@ -56,7 +49,7 @@ const Login = ({navigation}) => {
         </View>
         <View style={styles.or}>
           <View style={{flex: 1, height: 0.5, backgroundColor: 'black'}} />
-          <Text style={{fontWeight: '300'}}>or</Text>
+          <MyText txt="or" />
           <View style={{flex: 1, height: 0.5, backgroundColor: 'black'}} />
         </View>
         <CustomTextInput
@@ -65,6 +58,7 @@ const Login = ({navigation}) => {
           placeholder={'Email'}
           leftColor={'black'}
           lftChkd
+          width={'100%'}
         />
         <CustomTextInput
           keyboardType={'default'}
@@ -75,21 +69,23 @@ const Login = ({navigation}) => {
           secure={show}
           rightClick={() => setShow(!show)}
           leftColor={'black'}
+          width={'100%'}
           lftChkd
         />
-
-        <TouchableOpacity
-          onPress={() => navigation.navigate('ForgetPassword')}
+        <MyText
+          txt="Forget Password?"
           style={{
+            color: Colors.primary,
+            marginVertical: 20,
             alignSelf: 'flex-end',
-          }}>
-          <Text style={styles.frgt}>Forget Password?</Text>
-        </TouchableOpacity>
+          }}
+          onPress={() => navigation.navigate('ForgetPassword')}
+        />
         <CustomButton
           title="Login"
           bgClr={Colors.primary}
           txtSize={20}
-          width={'90%'}
+          width={'100%'}
           mBottom={20}
           onClick={() => navigation.navigate('HomeStack')}
         />
@@ -98,32 +94,20 @@ const Login = ({navigation}) => {
   );
 };
 const styles = StyleSheet.create({
-  name: {
-    fontSize: 30,
-    fontWeight: '600',
-    color: 'black',
-    fontFamily: Family,
-    letterSpacing: 5,
-  },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
   },
-  txt: {
-    color: 'black',
-    fontSize: 18,
-    fontFamily: Family,
-    marginVertical: 10,
-    letterSpacing: 0.2,
+  img: {
+    width: 40,
+    height: 40,
+    resizeMode: 'contain',
+    marginRight: 15,
   },
   googleContaier: {
+    height: 40,
     flexDirection: 'row',
     alignItems: 'center',
-
-    borderRadius: 10,
-    paddingHorizontal: 20,
-    paddingVertical: 5,
-
     backgroundColor: 'white',
     shadowColor: '#000',
     shadowOffset: {width: 0, height: 0.5},
@@ -144,12 +128,6 @@ const styles = StyleSheet.create({
     gap: 10,
     marginTop: 30,
     marginBottom: 10,
-  },
-  frgt: {
-    color: Colors.primary,
-    fontFamily: Family,
-    marginRight: '5%',
-    marginVertical: 20,
   },
 });
 export default Login;

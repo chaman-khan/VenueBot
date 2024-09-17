@@ -22,6 +22,7 @@ import MapView, {Marker} from 'react-native-maps';
 import {getDistance} from 'geolib';
 import Geolocation from '@react-native-community/geolocation';
 import {Colors} from '../../theme';
+import {MyText} from '../../assets/Fonts';
 const {width, height} = Dimensions.get('screen');
 const ASPECT_RATIO = width / height;
 const LATITUDE_DELTA = 0.0922;
@@ -118,28 +119,22 @@ const VanueDetail = ({navigation, route}) => {
             source={item.userDp}
             style={{width: 40, height: 40, borderRadius: 20}}
           />
-          <Text style={{fontFamily: Family, fontSize: 17, fontWeight: '900'}}>
-            {item.userName}
-          </Text>
+          <MyText txt={item.userName} heading />
         </View>
         <View style={{...styles.review, gap: 10}}>
           <View style={styles.stars}>
             <Entypo name="star" size={12} color={Colors.primary} />
-            <Text
-              style={{fontFamily: Family, fontSize: 13, color: Colors.primary}}>
-              {item.stars}
-            </Text>
+            <MyText txt={item.stars} MyText />
           </View>
           <TouchableOpacity style={styles.threeDots}>
             <Entypo name="dots-three-horizontal" size={15} color={'black'} />
           </TouchableOpacity>
         </View>
       </View>
-      <TouchableOpacity activeOpacity={1} onPress={() => toggleText(item.id)}>
-        <Text style={{fontSize: 15, fontFamily: Family}}>
-          {getTextToShow(item.review, item.id)}
-        </Text>
-      </TouchableOpacity>
+      <MyText
+        txt={getTextToShow(item.review, item.id)}
+        onPress={() => toggleText(item.id)}
+      />
     </View>
   );
 
@@ -297,7 +292,7 @@ const VanueDetail = ({navigation, route}) => {
         </View>
       </View>
       <ScrollView style={styles.scroll}>
-        <Text style={styles.name}>{item.name}</Text>
+        <MyText txt={item.name} BigHeading />
         <View style={styles.line} />
 
         <View style={{flexDirection: 'row', alignItems: 'center', gap: 15}}>
@@ -305,11 +300,8 @@ const VanueDetail = ({navigation, route}) => {
             <Entypo name="location" size={20} color={Colors.primary} />
           </View>
           <View style={{gap: 7}}>
-            <Text
-              style={{fontFamily: Family, fontSize: 20, fontWeight: 'bold'}}>
-              {item.location}
-            </Text>
-            <Text style={styles.txtMap}>{item.location}</Text>
+            <MyText txt={item.location} heading />
+            <MyText style={{color: 'rgba(0,0,0,0.7)'}} txt={item.location} />
             <TouchableOpacity
               style={styles.design}
               onPress={() =>
@@ -323,9 +315,12 @@ const VanueDetail = ({navigation, route}) => {
                 )
               }>
               <Entypo name="location" size={12} color="white" />
-              <Text style={{color: 'white', fontFamily: Family, fontSize: 12}}>
-                See Location on Maps
-              </Text>
+
+              <MyText
+                txt="See Location on Maps"
+                tiny
+                style={{color: 'white'}}
+              />
             </TouchableOpacity>
           </View>
         </View>
@@ -334,11 +329,11 @@ const VanueDetail = ({navigation, route}) => {
             <Entypo name="ticket" size={20} color={Colors.primary} />
           </View>
           <View style={{gap: 7}}>
-            <Text
-              style={{fontFamily: Family, fontSize: 18, fontWeight: 'bold'}}>
-              PKR 250K - 400k
-            </Text>
-            <Text style={styles.txtMap}>venue Charges depends on Package</Text>
+            <MyText txt="PKR 250K - 400k" heading />
+            <MyText
+              txt="venue Charges depends on Package"
+              style={{color: 'rgba(0,0,0,0.7)'}}
+            />
           </View>
         </View>
 
@@ -349,37 +344,35 @@ const VanueDetail = ({navigation, route}) => {
               style={{width: 50, height: 50, borderRadius: 25}}
             />
             <View>
-              <Text
-                style={{fontFamily: Family, fontWeight: '600', fontSize: 20}}>
-                {item.managerName} Name
-              </Text>
-              <Text style={{fontFamily: Family, fontSize: 12}}>Manager</Text>
+              <MyText txt={`${item.managerName} Name`} heading />
+              <MyText txt="manager" paragrapgh />
             </View>
           </View>
           <TouchableOpacity style={styles.chatBtn}>
-            <Text style={{color: Colors.primary, fontFamily: Family}}>
-              Chat
-            </Text>
+            <MyText txt={'Chat'} style={{color: Colors.primary}} />
           </TouchableOpacity>
         </View>
-
-        <Text style={styles.heading}>About Vanue:</Text>
-        <Text style={{fontFamily: Family}}>
-          it is simply dummy text of the printing and typesetting industry.
+        <MyText txt="About Venue:" style={{marginVertical: 10}} heading />
+        <MyText
+          txt="it is simply dummy text of the printing and typesetting industry.
           Lorem Ipsum has been the industry's standard dummy text ever since the
           1500s, when an unknown printer took a galley of type and scrambled it
-          to make a type specimen book
-        </Text>
-        <Text style={styles.heading}>Availability:</Text>
-        <Text style={{fontFamily: Family}}>{item.availability}</Text>
+          to make a type specimen book"
+          MyText
+        />
+        <MyText txt="Availability:" style={{marginVertical: 10}} heading />
+        <MyText txt={item.availability} MyText />
         <View style={styles.line} />
-        <Text style={styles.heading}>Location</Text>
+        <MyText txt="Location" style={{marginVertical: 10}} heading />
         <View style={styles.loc}>
           <Entypo name="location-pin" color={Colors.primary} size={20} />
-          <Text style={{fontFamily: Family, fontSize: 14}}>
-            {distance !== null ? `${distance} meters` : 'Calculating...'} away
-            from your location
-          </Text>
+
+          <MyText
+            txt={`${
+              distance !== null ? `${distance} meters` : 'Calculating...'
+            } away from your location`}
+            MyText
+          />
         </View>
 
         <MapView
@@ -404,21 +397,17 @@ const VanueDetail = ({navigation, route}) => {
         <View style={styles.review}>
           <View style={{...styles.review, gap: 10}}>
             <Entypo name="star" color="#f18e1e" size={25} />
-            <Text style={styles.heading}>
-              {averageStars} ({reviews.length} reviews)
-            </Text>
+            <MyText
+              txt={`${averageStars} (${reviews.length} reviews)`}
+              heading
+            />
           </View>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('Reviews', (props = {reviews}))}>
-            <Text
-              style={{
-                fontFamily: Family,
-                fontSize: 15,
-                color: Colors.primary,
-              }}>
-              See All
-            </Text>
-          </TouchableOpacity>
+          <MyText
+            style={{color: Colors.primary}}
+            txt="See All"
+            paragrapgh
+            onPress={() => navigation.navigate('Reviews', (props = {reviews}))}
+          />
         </View>
         <ReviewItem />
 
@@ -426,18 +415,15 @@ const VanueDetail = ({navigation, route}) => {
           title="Booking Now"
           bgClr={Colors.primary}
           txtSize={20}
+          width="100%"
           onClick={() => navigation.navigate('BookEvent')}
+          mBottom={20}
         />
       </ScrollView>
     </View>
   );
 };
 const styles = StyleSheet.create({
-  name: {
-    fontSize: 30,
-    fontWeight: '700',
-    fontFamily: Family,
-  },
   topRow: {
     position: 'absolute',
     paddingTop: 20,
@@ -453,12 +439,6 @@ const styles = StyleSheet.create({
     height: height - 350,
     alignSelf: 'center',
     marginTop: 10,
-  },
-  heading: {
-    fontSize: 18,
-    fontFamily: Family,
-    fontWeight: 'bold',
-    marginVertical: 10,
   },
   line: {
     height: 0.8,
@@ -487,11 +467,6 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     backgroundColor: Colors.primary,
     borderRadius: 40,
-  },
-  txtMap: {
-    fontFamily: Family,
-    fontSize: 15,
-    color: 'rgba(0,0,0,0.7)',
   },
   locBG: {
     padding: 15,

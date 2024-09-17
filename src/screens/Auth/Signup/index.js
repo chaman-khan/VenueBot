@@ -4,8 +4,6 @@ import {
   Image,
   ScrollView,
   StyleSheet,
-  Text,
-  TouchableOpacity,
   View,
 } from 'react-native';
 import {Family} from '../../../assets/FontFamily';
@@ -16,6 +14,7 @@ import CustomRadioButton from '../../../components/RadioButtton';
 import CustomButton from '../../../components/Buttton';
 import {Colors} from '../../../theme';
 import {Assets} from '../../../assets/images';
+import {MyText} from '../../../assets/Fonts';
 
 const Signup = ({navigation}) => {
   const [date, setDate] = useState(new Date());
@@ -34,22 +33,36 @@ const Signup = ({navigation}) => {
     <ScrollView style={{height: height}}>
       <View style={{alignItems: 'center'}}>
         <View style={styles.header}>
-          <Image
-            source={Assets.logo}
-            style={{width: 140, height: 140, marginLeft: -40}}
-          />
-          <Text style={styles.name}>VenueBot</Text>
+          <Image source={Assets.logo} style={styles.img} />
+          <MyText txt="VenueBot" style={{letterSpacing: 5}} BigHeading />
         </View>
-        <Text style={styles.txt}>Create your accout</Text>
-        <Text style={styles.shortTxt}>
-          Be part of us now and whatever will be here
-        </Text>
-        <CustomTextInput placeholder={'First Name'} leftImg={'user'} />
-        <CustomTextInput placeholder={'Last Name'} leftImg={'add-user'} />
+        <MyText
+          txt={'Create your accout'}
+          style={{fontSize: 20, marginVertical: 10}}
+        />
+        <MyText
+          txt={'Be part of us now and whatever will be here'}
+          tiny
+          style={styles.shortTxt}
+        />
+        <CustomTextInput
+          placeholder={'First Name'}
+          leftImg={'user'}
+          leftColor={'black'}
+          lftChkd
+        />
+        <CustomTextInput
+          placeholder={'Last Name'}
+          leftImg={'add-user'}
+          leftColor={'black'}
+          lftChkd
+        />
         <CustomTextInput
           placeholder={'Email'}
           keyboardType={'email-address'}
           leftImg={'mail'}
+          leftColor={'black'}
+          lftChkd
         />
         <CustomTextInput
           value={changed ? showingDate : 'Date of Birth'}
@@ -57,6 +70,9 @@ const Signup = ({navigation}) => {
           touch={true}
           onPress={() => setOpen(true)}
           widthInput={'90%'}
+          leftImg={'check'}
+          leftColor={'green'}
+          lftChkd={changed}
         />
 
         <DatePicker
@@ -72,7 +88,7 @@ const Signup = ({navigation}) => {
           mode="date"
         />
         <View style={styles.radio}>
-          <Text style={styles.gender}>Gender</Text>
+          <MyText txt={'Gender'} heading />
           <CustomRadioButton
             options={options}
             selectedOption={selectedOption}
@@ -91,6 +107,8 @@ const Signup = ({navigation}) => {
           rightImg={!show ? 'eye' : 'eye-with-line'}
           secure={!show}
           rightClick={() => setShow(!show)}
+          leftColor={'black'}
+          lftChkd
         />
         <CustomTextInput
           keyboardType={'default'}
@@ -100,6 +118,8 @@ const Signup = ({navigation}) => {
           rightImg={!show1 ? 'eye' : 'eye-with-line'}
           secure={!show1}
           rightClick={() => setShow1(!show1)}
+          leftColor={'black'}
+          lftChkd
         />
         <CustomButton
           title={'Sign up'}
@@ -111,12 +131,12 @@ const Signup = ({navigation}) => {
           onClick={() => navigation.navigate('Login')}
         />
         <View style={styles.bottom}>
-          <Text style={{fontSize: 15, fontFamily: Family}}>
-            Already have an accout?
-          </Text>
-          <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-            <Text style={styles.btn}>Sign in</Text>
-          </TouchableOpacity>
+          <MyText txt={'Already have an accout?'} />
+          <MyText
+            txt={'Sign in'}
+            style={{color: Colors.primary}}
+            onPress={() => navigation.navigate('Login')}
+          />
         </View>
       </View>
     </ScrollView>
@@ -129,29 +149,32 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  img: {
+    width: 40,
+    height: 40,
+    resizeMode: 'contain',
+    marginRight: 15,
+  },
   name: {
-    fontSize: 40,
+    fontSize: 30,
     fontWeight: '600',
     color: 'black',
-    marginLeft: -40,
     fontFamily: Family,
+    letterSpacing: 5,
   },
   txt: {
     color: 'black',
-    fontSize: 22,
+    fontSize: 20,
     fontFamily: Family,
-    fontWeight: '400',
+    marginVertical: 10,
+    letterSpacing: 0.2,
   },
   shortTxt: {
-    fontSize: 13,
-    fontWeight: '300',
     width: '50%',
     textAlign: 'center',
     color: 'grey',
     marginVertical: 20,
-    fontFamily: Family,
   },
-  gender: {fontSize: 16, fontWeight: '300', fontFamily: Family},
   radio: {
     width: '90%',
     flexDirection: 'row',

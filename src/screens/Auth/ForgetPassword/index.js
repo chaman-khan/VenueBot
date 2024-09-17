@@ -1,32 +1,33 @@
 import React from 'react';
-import {
-  Dimensions,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Dimensions, StyleSheet, TouchableOpacity, View} from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {Family} from '../../../assets/FontFamily';
 import CustomTextInput from '../../../components/Input';
 import CustomButton from '../../../components/Buttton';
 import {Colors} from '../../../theme';
+import {MyText} from '../../../assets/Fonts';
 const {width, height} = Dimensions.get('screen');
 
 const ForgetPassword = ({navigation}) => {
   return (
     <View style={{padding: 15, height: height, backgroundColor: 'white'}}>
       <View style={styles.header}>
-        <Text style={{fontSize: 18, fontFamily: Family}}>Reset Password</Text>
+        <MyText txt={'Reset Password'} style={{fontSize: 18}} />
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Entypo name="cross" size={20} />
         </TouchableOpacity>
       </View>
-      <Text style={styles.topTxt}>Forget your password?</Text>
-      <Text style={{fontSize: 13, fontWeight: '300', fontFamily: Family}}>
-        Enter your email address ad we will send you a link to reset your
-        password
-      </Text>
+      <MyText
+        txt={'Forget your password?'}
+        style={{marginVertical: 50}}
+        BigHeading
+      />
+      <MyText
+        txt={
+          'Enter your email address ad we will send you a link to reset your password'
+        }
+        paragrapgh
+      />
       <CustomTextInput placeholder={'Email'} width={'100%'} />
       <CustomButton
         title={'Reset Password'}
@@ -36,12 +37,12 @@ const ForgetPassword = ({navigation}) => {
         marginVertical={20}
       />
       <View style={styles.bottom}>
-        <Text style={{fontSize: 15, fontFamily: Family}}>
-          Don't have an accout?
-        </Text>
-        <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
-          <Text style={styles.btn}>Sig up</Text>
-        </TouchableOpacity>
+        <MyText txt={"Don't have an accout?"} />
+        <MyText
+          txt={'Sig up'}
+          style={{color: Colors.primary}}
+          onPress={() => navigation.navigate('Signup')}
+        />
       </View>
     </View>
   );
@@ -52,13 +53,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-  },
-  topTxt: {
-    fontSize: 22,
-    color: 'black',
-    fontFamily: Family,
-    fontWeight: '600',
-    marginVertical: 50,
   },
   bottom: {
     flexDirection: 'row',
