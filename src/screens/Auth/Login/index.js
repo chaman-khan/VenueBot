@@ -9,51 +9,50 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {Family} from '../../../components/FontFamily/family';
-import {Colors} from '../../../components/Colors/colors';
+import {Family} from '../../../assets/FontFamily';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import CustomTextInput from '../../../components/Input/customInput';
-import CustomButton from '../../../components/Buttton/customButton';
+import CustomTextInput from '../../../components/Input';
+import CustomButton from '../../../components/Buttton';
+import {Colors} from '../../../theme';
+import {Assets} from '../../../assets/images';
 const Login = ({navigation}) => {
   const [show, setShow] = useState(true);
   const {width, height} = Dimensions.get('screen');
   return (
     <ScrollView style={{height: height}}>
-      <View style={{alignItems: 'center'}}>
+      <View style={{alignItems: 'center', marginVertical: 50}}>
         <View style={styles.header}>
           <Image
-            source={require('../../../images/icon.png')}
-            style={{width: 140, height: 140, marginLeft: -40}}
+            source={Assets.logo}
+            style={{
+              width: 40,
+              height: 40,
+              resizeMode: 'contain',
+              marginRight: 15,
+            }}
           />
           <Text style={styles.name}>VenueBot</Text>
         </View>
-        <Text style={styles.txt}>Sign in to your accout</Text>
-        <View style={{flexDirection: 'row', gap: 10, marginTop: 10}}>
-          <Text style={{fontSize: 12, fontWeight: '300', color: 'black'}}>
-            Don't have accout?
+        <Text style={styles.txt}>Sign in to your account</Text>
+        <Text style={{fontSize: 11, fontWeight: '300', color: 'black'}}>
+          Don't have account?{' '}
+          <Text
+            style={{color: Colors.primary, fontWeight: '500', fontSize: 14}}>
+            Sign up
           </Text>
-          <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
-            <Text style={{color: Colors.primary, fontWeight: '500'}}>
-              Sign up
-            </Text>
-          </TouchableOpacity>
-        </View>
+        </Text>
         <View style={styles.googlettxt}>
           <Text>Sign in with</Text>
-          <TouchableOpacity style={styles.googleContaier}>
-            {/* <AntDesign name="google" size={20} /> */}
-            <Image
-              source={require('../../../images/google.png')}
-              style={{width: 30, height: 30}}
-            />
-            <Text
-              style={{fontSize: 15, color: 'grey', fontFamily: Family}}
-              selectable={false}>
-              Google
-            </Text>
-          </TouchableOpacity>
+          <CustomButton
+            buttonStyle={{backgroundColor: 'white', height: 40}}
+            width="30%"
+            txtStyle={{color: 'black'}}
+            icon={Assets.google}
+            iconSize={20}
+            title="Google"
+          />
         </View>
         <View style={styles.or}>
           <View style={{flex: 1, height: 0.5, backgroundColor: 'black'}} />
@@ -64,6 +63,8 @@ const Login = ({navigation}) => {
           keyboardType={'email-address'}
           leftImg={'mail'}
           placeholder={'Email'}
+          leftColor={'black'}
+          lftChkd
         />
         <CustomTextInput
           keyboardType={'default'}
@@ -73,6 +74,8 @@ const Login = ({navigation}) => {
           rightImg={show ? 'eye' : 'eye-with-line'}
           secure={show}
           rightClick={() => setShow(!show)}
+          leftColor={'black'}
+          lftChkd
         />
 
         <TouchableOpacity
@@ -80,7 +83,7 @@ const Login = ({navigation}) => {
           style={{
             alignSelf: 'flex-end',
           }}>
-          <Text style={styles.frgt}>Forget Password</Text>
+          <Text style={styles.frgt}>Forget Password?</Text>
         </TouchableOpacity>
         <CustomButton
           title="Login"
@@ -96,34 +99,37 @@ const Login = ({navigation}) => {
 };
 const styles = StyleSheet.create({
   name: {
-    fontSize: 40,
+    fontSize: 30,
     fontWeight: '600',
     color: 'black',
-    marginLeft: -40,
     fontFamily: Family,
+    letterSpacing: 5,
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
   },
   txt: {
     color: 'black',
-    fontSize: 22,
+    fontSize: 18,
     fontFamily: Family,
-    fontWeight: '400',
+    marginVertical: 10,
+    letterSpacing: 0.2,
   },
   googleContaier: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderColor: 'grey',
-    borderWidth: 1,
+
     borderRadius: 10,
     paddingHorizontal: 20,
     paddingVertical: 5,
-    shadowColor: 'black',
-    shadowOpacity: 0.1,
+
     backgroundColor: 'white',
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 0.5},
+    shadowOpacity: 0.5,
+    shadowRadius: 2,
+    elevation: 2,
   },
   googlettxt: {
     flexDirection: 'row',

@@ -7,10 +7,10 @@ import {
   View,
 } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
-import {Family} from '../../../components/FontFamily/family';
-import CustomTextInput from '../../../components/Input/customInput';
-import CustomButton from '../../../components/Buttton/customButton';
-import {Colors} from '../../../components/Colors/colors';
+import {Family} from '../../../assets/FontFamily';
+import CustomTextInput from '../../../components/Input';
+import CustomButton from '../../../components/Buttton';
+import {Colors} from '../../../theme';
 const {width, height} = Dimensions.get('screen');
 
 const ForgetPassword = ({navigation}) => {

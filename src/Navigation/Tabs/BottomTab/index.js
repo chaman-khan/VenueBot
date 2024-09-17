@@ -6,9 +6,9 @@ import Saved from '../../../screens/Saved';
 import Profile from '../../../screens/Profile';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {Colors} from '../../../components/Colors/colors';
-import {Family} from '../../../components/FontFamily/family';
+import {Family} from '../../../assets/FontFamily';
 import {StyleSheet, Text, View} from 'react-native';
+import {Colors} from '../../../theme';
 
 const HomeTab = () => {
   const Stack = createBottomTabNavigator();

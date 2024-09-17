@@ -8,10 +8,10 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {Colors} from '../../components/Colors/colors';
-import {Family} from '../../components/FontFamily/family';
+import {Family} from '../../assets/FontFamily';
 import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
+import {Colors} from '../../theme';
 
 const {width, height} = Dimensions.get('screen');
 const Reviews = ({navigation, route}) => {

@@ -7,14 +7,15 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {Family} from '../../components/FontFamily/family';
 import Feather from 'react-native-vector-icons/Feather';
 import Entypo from 'react-native-vector-icons/Entypo';
-import CustomTextInput from '../../components/Input/customInput';
+import CustomTextInput from '../../components/Input';
 import Toast from 'react-native-toast-message';
-import {Colors} from '../../components/Colors/colors';
 import {useDispatch, useSelector} from 'react-redux';
 import {toggleFavourite} from '../../Features/hotelsSlice';
+import {Family} from '../../assets/FontFamily';
+import {Colors} from '../../theme';
+import {Assets} from '../../assets/images';
 
 const Home = ({navigation}) => {
   const hotels = useSelector(state => state.hotels);
@@ -24,7 +25,6 @@ const Home = ({navigation}) => {
   const showToast = () => {
     Toast.show({
       type: 'success',
-      // text1: 'Hello',
       text1: 'Commig Soon 👋',
     });
   };
@@ -92,7 +92,7 @@ const Home = ({navigation}) => {
       <View style={styles.header}>
         <View style={styles.leftHeader}>
           <Image
-            source={require('../../images/dp.png')}
+            source={Assets.dp}
             style={{width: 50, height: 50, borderRadius: 25}}
           />
           <View>

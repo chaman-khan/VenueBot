@@ -7,21 +7,21 @@ import {
   PanResponder,
   PermissionsAndroid,
   ScrollView,
+  Share,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
-import {Family} from '../../components/FontFamily/family';
+import {Family} from '../../assets/FontFamily';
 import Entypo from 'react-native-vector-icons/Entypo';
-import {Colors} from '../../components/Colors/colors';
 import {useDispatch, useSelector} from 'react-redux';
 import {toggleFavourite} from '../../Features/hotelsSlice';
-import CustomButton from '../../components/Buttton/customButton';
+import CustomButton from '../../components/Buttton';
 import MapView, {Marker} from 'react-native-maps';
 import {getDistance} from 'geolib';
 import Geolocation from '@react-native-community/geolocation';
-import Share from 'react-native-share';
+import {Colors} from '../../theme';
 const {width, height} = Dimensions.get('screen');
 const ASPECT_RATIO = width / height;
 const LATITUDE_DELTA = 0.0922;
@@ -229,14 +229,25 @@ const VanueDetail = ({navigation, route}) => {
   const origin = {latitude: latitude, longitude: longitude};
   const destination = {latitude: item.latitude, longitude: item.longitude};
   const GOOGLE_MAPS_APIKEY = 'AIzaSyA-4CW3RJxhVCSTrImtIdOJ-4k9zXMZQF4';
-  const shareIt = () => {
-    Share.open(options)
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        err && console.log(err);
+  const onShare = async () => {
+    try {
+      const result = await Share.share({
+        message:
+          'React Native | A framework for building native apps using React',
+        title: 'VenueBot',
       });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      Alert.alert(error.message);
+    }
   };
   return (
     <View>
@@ -280,7 +291,7 @@ const VanueDetail = ({navigation, route}) => {
             />
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={shareIt}>
+          <TouchableOpacity onPress={onShare}>
             <Entypo name="share" size={30} color="white" />
           </TouchableOpacity>
         </View>

@@ -8,13 +8,14 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {Family} from '../../../components/FontFamily/family';
-import CustomTextInput from '../../../components/Input/customInput';
+import {Family} from '../../../assets/FontFamily';
+import CustomTextInput from '../../../components/Input';
 import {useState} from 'react';
 import DatePicker from 'react-native-date-picker';
-import CustomRadioButton from '../../../components/RadioButtton/customRadioButtons';
-import CustomButton from '../../../components/Buttton/customButton';
-import {Colors} from '../../../components/Colors/colors';
+import CustomRadioButton from '../../../components/RadioButtton';
+import CustomButton from '../../../components/Buttton';
+import {Colors} from '../../../theme';
+import {Assets} from '../../../assets/images';
 
 const Signup = ({navigation}) => {
   const [date, setDate] = useState(new Date());
@@ -34,7 +35,7 @@ const Signup = ({navigation}) => {
       <View style={{alignItems: 'center'}}>
         <View style={styles.header}>
           <Image
-            source={require('../../../images/icon.png')}
+            source={Assets.logo}
             style={{width: 140, height: 140, marginLeft: -40}}
           />
           <Text style={styles.name}>VenueBot</Text>
@@ -55,6 +56,7 @@ const Signup = ({navigation}) => {
           rightImg={'calendar'}
           touch={true}
           onPress={() => setOpen(true)}
+          widthInput={'90%'}
         />
 
         <DatePicker

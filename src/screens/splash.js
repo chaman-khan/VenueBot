@@ -7,16 +7,13 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {Assets} from '../assets/images';
 
 const Splash = () => {
   const {width, height} = Dimensions.get('screen');
   return (
     <View style={{flex: 1}}>
-      <Image
-        style={{width: width, height: height}}
-        source={require('../images/splash.jpg')}
-      />
+      <Image style={{width: width, height: height}} source={Assets.splash} />
     </View>
   );
 };

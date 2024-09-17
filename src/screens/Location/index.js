@@ -8,9 +8,9 @@ import {
 } from 'react-native';
 import MapView, {Marker, Polyline} from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
-import {Colors} from '../../components/Colors/colors';
-import {Family} from '../../components/FontFamily/family';
+import {Family} from '../../assets/FontFamily';
 import Entypo from 'react-native-vector-icons/Entypo';
+import {Colors} from '../../theme';
 const {width, height} = Dimensions.get('screen');
 const ASPECT_RATIO = width / height;
 const LATITUDE_DELTA = 0.0922;
