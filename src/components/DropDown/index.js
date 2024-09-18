@@ -1,17 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  Dimensions,
-  Modal,
-  TextInput,
-  Button,
-} from 'react-native';
+import {StyleSheet, View, Dimensions, Modal, TextInput} from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Colors} from '../../theme';
+import {MyText} from '../../assets/Fonts';
+import {Family} from '../../assets/FontFamily';
 
 const {width, height} = Dimensions.get('window');
 
@@ -36,44 +30,20 @@ const DropdownComponent = ({
     }
   };
   const handleModalSubmit = () => {
-    const customItem = {title: customInput, icon: 'pencil'}; // Example icon
-    setSelectedItem(customItem);
-    onDropdownChange(customItem);
+    onDropdownChange(customInput);
     setIsModalVisible(false);
     setCustomInput('');
   };
 
   return (
     <View style={{alignSelf: 'center'}}>
-      <Text
-        style={{
-          color: Colors.primary,
-          fontSize: 14,
-          fontWeight: '500',
-          position: 'absolute',
-          marginLeft: 10,
-          backgroundColor: 'white',
-          paddingHorizontal: 10,
-          top: -10,
-          zIndex: 1,
-        }}>
-        {selectedItem ? selectedItem.title : placeholder}
-      </Text>
       <SelectDropdown
         data={data}
         onSelect={handleSelect}
         renderButton={(selectedItem, isOpened) => {
           return (
             <View style={styles.dropdownButtonStyle}>
-              {selectedItem && (
-                <Icon
-                  name={selectedItem.icon}
-                  style={styles.dropdownButtonIconStyle}
-                />
-              )}
-              <Text style={styles.dropdownButtonTxtStyle}>
-                {(selectedItem && selectedItem) || placeholder}
-              </Text>
+              <MyText txt={(selectedItem && selectedItem) || placeholder} />
               <Entypo
                 name={isOpened ? 'chevron-up' : 'chevron-down'}
                 style={styles.dropdownButtonArrowStyle}
@@ -88,8 +58,7 @@ const DropdownComponent = ({
                 ...styles.dropdownItemStyle,
                 ...(isSelected && {backgroundColor: '#D2D9DF'}),
               }}>
-              <Icon name={item.icon} style={styles.dropdownItemIconStyle} />
-              <Text style={styles.dropdownItemTxtStyle}>{item}</Text>
+              <MyText txt={item} />
             </View>
           );
         }}
@@ -103,14 +72,22 @@ const DropdownComponent = ({
         onRequestClose={() => setIsModalVisible(false)}>
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>Enter Custom Value</Text>
+            <MyText
+              txt="Enter Custom Value"
+              heading
+              style={{marginBottom: 10}}
+            />
             <TextInput
               style={styles.modalInput}
               value={customInput}
               onChangeText={setCustomInput}
               placeholder="Type here..."
             />
-            <Button title="Submit" onPress={handleModalSubmit} />
+            <MyText
+              txt={'Submit'}
+              style={{color: '#007aff', fontSize: 17}}
+              onPress={handleModalSubmit}
+            />
           </View>
         </View>
       </Modal>
@@ -120,13 +97,14 @@ const DropdownComponent = ({
 
 const styles = StyleSheet.create({
   dropdownButtonStyle: {
-    width: 200,
+    width: 150,
     height: 50,
     backgroundColor: '#E9ECEF',
     borderRadius: 12,
     flexDirection: 'row',
-    justifyContent: 'center',
     alignItems: 'center',
+
+    justifyContent: 'space-around',
     paddingHorizontal: 12,
   },
   dropdownButtonTxtStyle: {
@@ -148,10 +126,7 @@ const styles = StyleSheet.create({
   },
   dropdownItemStyle: {
     width: '100%',
-    flexDirection: 'row',
     paddingHorizontal: 12,
-    justifyContent: 'center',
-    alignItems: 'center',
     paddingVertical: 8,
   },
   dropdownItemTxtStyle: {
@@ -189,6 +164,7 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     borderRadius: 5,
     marginBottom: 10,
+    fontFamily: Family,
   },
 });
 

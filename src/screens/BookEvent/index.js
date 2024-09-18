@@ -6,6 +6,7 @@ import DatePicker from 'react-native-date-picker';
 import {Family} from '../../assets/FontFamily';
 import DropdownComponent from '../../components/DropDown';
 import {Colors} from '../../theme';
+import {MyText} from '../../assets/Fonts';
 const BookEvent = ({navigation}) => {
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
@@ -23,21 +24,19 @@ const BookEvent = ({navigation}) => {
     'Friday',
     'Saturday',
   ];
+  console.log('category', category);
+
   const hours = date.getHours();
   return (
     <View style={{paddingHorizontal: '5%'}}>
       <TopBar onPress={() => navigation.goBack()} title={'Book Venue'} />
       <ScrollView>
         <View>
-          <Text
-            style={{
-              fontFamily: Family,
-              fontSize: 17,
-              fontWeight: 'bold',
-              marginTop: 20,
-            }}>
-            Select your Date and Time for your Booking
-          </Text>
+          <MyText
+            txt={'Select your Date and Time for your Booking'}
+            heading
+            style={{marginTop: 20}}
+          />
           <CustomTextInput
             value={changed ? showingDate : 'Booking Date and Time'}
             leftImg={'check'}
@@ -66,32 +65,47 @@ const BookEvent = ({navigation}) => {
               flexDirection: 'row',
               alignItems: 'center',
               justifyContent: 'space-between',
+              marginVertical: 10,
             }}>
-            <Text>Type of Event</Text>
-            <DropdownComponent
-              data={['Wedding', 'Conference', 'Party', 'Other']}
-              onDropdownChange={setCategory}
-              value={category}
-              placeholder="Select"
-              title={'DEOPOEOP'}
-            />
-          </View>
-          <View style={styles.line}>
-            <Text
-              style={{fontSize: 20, fontFamily: Family, fontWeight: 'bold'}}>
-              Your Arrival Time:{' '}
-            </Text>
-            <View style={styles.box}>
-              <Text
-                style={{
-                  color: 'white',
-                  fontSize: 20,
-                }}>
-                {hours < 12 ? hours : hours - 12}:{date.getMinutes()}{' '}
-                {hours < 12 ? 'AM' : 'PM'} {daysOfWeek[date.getDay()]}
-              </Text>
+            <MyText txt={'Type of Event'} />
+            <View>
+              <DropdownComponent
+                data={['Wedding', 'Conference', 'Party', 'Other']}
+                onDropdownChange={setCategory}
+                value={category}
+                placeholder="Select"
+              />
             </View>
           </View>
+          {category !== 'Wedding' &&
+            category !== 'Conference' &&
+            category !== 'Party' && (
+              <MyText
+                txt={category}
+                paragrapgh
+                style={{
+                  color: Colors.primary,
+                  width: '80%',
+                  textAlign: 'right',
+                }}
+              />
+            )}
+          {changed && (
+            <View style={styles.line}>
+              <MyText txt={'Your Arrival Time:'} heading />
+              <View style={styles.box}>
+                <MyText
+                  txt={`${
+                    hours < 12 ? hours : hours - 12
+                  }:${date.getMinutes()} ${hours < 12 ? 'AM' : 'PM'} ${
+                    daysOfWeek[date.getDay()]
+                  }`}
+                  BigHeading
+                  style={{color: 'white', textAlign: 'center'}}
+                />
+              </View>
+            </View>
+          )}
         </View>
       </ScrollView>
     </View>
