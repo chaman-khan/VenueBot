@@ -9,7 +9,10 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import {Family} from '../../../assets/FontFamily';
 import {StyleSheet, Text, View} from 'react-native';
 import {Colors} from '../../../theme';
+import {MyText} from '../../../assets/Fonts';
 
+const ICON_SIZE = 20;
+const SELECTED_ICON_SIZE = 25;
 const HomeTab = () => {
   const Stack = createBottomTabNavigator();
   function CustomTabBar({state, descriptors, navigation}) {
@@ -57,10 +60,13 @@ const HomeTab = () => {
         tabBarStyle: {
           backgroundColor: Colors.primary,
           height: 55,
-          borderTopRightRadius: 15,
-          borderTopLeftRadius: 15,
+          borderTopRightRadius: 10,
+          borderTopLeftRadius: 10,
+          paddingTop: 6,
+          paddingBottom: 3,
         },
-        tabBarLabelStyle: {fontSize: 18, fontFamily: Family},
+        tabBarIcon: {size: 12},
+        tabBarLabelStyle: {fontSize: 14, fontFamily: Family},
         tabBarInactiveTintColor: 'rgba(2555, 255,255, 0.4)',
         tabBarActiveTintColor: 'white',
       }}>
@@ -68,8 +74,14 @@ const HomeTab = () => {
         name="Home"
         component={Home}
         options={{
-          tabBarIcon: ({color, size}) => (
-            <Entypo name="home" size={size} color={color} />
+          tabBarLabel: ({color, focused}) =>
+            focused ? <MyText txt={'Home'} style={{color: 'white'}} /> : null,
+          tabBarIcon: ({color, focused}) => (
+            <Entypo
+              name="home"
+              size={focused ? SELECTED_ICON_SIZE : ICON_SIZE}
+              color={color}
+            />
           ),
         }}
       />
@@ -77,11 +89,13 @@ const HomeTab = () => {
         name="Booking"
         component={Booking}
         options={{
-          tabBarIcon: ({color, size}) => (
+          tabBarLabel: ({color, focused}) =>
+            focused && <MyText txt={'Booking'} style={{color: 'white'}} />,
+          tabBarIcon: ({color, focused}) => (
             <MaterialCommunityIcons
               name="book-multiple"
               color={color}
-              size={size}
+              size={ICON_SIZE}
             />
           ),
         }}
@@ -90,8 +104,10 @@ const HomeTab = () => {
         name="Saved"
         component={Saved}
         options={{
-          tabBarIcon: ({color, size}) => (
-            <Entypo name="heart" color={color} size={size} />
+          tabBarLabel: ({color, focused}) =>
+            focused ? <MyText txt={'Saved'} style={{color: 'white'}} /> : null,
+          tabBarIcon: ({color, focused}) => (
+            <Entypo name="heart" color={color} size={ICON_SIZE} />
           ),
         }}
       />
@@ -99,8 +115,12 @@ const HomeTab = () => {
         name="Profile"
         component={Profile}
         options={{
-          tabBarIcon: ({color, size}) => (
-            <Entypo name="user" color={color} size={size} />
+          tabBarLabel: ({color, focused}) =>
+            focused ? (
+              <MyText txt={'Profile'} style={{color: 'white'}} />
+            ) : null,
+          tabBarIcon: ({color, focused}) => (
+            <Entypo name="user" color={color} size={ICON_SIZE} />
           ),
         }}
       />

@@ -60,13 +60,7 @@ const BookEvent = ({navigation}) => {
             onCancel={() => setOpen(false)}
             mode="datetime"
           />
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              marginVertical: 10,
-            }}>
+          <View style={styles.types}>
             <MyText txt={'Type of Event'} />
             <View>
               <DropdownComponent
@@ -80,15 +74,7 @@ const BookEvent = ({navigation}) => {
           {category !== 'Wedding' &&
             category !== 'Conference' &&
             category !== 'Party' && (
-              <MyText
-                txt={category}
-                paragrapgh
-                style={{
-                  color: Colors.primary,
-                  width: '80%',
-                  textAlign: 'right',
-                }}
-              />
+              <MyText txt={category} paragrapgh style={styles.category} />
             )}
           {changed && (
             <View style={styles.line}>
@@ -124,6 +110,17 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  types: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginVertical: 10,
+  },
+  category: {
+    color: Colors.primary,
+    width: '80%',
+    textAlign: 'right',
   },
 });
 export default BookEvent;
