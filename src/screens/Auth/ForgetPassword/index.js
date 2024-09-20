@@ -12,7 +12,7 @@ const ForgetPassword = ({navigation}) => {
   return (
     <View style={{padding: 15, height: height, backgroundColor: 'white'}}>
       <View style={styles.header}>
-        <MyText txt={'Reset Password'} style={{fontSize: 18}} />
+        <MyText txt={'Reset Password'} heading />
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Entypo name="cross" size={20} />
         </TouchableOpacity>
@@ -33,11 +33,12 @@ const ForgetPassword = ({navigation}) => {
         title={'Reset Password'}
         mBottom={50}
         bgClr={Colors.primary}
-        txtSize={25}
+        txtSize={20}
+        width="100%"
         marginVertical={20}
       />
       <View style={styles.bottom}>
-        <MyText txt={"Don't have an accout?"} />
+        <MyText txt={"Don't have an accout?"} tiny />
         <MyText
           txt={'Sig up'}
           style={{color: Colors.primary}}
@@ -56,9 +57,9 @@ const styles = StyleSheet.create({
   },
   bottom: {
     flexDirection: 'row',
+    alignItems: 'center',
     gap: 15,
     marginBottom: 100,
   },
-  btn: {color: Colors.primary, fontSize: 15, fontFamily: Family},
 });
 export default ForgetPassword;

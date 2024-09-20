@@ -16,13 +16,13 @@ export const MyText = ({
       style={{
         fontFamily: heading || BigHeading ? 'didot-bold' : 'didot',
         fontSize: heading
-          ? 18
+          ? 16
           : paragrapgh
-          ? 12
-          : BigHeading
-          ? 28
-          : tiny
           ? 11
+          : BigHeading
+          ? 22
+          : tiny
+          ? 10
           : 14,
         ...style,
       }}

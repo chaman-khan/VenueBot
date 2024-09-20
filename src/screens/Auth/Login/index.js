@@ -26,13 +26,14 @@ const Login = ({navigation}) => {
         </View>
         <MyText
           txt="Sign in to your account"
-          style={{fontSize: 20, marginVertical: 10}}
+          style={{marginVertical: 10, fontWeight: '100'}}
+          BigHeading
         />
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <MyText txt="Don't have account?  " tiny />
           <MyText
             txt="Sign up"
-            style={{color: Colors.primary, fontSize: 16}}
+            style={{color: Colors.primary}}
             onPress={() => navigation.navigate('Signup')}
           />
         </View>
@@ -49,7 +50,7 @@ const Login = ({navigation}) => {
         </View>
         <View style={styles.or}>
           <View style={{flex: 1, height: 0.5, backgroundColor: 'black'}} />
-          <MyText txt="or" />
+          <MyText txt="or" tiny />
           <View style={{flex: 1, height: 0.5, backgroundColor: 'black'}} />
         </View>
         <CustomTextInput

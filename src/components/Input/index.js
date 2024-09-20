@@ -35,6 +35,7 @@ const CustomTextInput = ({
         ...styles.mail,
         paddingHorizontal: touch ? 20 : 10,
         width: width ? width : '90%',
+        marginBottom: 10,
       }}>
       {leftImg && (
         <Entypo
@@ -52,6 +53,7 @@ const CustomTextInput = ({
         style={{
           width: rightImg ? '80%' : '92%',
           fontFamily: Family,
+          height: '100%',
         }}
         editable={!touch}
       />
@@ -76,8 +78,8 @@ const styles = StyleSheet.create({
     borderColor: 'lightgrey',
     borderWidth: 2,
     borderRadius: 10,
-    paddingVertical: 15,
     marginTop: 20,
+    height: 50,
   },
 });
 

@@ -16,6 +16,7 @@ import {Family} from '../../assets/FontFamily';
 import {Colors} from '../../theme';
 import {Assets} from '../../assets/images';
 import {MyText} from '../../assets/Fonts';
+import {elevation} from '../../theme/appStyles';
 
 const Home = ({navigation}) => {
   const hotels = useSelector(state => state.hotels);
@@ -42,7 +43,11 @@ const Home = ({navigation}) => {
         }>
         <Image
           source={item.images[0]}
-          style={{width: '100%', height: 150, borderRadius: 20}}
+          style={{
+            width: '100%',
+            height: 150,
+            borderRadius: 20,
+          }}
         />
         <MyText txt={item.name} heading lines={1} />
         <MyText
@@ -54,9 +59,16 @@ const Home = ({navigation}) => {
           style={{
             flexDirection: 'row',
             justifyContent: 'space-between',
+            alignItems: 'center',
           }}>
-          <View style={{flexDirection: 'row', gap: 5, width: '60%'}}>
-            <Entypo name="location-pin" size={20} color={Colors.primary} />
+          <View
+            style={{
+              flexDirection: 'row',
+              gap: 5,
+              width: '60%',
+              alignItems: 'center',
+            }}>
+            <Entypo name="location-pin" size={12} color={Colors.primary} />
 
             <MyText txt={item.location} lines={1} paragrapgh />
           </View>
@@ -89,20 +101,24 @@ const Home = ({navigation}) => {
     );
   };
   return (
-    <View style={{paddingHorizontal: '5%'}}>
+    <View style={{width: '95%', alignSelf: 'center'}}>
       <View style={styles.header}>
         <View style={styles.leftHeader}>
           <Image
             source={Assets.dp}
             style={{width: 50, height: 50, borderRadius: 25}}
           />
-          <View>
+          <View
+            style={{
+              height: '80%',
+              justifyContent: 'space-between',
+            }}>
             <MyText txt={'Good Morning!'} style={{color: 'grey'}} />
             <MyText txt={'Chamman Khan'} heading />
           </View>
         </View>
         <TouchableOpacity style={styles.bell}>
-          <Feather name="bell" size={30} />
+          <Feather name="bell" size={20} />
         </TouchableOpacity>
       </View>
       <CustomTextInput
@@ -136,21 +152,16 @@ const styles = StyleSheet.create({
   },
   leftHeader: {
     flexDirection: 'row',
-    width: '65%',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  morning: {
-    fontSize: 16,
-    color: 'gray',
-    fontWeight: '300',
-    fontFamily: Family,
+    width: '80%',
+    alignItems: 'flex-end',
+    gap: 10,
+    height: 50,
   },
   bell: {
-    borderColor: 'lightgray',
-    borderWidth: 2,
     borderRadius: 30,
-    padding: 5,
+    padding: 10,
+    ...elevation,
+    backgroundColor: 'white',
   },
   item: {
     width: '48%',
@@ -159,12 +170,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     marginBottom: 10,
     gap: 6,
-  },
-  name: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    fontFamily: Family,
-    width: '100%',
+    ...elevation,
   },
 });
 

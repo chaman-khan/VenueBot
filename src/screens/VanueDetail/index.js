@@ -481,12 +481,6 @@ const styles = StyleSheet.create({
     marginTop: 13,
     marginBottom: 20,
   },
-  reviewText: {
-    fontSize: 16,
-    fontFamily: Family,
-    textTransform: 'capitalize',
-    marginBottom: 10,
-  },
   starContainer: {
     flexDirection: 'row',
     marginBottom: 10,

@@ -161,11 +161,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     gap: 10,
   },
-  txt: {
-    fontSize: 20,
-    fontFamily: Family,
-    color: Colors.primary,
-    fontWeight: 'bold',
-  },
 });
 export default Reviews;

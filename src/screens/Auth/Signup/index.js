@@ -38,11 +38,11 @@ const Signup = ({navigation}) => {
         </View>
         <MyText
           txt={'Create your accout'}
-          style={{fontSize: 20, marginVertical: 10}}
+          style={{marginVertical: 10, fontWeight: '100'}}
+          BigHeading
         />
         <MyText
           txt={'Be part of us now and whatever will be here'}
-          tiny
           style={styles.shortTxt}
         />
         <CustomTextInput
@@ -155,22 +155,8 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     marginRight: 15,
   },
-  name: {
-    fontSize: 30,
-    fontWeight: '600',
-    color: 'black',
-    fontFamily: Family,
-    letterSpacing: 5,
-  },
-  txt: {
-    color: 'black',
-    fontSize: 20,
-    fontFamily: Family,
-    marginVertical: 10,
-    letterSpacing: 0.2,
-  },
   shortTxt: {
-    width: '50%',
+    width: '60%',
     textAlign: 'center',
     color: 'grey',
     marginVertical: 20,
@@ -182,7 +168,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     marginVertical: 20,
   },
-  btn: {color: Colors.primary, fontSize: 15, fontFamily: Family},
   bottom: {
     flexDirection: 'row',
     gap: 15,
