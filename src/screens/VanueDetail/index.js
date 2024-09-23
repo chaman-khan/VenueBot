@@ -119,12 +119,12 @@ const VanueDetail = ({navigation, route}) => {
             source={item.userDp}
             style={{width: 40, height: 40, borderRadius: 20}}
           />
-          <MyText txt={item.userName} heading />
+          <MyText title={item.userName} heading />
         </View>
         <View style={{...styles.review, gap: 10}}>
           <View style={styles.stars}>
             <Entypo name="star" size={12} color={Colors.primary} />
-            <MyText txt={item.stars} MyText />
+            <MyText title={item.stars} MyText />
           </View>
           <TouchableOpacity style={styles.threeDots}>
             <Entypo name="dots-three-horizontal" size={15} color={'black'} />
@@ -132,7 +132,7 @@ const VanueDetail = ({navigation, route}) => {
         </View>
       </View>
       <MyText
-        txt={getTextToShow(item.review, item.id)}
+        title={getTextToShow(item.review, item.id)}
         onPress={() => toggleText(item.id)}
       />
     </View>
@@ -292,7 +292,7 @@ const VanueDetail = ({navigation, route}) => {
         </View>
       </View>
       <ScrollView style={styles.scroll}>
-        <MyText txt={item.name} BigHeading />
+        <MyText title={item.name} BigHeading />
         <View style={styles.line} />
 
         <View style={{flexDirection: 'row', alignItems: 'center', gap: 15}}>
@@ -300,8 +300,8 @@ const VanueDetail = ({navigation, route}) => {
             <Entypo name="location" size={20} color={Colors.primary} />
           </View>
           <View style={{gap: 7}}>
-            <MyText txt={item.location} heading />
-            <MyText style={{color: 'rgba(0,0,0,0.7)'}} txt={item.location} />
+            <MyText title={item.location} heading />
+            <MyText style={{color: 'rgba(0,0,0,0.7)'}} title={item.location} />
             <TouchableOpacity
               style={styles.design}
               onPress={() =>
@@ -317,7 +317,7 @@ const VanueDetail = ({navigation, route}) => {
               <Entypo name="location" size={12} color="white" />
 
               <MyText
-                txt="See Location on Maps"
+                title="See Location on Maps"
                 tiny
                 style={{color: 'white'}}
               />
@@ -329,9 +329,9 @@ const VanueDetail = ({navigation, route}) => {
             <Entypo name="ticket" size={20} color={Colors.primary} />
           </View>
           <View style={{gap: 7}}>
-            <MyText txt="PKR 250K - 400k" heading />
+            <MyText title="PKR 250K - 400k" heading />
             <MyText
-              txt="venue Charges depends on Package"
+              title="venue Charges depends on Package"
               style={{color: 'rgba(0,0,0,0.7)'}}
             />
           </View>
@@ -344,31 +344,31 @@ const VanueDetail = ({navigation, route}) => {
               style={{width: 50, height: 50, borderRadius: 25}}
             />
             <View>
-              <MyText txt={`${item.managerName} Name`} heading />
-              <MyText txt="manager" paragrapgh />
+              <MyText title={`${item.managerName} Name`} heading />
+              <MyText title="manager" paragrapgh />
             </View>
           </View>
           <TouchableOpacity style={styles.chatBtn}>
-            <MyText txt={'Chat'} style={{color: Colors.primary}} />
+            <MyText title={'Chat'} style={{color: Colors.primary}} />
           </TouchableOpacity>
         </View>
-        <MyText txt="About Venue:" style={{marginVertical: 10}} heading />
+        <MyText title="About Venue:" style={{marginVertical: 10}} heading />
         <MyText
-          txt="it is simply dummy text of the printing and typesetting industry.
+          title="it is simply dummy text of the printing and typesetting industry.
           Lorem Ipsum has been the industry's standard dummy text ever since the
           1500s, when an unknown printer took a galley of type and scrambled it
           to make a type specimen book"
           MyText
         />
-        <MyText txt="Availability:" style={{marginVertical: 10}} heading />
-        <MyText txt={item.availability} MyText />
+        <MyText title="Availability:" style={{marginVertical: 10}} heading />
+        <MyText title={item.availability} MyText />
         <View style={styles.line} />
-        <MyText txt="Location" style={{marginVertical: 10}} heading />
+        <MyText title="Location" style={{marginVertical: 10}} heading />
         <View style={styles.loc}>
           <Entypo name="location-pin" color={Colors.primary} size={20} />
 
           <MyText
-            txt={`${
+            title={`${
               distance !== null ? `${distance} meters` : 'Calculating...'
             } away from your location`}
             MyText
@@ -398,13 +398,13 @@ const VanueDetail = ({navigation, route}) => {
           <View style={{...styles.review, gap: 10}}>
             <Entypo name="star" color="#f18e1e" size={25} />
             <MyText
-              txt={`${averageStars} (${reviews.length} reviews)`}
+              title={`${averageStars} (${reviews.length} reviews)`}
               heading
             />
           </View>
           <MyText
             style={{color: Colors.primary}}
-            txt="See All"
+            title="See All"
             paragrapgh
             onPress={() => navigation.navigate('Reviews', (props = {reviews}))}
           />

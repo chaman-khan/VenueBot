@@ -49,9 +49,9 @@ const Home = ({navigation}) => {
             borderRadius: 20,
           }}
         />
-        <MyText txt={item.name} heading lines={1} />
+        <MyText title={item.name} heading lines={1} />
         <MyText
-          txt={item.availability}
+          title={item.availability}
           paragrapgh
           style={{color: Colors.primary}}
         />
@@ -70,7 +70,7 @@ const Home = ({navigation}) => {
             }}>
             <Entypo name="location-pin" size={12} color={Colors.primary} />
 
-            <MyText txt={item.location} lines={1} paragrapgh />
+            <MyText title={item.location} lines={1} paragrapgh />
           </View>
           <TouchableOpacity onPress={() => dispatch(toggleFavourite(item.key))}>
             <Entypo
@@ -93,7 +93,7 @@ const Home = ({navigation}) => {
           justifyContent: 'center',
         }}>
         <MyText
-          txt={'No Relative Data'}
+          title={'No Relative Data'}
           BigHeading
           style={{color: Colors.primary}}
         />
@@ -113,8 +113,8 @@ const Home = ({navigation}) => {
               height: '80%',
               justifyContent: 'space-between',
             }}>
-            <MyText txt={'Good Morning!'} style={{color: 'grey'}} />
-            <MyText txt={'Chamman Khan'} heading />
+            <MyText title={'Good Morning!'} style={{color: 'grey'}} />
+            <MyText title={'Chamman Khan'} heading />
           </View>
         </View>
         <TouchableOpacity style={styles.bell}>

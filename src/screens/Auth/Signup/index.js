@@ -34,15 +34,15 @@ const Signup = ({navigation}) => {
       <View style={{alignItems: 'center'}}>
         <View style={styles.header}>
           <Image source={Assets.logo} style={styles.img} />
-          <MyText txt="VenueBot" style={{letterSpacing: 5}} BigHeading />
+          <MyText title="VenueBot" style={{letterSpacing: 5}} BigHeading />
         </View>
         <MyText
-          txt={'Create your accout'}
+          title={'Create your accout'}
           style={{marginVertical: 10, fontWeight: '100'}}
           BigHeading
         />
         <MyText
-          txt={'Be part of us now and whatever will be here'}
+          title={'Be part of us now and whatever will be here'}
           style={styles.shortTxt}
         />
         <CustomTextInput
@@ -88,7 +88,7 @@ const Signup = ({navigation}) => {
           mode="date"
         />
         <View style={styles.radio}>
-          <MyText txt={'Gender'} heading />
+          <MyText title={'Gender'} heading />
           <CustomRadioButton
             options={options}
             selectedOption={selectedOption}
@@ -131,9 +131,9 @@ const Signup = ({navigation}) => {
           onClick={() => navigation.navigate('Login')}
         />
         <View style={styles.bottom}>
-          <MyText txt={'Already have an accout?'} />
+          <MyText title={'Already have an accout?'} />
           <MyText
-            txt={'Sign in'}
+            title={'Sign in'}
             style={{color: Colors.primary}}
             onPress={() => navigation.navigate('Login')}
           />

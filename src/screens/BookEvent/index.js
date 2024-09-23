@@ -33,7 +33,7 @@ const BookEvent = ({navigation}) => {
       <ScrollView>
         <View>
           <MyText
-            txt={'Select your Date and Time for your Booking'}
+            title={'Select your Date and Time for your Booking'}
             heading
             style={{marginTop: 20}}
           />
@@ -61,7 +61,7 @@ const BookEvent = ({navigation}) => {
             mode="datetime"
           />
           <View style={styles.types}>
-            <MyText txt={'Type of Event'} />
+            <MyText title={'Type of Event'} />
             <View>
               <DropdownComponent
                 data={['Wedding', 'Conference', 'Party', 'Other']}
@@ -74,14 +74,14 @@ const BookEvent = ({navigation}) => {
           {category !== 'Wedding' &&
             category !== 'Conference' &&
             category !== 'Party' && (
-              <MyText txt={category} paragrapgh style={styles.category} />
+              <MyText title={category} paragrapgh style={styles.category} />
             )}
           {changed && (
             <View style={styles.line}>
-              <MyText txt={'Your Arrival Time:'} heading />
+              <MyText title={'Your Arrival Time:'} heading />
               <View style={styles.box}>
                 <MyText
-                  txt={`${
+                  title={`${
                     hours < 12 ? hours : hours - 12
                   }:${date.getMinutes()} ${hours < 12 ? 'AM' : 'PM'} ${
                     daysOfWeek[date.getDay()]

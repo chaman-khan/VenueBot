@@ -82,10 +82,10 @@ const Location = ({navigation, route}) => {
         activeOpacity={1}
         onPress={() => setShowRoute(true)}
         style={styles.btn}>
-        <MyText txt={'Get Direction'} style={{color: 'white'}} heading />
+        <MyText title={'Get Direction'} style={{color: 'white'}} heading />
       </TouchableOpacity>
       {showRoute && (
-        <MyText txt={`${distance} METERS`} style={styles.distance} />
+        <MyText title={`${distance} METERS`} style={styles.distance} />
       )}
 
       <TouchableOpacity

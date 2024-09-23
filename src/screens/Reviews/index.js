@@ -31,20 +31,20 @@ const Reviews = ({navigation, route}) => {
             source={item.userDp}
             style={{width: 40, height: 40, borderRadius: 20}}
           />
-          <MyText txt={item.userName} heading />
+          <MyText title={item.userName} heading />
         </View>
         <View style={{...styles.review, gap: 10}}>
           <View style={styles.stars}>
             <Entypo name="star" size={12} color={Colors.primary} />
-            <MyText txt={item.stars} MyText />
+            <MyText title={item.stars} MyText />
           </View>
           <TouchableOpacity style={styles.threeDots}>
             <Entypo name="dots-three-horizontal" size={15} color={'black'} />
           </TouchableOpacity>
         </View>
       </View>
-      <MyText txt={item.review} paragrapgh />
-      <MyText txt={'(6 months ago)'} tiny />
+      <MyText title={item.review} paragrapgh />
+      <MyText title={'(6 months ago)'} tiny />
     </View>
   );
   const data = ['All', 1, 2, 3, 4, 5];
@@ -62,7 +62,7 @@ const Reviews = ({navigation, route}) => {
           color={isSelected ? 'white' : Colors.primary}
         />
         <MyText
-          txt={item}
+          title={item}
           style={{color: isSelected ? 'white' : Colors.primary}}
         />
       </TouchableOpacity>
@@ -75,7 +75,10 @@ const Reviews = ({navigation, route}) => {
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Entypo name="arrow-long-left" size={25} color="black" />
           </TouchableOpacity>
-          <MyText txt={`${averageStars} (${reviews.length} reviews)`} heading />
+          <MyText
+            title={`${averageStars} (${reviews.length} reviews)`}
+            heading
+          />
         </View>
         <TouchableOpacity style={styles.threeDots}>
           <Entypo name="dots-three-horizontal" size={15} color={'black'} />
@@ -97,7 +100,7 @@ const Reviews = ({navigation, route}) => {
           return (
             <View style={styles.empty}>
               <MyText
-                txt={'No Review with this Rating'}
+                title={'No Review with this Rating'}
                 heading
                 style={{color: Colors.primary}}
               />

@@ -2,7 +2,7 @@ import {StyleSheet, Text} from 'react-native';
 
 export const MyText = ({
   style,
-  txt,
+  title,
   onPress,
   heading,
   paragrapgh,
@@ -27,7 +27,7 @@ export const MyText = ({
         ...style,
       }}
       onPress={onPress}>
-      {txt}
+      {title}
     </Text>
   );
 };

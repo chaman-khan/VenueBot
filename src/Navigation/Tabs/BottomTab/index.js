@@ -75,7 +75,7 @@ const HomeTab = () => {
         component={Home}
         options={{
           tabBarLabel: ({color, focused}) =>
-            focused ? <MyText txt={'Home'} style={{color: 'white'}} /> : null,
+            focused ? <MyText title={'Home'} style={{color: 'white'}} /> : null,
           tabBarIcon: ({color, focused}) => (
             <Entypo
               name="home"
@@ -90,7 +90,7 @@ const HomeTab = () => {
         component={Booking}
         options={{
           tabBarLabel: ({color, focused}) =>
-            focused && <MyText txt={'Booking'} style={{color: 'white'}} />,
+            focused && <MyText title={'Booking'} style={{color: 'white'}} />,
           tabBarIcon: ({color, focused}) => (
             <MaterialCommunityIcons
               name="book-multiple"
@@ -105,7 +105,9 @@ const HomeTab = () => {
         component={Saved}
         options={{
           tabBarLabel: ({color, focused}) =>
-            focused ? <MyText txt={'Saved'} style={{color: 'white'}} /> : null,
+            focused ? (
+              <MyText title={'Saved'} style={{color: 'white'}} />
+            ) : null,
           tabBarIcon: ({color, focused}) => (
             <Entypo name="heart" color={color} size={ICON_SIZE} />
           ),
@@ -117,7 +119,7 @@ const HomeTab = () => {
         options={{
           tabBarLabel: ({color, focused}) =>
             focused ? (
-              <MyText txt={'Profile'} style={{color: 'white'}} />
+              <MyText title={'Profile'} style={{color: 'white'}} />
             ) : null,
           tabBarIcon: ({color, focused}) => (
             <Entypo name="user" color={color} size={ICON_SIZE} />

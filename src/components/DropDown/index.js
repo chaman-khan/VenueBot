@@ -43,7 +43,7 @@ const DropdownComponent = ({
         renderButton={(selectedItem, isOpened) => {
           return (
             <View style={styles.dropdownButtonStyle}>
-              <MyText txt={(selectedItem && selectedItem) || placeholder} />
+              <MyText title={(selectedItem && selectedItem) || placeholder} />
               <Entypo
                 name={isOpened ? 'chevron-up' : 'chevron-down'}
                 style={styles.dropdownButtonArrowStyle}
@@ -58,7 +58,7 @@ const DropdownComponent = ({
                 ...styles.dropdownItemStyle,
                 ...(isSelected && {backgroundColor: '#D2D9DF'}),
               }}>
-              <MyText txt={item} />
+              <MyText title={item} />
             </View>
           );
         }}
@@ -73,7 +73,7 @@ const DropdownComponent = ({
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
             <MyText
-              txt="Enter Custom Value"
+              title="Enter Custom Value"
               heading
               style={{marginBottom: 10}}
             />
@@ -84,7 +84,7 @@ const DropdownComponent = ({
               placeholder="Type here..."
             />
             <MyText
-              txt={'Submit'}
+              title={'Submit'}
               style={{color: '#007aff', fontSize: 17}}
               onPress={handleModalSubmit}
             />

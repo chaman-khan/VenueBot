@@ -22,23 +22,23 @@ const Login = ({navigation}) => {
         }}>
         <View style={styles.header}>
           <Image source={Assets.logo} style={styles.img} />
-          <MyText txt="VenueBot" style={{letterSpacing: 5}} BigHeading />
+          <MyText title="VenueBot" style={{letterSpacing: 5}} BigHeading />
         </View>
         <MyText
-          txt="Sign in to your account"
+          title="Sign in to your account"
           style={{marginVertical: 10, fontWeight: '100'}}
           BigHeading
         />
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <MyText txt="Don't have account?  " tiny />
+          <MyText title="Don't have account?  " tiny />
           <MyText
-            txt="Sign up"
+            title="Sign up"
             style={{color: Colors.primary}}
             onPress={() => navigation.navigate('Signup')}
           />
         </View>
         <View style={styles.googlettxt}>
-          <MyText txt="Sign in with" />
+          <MyText title="Sign in with" />
           <CustomButton
             buttonStyle={styles.googleContaier}
             width="30%"
@@ -50,7 +50,7 @@ const Login = ({navigation}) => {
         </View>
         <View style={styles.or}>
           <View style={{flex: 1, height: 0.5, backgroundColor: 'black'}} />
-          <MyText txt="or" tiny />
+          <MyText title="or" tiny />
           <View style={{flex: 1, height: 0.5, backgroundColor: 'black'}} />
         </View>
         <CustomTextInput
@@ -74,7 +74,7 @@ const Login = ({navigation}) => {
           lftChkd
         />
         <MyText
-          txt="Forget Password?"
+          title="Forget Password?"
           style={{
             color: Colors.primary,
             marginVertical: 20,

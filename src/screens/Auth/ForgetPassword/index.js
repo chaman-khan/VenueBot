@@ -12,18 +12,18 @@ const ForgetPassword = ({navigation}) => {
   return (
     <View style={{padding: 15, height: height, backgroundColor: 'white'}}>
       <View style={styles.header}>
-        <MyText txt={'Reset Password'} heading />
+        <MyText title={'Reset Password'} heading />
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Entypo name="cross" size={20} />
         </TouchableOpacity>
       </View>
       <MyText
-        txt={'Forget your password?'}
+        title={'Forget your password?'}
         style={{marginVertical: 50}}
         BigHeading
       />
       <MyText
-        txt={
+        title={
           'Enter your email address ad we will send you a link to reset your password'
         }
         paragrapgh
@@ -38,9 +38,9 @@ const ForgetPassword = ({navigation}) => {
         marginVertical={20}
       />
       <View style={styles.bottom}>
-        <MyText txt={"Don't have an accout?"} tiny />
+        <MyText title={"Don't have an accout?"} tiny />
         <MyText
-          txt={'Sig up'}
+          title={'Sig up'}
           style={{color: Colors.primary}}
           onPress={() => navigation.navigate('Signup')}
         />
