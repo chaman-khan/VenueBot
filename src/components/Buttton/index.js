@@ -17,6 +17,7 @@ const CustomButton = ({
   bgClr = Colors.primary,
   height = 50,
   iconSize,
+  style,
 }) => {
   return (
     <TouchableOpacity
@@ -34,6 +35,7 @@ const CustomButton = ({
           flexDirection: icon ? 'row' : 'column',
         },
         buttonStyle,
+        style,
       ]}>
       {icon && (
         <Image source={icon} style={{height: iconSize, width: iconSize}} />

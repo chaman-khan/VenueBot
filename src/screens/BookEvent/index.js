@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {Dimensions, ScrollView, StyleSheet, Text, View} from 'react-native';
 import TopBar from '../../components/TopBar';
 import CustomTextInput from '../../components/Input';
 import DatePicker from 'react-native-date-picker';
@@ -7,11 +7,15 @@ import {Family} from '../../assets/FontFamily';
 import DropdownComponent from '../../components/DropDown';
 import {Colors} from '../../theme';
 import {MyText} from '../../assets/Fonts';
+import CustomButton from '../../components/Buttton';
+
+const {width, height} = Dimensions.get('window');
 const BookEvent = ({navigation}) => {
   const [date, setDate] = useState(new Date());
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const [changed, setChanged] = useState(false);
   const [category, setCategory] = useState('');
+  const [valueNummeric, setValueNumeric] = useState('');
   const showingDate = `${date.getDate().toString()}/${
     date.getMonth() + 1
   }/${date.getFullYear().toString()}`;
@@ -24,13 +28,18 @@ const BookEvent = ({navigation}) => {
     'Friday',
     'Saturday',
   ];
-  console.log('category', category);
+  const handleChangeNumeric = text => {
+    const numericRegex = /^[0-9]*$/;
+    if (numericRegex.test(text)) {
+      setValueNumeric(text);
+    }
+  };
 
   const hours = date.getHours();
   return (
     <View style={{paddingHorizontal: '5%'}}>
       <TopBar onPress={() => navigation.goBack()} title={'Book Venue'} />
-      <ScrollView>
+      <ScrollView style={{height: height - 200}}>
         <View>
           <MyText
             title={'Select your Date and Time for your Booking'}
@@ -61,7 +70,7 @@ const BookEvent = ({navigation}) => {
             mode="datetime"
           />
           <View style={styles.types}>
-            <MyText title={'Type of Event'} />
+            <MyText title={'Type of Event'} heading />
             <View>
               <DropdownComponent
                 data={['Wedding', 'Conference', 'Party', 'Other']}
@@ -71,11 +80,21 @@ const BookEvent = ({navigation}) => {
               />
             </View>
           </View>
+
           {category !== 'Wedding' &&
             category !== 'Conference' &&
             category !== 'Party' && (
-              <MyText title={category} paragrapgh style={styles.category} />
+              <MyText title={category} style={styles.category} />
             )}
+          <View style={styles.types}>
+            <MyText title={'Number of Seats'} heading />
+            <CustomTextInput
+              keyboardType={'numeric'}
+              width={'43%'}
+              onChangeText={handleChangeNumeric}
+              value={valueNummeric}
+            />
+          </View>
           {changed && (
             <View style={styles.line}>
               <MyText title={'Your Arrival Time:'} heading />
@@ -94,6 +113,8 @@ const BookEvent = ({navigation}) => {
           )}
         </View>
       </ScrollView>
+      <View style={{height: 1, backgroundColor: 'grey', marginBottom: 15}} />
+      <CustomButton title={`Continue - PKR 20000`} width="100%" txtSize={20} />
     </View>
   );
 };
@@ -119,8 +140,8 @@ const styles = StyleSheet.create({
   },
   category: {
     color: Colors.primary,
-    width: '80%',
-    textAlign: 'right',
+    width: '43%',
+    alignSelf: 'flex-end',
   },
 });
 export default BookEvent;

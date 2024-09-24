@@ -26,6 +26,7 @@ const CustomTextInput = ({
   rightColor,
   leftColor,
   lftChkd,
+  onChangeText,
 }) => {
   return (
     <TouchableOpacity
@@ -47,7 +48,7 @@ const CustomTextInput = ({
       <TextInput
         keyboardType={keyboardType}
         value={value}
-        onChangeText={onPress}
+        onChangeText={onChangeText}
         placeholder={placeholder}
         secureTextEntry={secure}
         style={{
