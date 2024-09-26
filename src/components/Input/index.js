@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   TextInput,
   Dimensions,
@@ -27,6 +27,8 @@ const CustomTextInput = ({
   leftColor,
   lftChkd,
   onChangeText,
+  maxHeight,
+  full,
 }) => {
   return (
     <TouchableOpacity
@@ -37,6 +39,7 @@ const CustomTextInput = ({
         paddingHorizontal: touch ? 20 : 10,
         width: width ? width : '90%',
         marginBottom: 10,
+        height: maxHeight ? maxHeight : 50,
       }}>
       {leftImg && (
         <Entypo
@@ -46,6 +49,7 @@ const CustomTextInput = ({
         />
       )}
       <TextInput
+        multiline={full}
         keyboardType={keyboardType}
         value={value}
         onChangeText={onChangeText}
@@ -74,13 +78,13 @@ const CustomTextInput = ({
 const styles = StyleSheet.create({
   mail: {
     flexDirection: 'row',
-    alignItems: 'center',
     gap: 10,
     borderColor: 'lightgrey',
     borderWidth: 2,
     borderRadius: 10,
     marginTop: 20,
-    height: 50,
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
 });
 

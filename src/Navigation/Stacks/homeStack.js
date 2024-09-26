@@ -5,6 +5,7 @@ import VanueDetail from '../../screens/VanueDetail';
 import Location from '../../screens/Location';
 import Reviews from '../../screens/Reviews';
 import BookEvent from '../../screens/BookEvent';
+import ContactInfo from '../../screens/ContactInfo';
 
 const HomeStack = () => {
   const Stack = createNativeStackNavigator();
@@ -16,6 +17,7 @@ const HomeStack = () => {
       <Stack.Screen name="Location" component={Location} />
       <Stack.Screen name="Reviews" component={Reviews} />
       <Stack.Screen name="BookEvent" component={BookEvent} />
+      <Stack.Screen name="ContactInfo" component={ContactInfo} />
     </Stack.Navigator>
   );
 };

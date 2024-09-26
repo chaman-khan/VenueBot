@@ -16,6 +16,7 @@ const BookEvent = ({navigation}) => {
   const [changed, setChanged] = useState(false);
   const [category, setCategory] = useState('');
   const [valueNummeric, setValueNumeric] = useState('');
+  const [price, setprice] = useState(0);
   const showingDate = `${date.getDate().toString()}/${
     date.getMonth() + 1
   }/${date.getFullYear().toString()}`;
@@ -32,6 +33,10 @@ const BookEvent = ({navigation}) => {
     const numericRegex = /^[0-9]*$/;
     if (numericRegex.test(text)) {
       setValueNumeric(text);
+      if (valueNummeric <= 100) setprice(13000);
+      else if (valueNummeric <= 200) setprice(23000);
+      else if (valueNummeric <= 500) setprice(32000);
+      else setprice(50000);
     }
   };
 
@@ -39,7 +44,9 @@ const BookEvent = ({navigation}) => {
   return (
     <View style={{paddingHorizontal: '5%'}}>
       <TopBar onPress={() => navigation.goBack()} title={'Book Venue'} />
-      <ScrollView style={{height: height - 200}}>
+      <ScrollView
+        style={{height: height - 200}}
+        showsVerticalScrollIndicator={false}>
         <View>
           <MyText
             title={'Select your Date and Time for your Booking'}
@@ -87,14 +94,39 @@ const BookEvent = ({navigation}) => {
               <MyText title={category} style={styles.category} />
             )}
           <View style={styles.types}>
+            <View
+              style={{
+                width: '50%',
+                flexDirection: 'row',
+                // alignItems: 'center',
+              }}>
+              <MyText title={'Max Time Needed'} heading />
+              <MyText
+                title={'(in hours)'}
+                tiny
+                style={{alignSelf: 'flex-end'}}
+              />
+            </View>
+
+            <CustomTextInput
+              placeholder={'Number of hours'}
+              keyboardType={'numeric'}
+              width={'43%'}
+            />
+          </View>
+          <View style={styles.types}>
             <MyText title={'Number of Seats'} heading />
             <CustomTextInput
+              placeholder={'Max Number of Seats'}
               keyboardType={'numeric'}
               width={'43%'}
               onChangeText={handleChangeNumeric}
               value={valueNummeric}
             />
           </View>
+          <MyText title={'Special Instructions: '} heading />
+          <CustomTextInput width={'100%'} maxHeight={150} full />
+
           {changed && (
             <View style={styles.line}>
               <MyText title={'Your Arrival Time:'} heading />
@@ -114,7 +146,12 @@ const BookEvent = ({navigation}) => {
         </View>
       </ScrollView>
       <View style={{height: 1, backgroundColor: 'grey', marginBottom: 15}} />
-      <CustomButton title={`Continue - PKR 20000`} width="100%" txtSize={20} />
+      <CustomButton
+        title={`Continue - PKR ${price}`}
+        width="100%"
+        txtSize={20}
+        onClick={() => navigation.navigate('ContactInfo')}
+      />
     </View>
   );
 };
@@ -122,6 +159,7 @@ const styles = StyleSheet.create({
   line: {
     width: '100%',
     gap: 20,
+    marginBottom: 20,
   },
   box: {
     width: '70%',
@@ -136,7 +174,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginVertical: 10,
+    marginBottom: 10,
   },
   category: {
     color: Colors.primary,

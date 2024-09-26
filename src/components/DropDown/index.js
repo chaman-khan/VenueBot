@@ -14,8 +14,7 @@ const DropdownComponent = ({
   data,
   value,
   placeholder,
-  isRow,
-  title,
+  width,
 }) => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -42,7 +41,11 @@ const DropdownComponent = ({
         onSelect={handleSelect}
         renderButton={(selectedItem, isOpened) => {
           return (
-            <View style={styles.dropdownButtonStyle}>
+            <View
+              style={{
+                ...styles.dropdownButtonStyle,
+                width: width ? width : 150,
+              }}>
               <MyText title={(selectedItem && selectedItem) || placeholder} />
               <Entypo
                 name={isOpened ? 'chevron-up' : 'chevron-down'}
@@ -97,14 +100,13 @@ const DropdownComponent = ({
 
 const styles = StyleSheet.create({
   dropdownButtonStyle: {
-    width: 150,
     height: 50,
     backgroundColor: '#E9ECEF',
     borderRadius: 12,
     flexDirection: 'row',
     alignItems: 'center',
 
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     paddingHorizontal: 12,
   },
   dropdownButtonTxtStyle: {
