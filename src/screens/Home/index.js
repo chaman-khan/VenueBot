@@ -130,7 +130,7 @@ const Home = ({navigation}) => {
         rightColor={Colors.primary}
         leftColor={'grey'}
         value={searchQuery}
-        onPress={txt => setSearchQuery(txt)}
+        onChangeText={txt => setSearchQuery(txt)}
       />
       <FlatList
         data={filteredHotels}

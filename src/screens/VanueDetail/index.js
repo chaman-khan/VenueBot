@@ -9,7 +9,6 @@ import {
   ScrollView,
   Share,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -23,6 +22,7 @@ import {getDistance} from 'geolib';
 import Geolocation from '@react-native-community/geolocation';
 import {Colors} from '../../theme';
 import {MyText} from '../../assets/Fonts';
+import Swiper from 'react-native-swiper';
 const {width, height} = Dimensions.get('screen');
 const ASPECT_RATIO = width / height;
 const LATITUDE_DELTA = 0.0922;
@@ -111,6 +111,10 @@ const VanueDetail = ({navigation, route}) => {
   const dispatch = useDispatch();
 
   const item = hotels.find(hotel => hotel.key === itemKey);
+  const images = item.images;
+  console.log(images);
+  console.log(images.length);
+
   const ReviewItem = ({item = reviews[reviews.length - 1]}) => (
     <View style={{marginBottom: 10}}>
       <View style={[styles.review, {marginBottom: 7}]}>
@@ -247,31 +251,20 @@ const VanueDetail = ({navigation, route}) => {
   return (
     <View>
       <View style={styles.imageContainer}>
-        {nextIndex !== null && (
-          <Animated.Image
-            source={item.images[nextIndex]}
-            style={[
-              styles.image,
-              {
-                position: 'absolute',
-                left: pan.x.interpolate({
-                  inputRange: [-300, 0, 300],
-                  outputRange: [300, 0, -300],
-                }),
-              },
-            ]}
-          />
-        )}
-        <Animated.Image
-          source={item.images[currentIndex]}
-          style={[
-            styles.image,
-            {
-              transform: [{translateX: pan.x}],
-            },
-          ]}
-          {...panResponder.panHandlers}
-        />
+        <Swiper
+          autoplayTimeout={2}
+          autoplay
+          horizontal={true}
+          key={images.length}
+          activeDotColor={Colors.primary}
+          dotColor={'#E5EEF7'}
+          scrollEnabled={true}>
+          {images.map((item, index) => {
+            return (
+              <Image key={index} source={item} style={styles.imageContainer} />
+            );
+          })}
+        </Swiper>
       </View>
       <View style={styles.topRow}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
