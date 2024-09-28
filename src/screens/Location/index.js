@@ -52,8 +52,6 @@ const Location = ({navigation, route}) => {
               strokeColor="blue"
               onReady={result => {
                 const coordinates = result.coordinates;
-
-                // Calculate the point where the solid line should stop
                 const solidLineEndIndex = coordinates.length - 2;
                 const solidLineCoordinates = coordinates.slice(
                   0,
@@ -85,7 +83,7 @@ const Location = ({navigation, route}) => {
         <MyText title={'Get Direction'} style={{color: 'white'}} heading />
       </TouchableOpacity>
       {showRoute && (
-        <MyText title={`${distance} METERS`} style={styles.distance} />
+        <MyText title={`${distance / 1000} KM`} style={styles.distance} />
       )}
 
       <TouchableOpacity

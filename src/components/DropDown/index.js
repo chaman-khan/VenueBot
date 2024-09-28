@@ -76,7 +76,7 @@ const DropdownComponent = ({
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
             <MyText
-              title="Enter Custom Value"
+              title="Enter Event Type"
               heading
               style={{marginBottom: 10}}
             />

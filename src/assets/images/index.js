@@ -4,4 +4,5 @@ export const Assets = {
   backgroundLogo: require('./backgroundLogo.jpeg'),
   splash: require('./splash.jpg'),
   google: require('./google.png'),
+  creditCard: require('./creditCard.png'),
 };

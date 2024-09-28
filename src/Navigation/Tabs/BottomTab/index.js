@@ -2,7 +2,6 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
 import Home from '../../../screens/Home';
 import Booking from '../../../screens/Booking';
-import Saved from '../../../screens/Saved';
 import Profile from '../../../screens/Profile';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -10,6 +9,7 @@ import {Family} from '../../../assets/FontFamily';
 import {StyleSheet, Text, View} from 'react-native';
 import {Colors} from '../../../theme';
 import {MyText} from '../../../assets/Fonts';
+import Favourites from '../../../screens/Favourites';
 
 const ICON_SIZE = 20;
 const SELECTED_ICON_SIZE = 25;
@@ -101,12 +101,12 @@ const HomeTab = () => {
         }}
       />
       <Stack.Screen
-        name="Saved"
-        component={Saved}
+        name="Favourites"
+        component={Favourites}
         options={{
           tabBarLabel: ({color, focused}) =>
             focused ? (
-              <MyText title={'Saved'} style={{color: 'white'}} />
+              <MyText title={'Favourites'} style={{color: 'white'}} />
             ) : null,
           tabBarIcon: ({color, focused}) => (
             <Entypo name="heart" color={color} size={ICON_SIZE} />

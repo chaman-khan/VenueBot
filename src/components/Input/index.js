@@ -29,6 +29,7 @@ const CustomTextInput = ({
   onChangeText,
   maxHeight,
   full,
+  maxLength,
 }) => {
   return (
     <TouchableOpacity
@@ -61,6 +62,7 @@ const CustomTextInput = ({
           height: '100%',
         }}
         editable={!touch}
+        maxLength={maxLength}
       />
       {rightImg && (
         <TouchableOpacity activeOpacity={1} onPress={rightClick}>

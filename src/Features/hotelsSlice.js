@@ -1,9 +1,10 @@
 import {createSlice} from '@reduxjs/toolkit';
 import Hotels from '../components/Hotels';
+import CreditCards from '../components/CreditCards';
 
 const HotelsSlice = createSlice({
   name: 'hotels',
-  initialState: Hotels,
+  initialState: {Hotels, CreditCards},
   reducers: {
     toggleFavourite: (state, action) => {
       const hotelsArray = Object.values(state);
@@ -12,7 +13,11 @@ const HotelsSlice = createSlice({
         hotel.favourite = !hotel.favourite;
       }
     },
+    addCard: (state, action) => {
+      const cardsArray = Object.values(state);
+      const card = cardsArray.find(card => card.key === action.payload);
+    },
   },
 });
-export const {toggleFavourite} = HotelsSlice.actions;
+export const {toggleFavourite, addCard} = HotelsSlice.actions;
 export default HotelsSlice.reducer;

@@ -1,5 +1,11 @@
 import React, {useState} from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import TopBar from '../../components/TopBar';
 import {MyText} from '../../assets/Fonts';
 import CustomTextInput from '../../components/Input';
@@ -41,39 +47,39 @@ const ContactInfo = ({navigation}) => {
             gap: 10,
             marginVertical: 10,
           }}>
-          <Text
-            style={{...styles.box}}
+          <TouchableOpacity
+            style={{...styles.box, backgroundColor: bgColor}}
             onPress={() => {
               setChecked(!checked);
               setBgColor(
                 bgColor == 'transparent' ? Colors.primary : 'transparent',
               );
             }}>
-            {checked && (
-              <Entypo
-                name="check"
-                color="white"
-                size={25}
-                style={{backgroundColor: bgColor}}
-              />
-            )}
-          </Text>
+            {checked && <Entypo name="check" color="white" size={15} />}
+          </TouchableOpacity>
           <MyText
             title={'I accept all Terms and Connditions & Privacy Policy'}
             style={{color: 'grey', width: '80%'}}
           />
         </View>
-        <CustomButton title="Continue" width="100%" marginVertical={20} />
+        <CustomButton
+          title="Continue"
+          width="100%"
+          marginVertical={20}
+          onClick={() => navigation.navigate('Payments')}
+        />
       </ScrollView>
     </View>
   );
 };
 const styles = StyleSheet.create({
   box: {
-    width: 30,
-    height: 30,
+    width: 25,
+    height: 25,
     borderRadius: 10,
-    borderWidth: 3,
+    borderWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 export default ContactInfo;

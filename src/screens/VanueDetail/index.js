@@ -112,8 +112,6 @@ const VanueDetail = ({navigation, route}) => {
 
   const item = hotels.find(hotel => hotel.key === itemKey);
   const images = item.images;
-  console.log(images);
-  console.log(images.length);
 
   const ReviewItem = ({item = reviews[reviews.length - 1]}) => (
     <View style={{marginBottom: 10}}>
@@ -496,6 +494,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    marginVertical: 3,
   },
   stars: {
     flexDirection: 'row',
