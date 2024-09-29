@@ -5,13 +5,12 @@ import {MyText} from '../../assets/Fonts';
 import CustomRadioButton from '../../components/RadioButtton';
 import CustomButton from '../../components/Buttton';
 import {Colors} from '../../theme';
+import {useSelector} from 'react-redux';
 const Payments = ({navigation}) => {
   const [selectedOption, setSelectedOption] = useState(null);
-  const options = [
-    {title: 'Google Pay', img: 'google-'},
-    {title: 'Paypal', img: 'paypal'},
-    {title: 'Appple Pay', img: 'app-store'},
-  ];
+  const creditCards = useSelector(state => state.data.creditCards);
+  console.log('.....', creditCards);
+
   return (
     <View style={{paddingHorizontal: '5%'}}>
       <TopBar title={'Payments'} onPress={() => navigation.goBack()} />
@@ -20,7 +19,7 @@ const Payments = ({navigation}) => {
         style={{marginVertical: 10}}
       />
       <CustomRadioButton
-        options={options}
+        options={creditCards}
         type2
         selectedOption={selectedOption?.title}
         onSelect={setSelectedOption}
@@ -40,7 +39,7 @@ const Payments = ({navigation}) => {
           title={'Continue'}
           width="100%"
           txtSize={20}
-          onClick={() => navigation.navigate('ContactInfo')}
+          onClick={() => navigation.navigate('ReviewSummary')}
         />
       </View>
     </View>

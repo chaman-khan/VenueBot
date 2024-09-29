@@ -3,10 +3,17 @@ import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import {Family} from '../../assets/FontFamily';
 import {Colors} from '../../theme';
 import {elevation} from '../../theme/appStyles';
-import Entypo from 'react-native-vector-icons/Entypo';
+import Entypo from 'react-native-vector-icons/FontAwesome';
 import {MyText} from '../../assets/Fonts';
 
 const CustomRadioButton = ({options, selectedOption, onSelect, type2}) => {
+  const formatTitle = (title, secure) => {
+    if (secure) {
+      const visiblePart = title.slice(-4);
+      const hiddenPart = title.slice(0, -4).replace(/\S/g, '•');
+      return `${hiddenPart}${visiblePart}`;
+    } else return title;
+  };
   return (
     <View style={type2 ? styles.container1 : styles.container}>
       {options.map((option, index) => (
@@ -24,7 +31,9 @@ const CustomRadioButton = ({options, selectedOption, onSelect, type2}) => {
             {type2 && (
               <Entypo name={option.img} size={30} color={Colors.primary} />
             )}
-            <MyText title={type2 ? option.title : option} />
+            <MyText
+              title={formatTitle(type2 ? option.title : option, option.secure)}
+            />
           </View>
           {type2 && (
             <View

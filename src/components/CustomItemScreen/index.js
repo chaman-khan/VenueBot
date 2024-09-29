@@ -18,10 +18,11 @@ import Toast from 'react-native-toast-message';
 import {MyText} from '../../assets/Fonts';
 import {elevation} from '../../theme/appStyles';
 import Entypo from 'react-native-vector-icons/Entypo';
-import {toggleFavourite} from '../../Features/hotelsSlice';
+import {toggleFavourite} from '../../Features/dataSlice';
 
 const CustomItemScreen = ({navigation, type1, type2, favourites}) => {
-  const hotels = useSelector(state => state.hotels);
+  const hotels = useSelector(state => state.data.hotels);
+
   const [columns, setColumns] = useState(favourites ? 1 : 2);
   const [searchQuery, setSearchQuery] = useState('');
   const dispatch = useDispatch();

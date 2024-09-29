@@ -15,7 +15,7 @@ import {
 import {Family} from '../../assets/FontFamily';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {useDispatch, useSelector} from 'react-redux';
-import {toggleFavourite} from '../../Features/hotelsSlice';
+import {toggleFavourite} from '../../Features/dataSlice';
 import CustomButton from '../../components/Buttton';
 import MapView, {Marker} from 'react-native-maps';
 import {getDistance} from 'geolib';
@@ -29,7 +29,7 @@ const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 const VanueDetail = ({navigation, route}) => {
   const itemKey = route.params.itemKey;
-  const hotels = useSelector(state => state.hotels);
+  const hotels = useSelector(state => state.data.hotels);
   const pan = useRef(new Animated.ValueXY()).current;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [nextIndex, setNextIndex] = useState(null);

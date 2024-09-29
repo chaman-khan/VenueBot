@@ -12,7 +12,7 @@ import CustomButton from '../../components/Buttton';
 const {width, height} = Dimensions.get('window');
 const BookEvent = ({navigation}) => {
   const [date, setDate] = useState(new Date());
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [changed, setChanged] = useState(false);
   const [category, setCategory] = useState('');
   const [valueNummeric, setValueNumeric] = useState('');

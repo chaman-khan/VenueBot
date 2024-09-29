@@ -8,6 +8,7 @@ import BookEvent from '../../screens/BookEvent';
 import ContactInfo from '../../screens/ContactInfo';
 import Payments from '../../screens/Payments';
 import AddNewCard from '../../screens/AddNewCard';
+import ReviewSummary from '../../screens/ReviewSummary';
 
 const HomeStack = () => {
   const Stack = createNativeStackNavigator();
@@ -22,6 +23,7 @@ const HomeStack = () => {
       <Stack.Screen name="ContactInfo" component={ContactInfo} />
       <Stack.Screen name="Payments" component={Payments} />
       <Stack.Screen name="AddNewCard" component={AddNewCard} />
+      <Stack.Screen name="ReviewSummary" component={ReviewSummary} />
     </Stack.Navigator>
   );
 };

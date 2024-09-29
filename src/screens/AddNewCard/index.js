@@ -5,10 +5,14 @@ import {Assets} from '../../assets/images';
 import {MyText} from '../../assets/Fonts';
 import CustomTextInput from '../../components/Input';
 import CustomButton from '../../components/Buttton';
+import {useDispatch} from 'react-redux';
+import {addNewCardItem} from '../../Features/dataSlice';
 const AddNewCard = ({navigation}) => {
+  const [name, setName] = useState('');
   const [valueNummeric, setValueNumeric] = useState('');
   const [cvv, setCvv] = useState('');
   const [expiry, setExpiry] = useState('');
+  const dispatch = useDispatch();
   const handleChangeNumeric = text => {
     const cleaned = text.replace(/\D/g, '');
     const formatted = cleaned.replace(/(\d{4})(?=\d)/g, '$1 ');
@@ -27,6 +31,16 @@ const AddNewCard = ({navigation}) => {
 
     setExpiry(formatted);
   };
+  const addCard = () => {
+    const newCardData = {
+      key: Date.now(),
+      title: valueNummeric,
+      img: 'cc-mastercard',
+      secure: true,
+    };
+    dispatch(addNewCardItem(newCardData));
+    navigation.goBack();
+  };
 
   return (
     <View style={{paddingHorizontal: '5%'}}>
@@ -42,7 +56,12 @@ const AddNewCard = ({navigation}) => {
         resizeMode="cover"
       />
       <MyText title={'Card Name'} heading />
-      <CustomTextInput placeholder={'Card Holder Name'} width={'100%'} />
+      <CustomTextInput
+        placeholder={'Card Holder Name'}
+        width={'100%'}
+        value={name}
+        onChangeText={txt => setName(txt)}
+      />
       <MyText title={'Card Number'} heading />
       <CustomTextInput
         placeholder={'XXXX XXXX XXXX XXXX'}
@@ -80,7 +99,7 @@ const AddNewCard = ({navigation}) => {
           title={'Add'}
           width="100%"
           txtSize={20}
-          onClick={() => navigation.navigate('ContactInfo')}
+          onClick={addCard}
         />
       </View>
     </View>
