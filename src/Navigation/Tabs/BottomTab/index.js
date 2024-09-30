@@ -1,56 +1,19 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
-import Home from '../../../screens/Home';
-import Booking from '../../../screens/Booking';
-import Profile from '../../../screens/Profile';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Family} from '../../../assets/FontFamily';
-import {StyleSheet, Text, View} from 'react-native';
 import {Colors} from '../../../theme';
 import {MyText} from '../../../assets/Fonts';
+import Home from '../../../screens/Home';
+import Booking from '../../../screens/Booking';
 import Favourites from '../../../screens/Favourites';
+import Profile from '../../../screens/Profile';
 
 const ICON_SIZE = 20;
 const SELECTED_ICON_SIZE = 25;
 const HomeTab = () => {
   const Stack = createBottomTabNavigator();
-  function CustomTabBar({state, descriptors, navigation}) {
-    return (
-      <View style={styles.tabBar}>
-        {state.routes.map((route, index) => {
-          const {options} = descriptors[route.key];
-          const label =
-            options.tabBarLabel !== undefined
-              ? options.tabBarLabel
-              : route.name;
-          const isFocused = state.index === index;
-
-          const onPress = () => {
-            const event = navigation.emit({
-              type: 'tabPress',
-              target: route.key,
-              canPreventDefault: true,
-            });
-
-            if (!isFocused && !event.defaultPrevented) {
-              navigation.navigate(route.name);
-            }
-          };
-          return (
-            <View
-              key={index}
-              style={[styles.tabItem, isFocused && styles.tabItemSelected]}>
-              <Text onPress={onPress} style={styles.tabText}>
-                {label}
-              </Text>
-              {isFocused && <View style={styles.overlay} />}
-            </View>
-          );
-        })}
-      </View>
-    );
-  }
   return (
     <Stack.Navigator
       initialRouteName="Home"
@@ -129,36 +92,4 @@ const HomeTab = () => {
     </Stack.Navigator>
   );
 };
-// const styles = StyleSheet.create({
-//   screen: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//   },
-//   tabBar: {
-//     flexDirection: 'row',
-//     height: 60,
-//     backgroundColor: '#eee',
-//   },
-//   tabItem: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     padding: 10,
-//   },
-//   tabItemSelected: {
-//     backgroundColor: '#ddd',
-//   },
-//   tabText: {
-//     fontSize: 16,
-//   },
-//   overlay: {
-//     position: 'absolute',
-//     top: -10,
-//     width: 20,
-//     height: 20,
-//     backgroundColor: 'red',
-//     borderRadius: 10,
-//   },
-// });
 export default HomeTab;

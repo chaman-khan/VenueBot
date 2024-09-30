@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Image, View} from 'react-native';
+import {Image, ScrollView, View} from 'react-native';
 import TopBar from '../../components/TopBar';
 import {Assets} from '../../assets/images';
 import {MyText} from '../../assets/Fonts';
@@ -7,9 +7,11 @@ import CustomTextInput from '../../components/Input';
 import CustomButton from '../../components/Buttton';
 import {useDispatch} from 'react-redux';
 import {addNewCardItem} from '../../Features/dataSlice';
-const AddNewCard = ({navigation}) => {
+const AddNewCard = ({navigation, route}) => {
+  const item = route?.params?.item;
+
   const [name, setName] = useState('');
-  const [valueNummeric, setValueNumeric] = useState('');
+  const [valueNummeric, setValueNumeric] = useState(item ? item.title : '');
   const [cvv, setCvv] = useState('');
   const [expiry, setExpiry] = useState('');
   const dispatch = useDispatch();
@@ -43,65 +45,60 @@ const AddNewCard = ({navigation}) => {
   };
 
   return (
-    <View style={{paddingHorizontal: '5%'}}>
+    <View style={{flex: 1, paddingHorizontal: '5%'}}>
       <TopBar title={'AddNewCard'} onPress={() => navigation.goBack()} />
-      <Image
-        source={Assets.creditCard}
-        style={{
-          width: '100%',
-          height: 200,
-          borderRadius: 20,
-          marginVertical: 10,
-        }}
-        resizeMode="cover"
-      />
-      <MyText title={'Card Name'} heading />
-      <CustomTextInput
-        placeholder={'Card Holder Name'}
-        width={'100%'}
-        value={name}
-        onChangeText={txt => setName(txt)}
-      />
-      <MyText title={'Card Number'} heading />
-      <CustomTextInput
-        placeholder={'XXXX XXXX XXXX XXXX'}
-        width={'100%'}
-        onChangeText={handleChangeNumeric}
-        value={valueNummeric}
-        maxLength={19}
-      />
-      <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-        <View style={{width: '48%'}}>
-          <MyText title={'Expiry Date'} heading />
-          <CustomTextInput
-            placeholder={'MM/YY'}
-            width={'100%'}
-            onChangeText={handleExpiry}
-            value={expiry}
-            maxLength={5}
-            rightImg={'calendar'}
-          />
-        </View>
-        <View style={{width: '48%'}}>
-          <MyText title={'CVV'} heading />
-          <CustomTextInput
-            placeholder={'XXX'}
-            width={'100%'}
-            onChangeText={handleCvv}
-            value={cvv}
-            maxLength={3}
-          />
-        </View>
-      </View>
-      <View style={{marginTop: 100}}>
-        <View style={{height: 1, backgroundColor: 'grey', marginBottom: 15}} />
-        <CustomButton
-          title={'Add'}
-          width="100%"
-          txtSize={20}
-          onClick={addCard}
+      <ScrollView style={{flexGrow: 1}}>
+        <Image
+          source={Assets.creditCard}
+          style={{
+            width: '100%',
+            height: 200,
+            borderRadius: 20,
+            marginVertical: 10,
+          }}
+          resizeMode="cover"
         />
-      </View>
+        <MyText title={'Card Name'} heading />
+        <CustomTextInput
+          placeholder={'Card Holder Name'}
+          width={'100%'}
+          value={name}
+          onChangeText={txt => setName(txt)}
+        />
+        <MyText title={'Card Number'} heading />
+        <CustomTextInput
+          placeholder={'XXXX XXXX XXXX XXXX'}
+          width={'100%'}
+          onChangeText={handleChangeNumeric}
+          value={valueNummeric}
+          maxLength={19}
+        />
+        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+          <View style={{width: '48%'}}>
+            <MyText title={'Expiry Date'} heading />
+            <CustomTextInput
+              placeholder={'MM/YY'}
+              width={'100%'}
+              onChangeText={handleExpiry}
+              value={expiry}
+              maxLength={5}
+              rightImg={'calendar'}
+            />
+          </View>
+          <View style={{width: '48%'}}>
+            <MyText title={'CVV'} heading />
+            <CustomTextInput
+              placeholder={'XXX'}
+              width={'100%'}
+              onChangeText={handleCvv}
+              value={cvv}
+              maxLength={3}
+            />
+          </View>
+        </View>
+      </ScrollView>
+      <View style={{height: 1, backgroundColor: 'grey', marginVertical: 15}} />
+      <CustomButton title={'Add'} width="100%" txtSize={20} onClick={addCard} />
     </View>
   );
 };

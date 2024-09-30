@@ -32,7 +32,11 @@ const TopBar = ({
         />
       ) : (
         <TouchableOpacity onPress={onPress}>
-          <Entypo name="arrow-long-left" size={30} color="black" />
+          <Entypo
+            name="arrow-long-left"
+            size={30}
+            color={leftImageColor ? leftImageColor : 'black'}
+          />
         </TouchableOpacity>
       )}
       <Text style={{fontFamily: Family, fontSize: 24, fontWeight: 'bold'}}>

@@ -1,16 +1,17 @@
 import React, {useState} from 'react';
-import {Dimensions, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {Dimensions, ScrollView, StyleSheet, View} from 'react-native';
 import TopBar from '../../components/TopBar';
 import CustomTextInput from '../../components/Input';
 import DatePicker from 'react-native-date-picker';
-import {Family} from '../../assets/FontFamily';
 import DropdownComponent from '../../components/DropDown';
 import {Colors} from '../../theme';
 import {MyText} from '../../assets/Fonts';
 import CustomButton from '../../components/Buttton';
 
 const {width, height} = Dimensions.get('window');
-const BookEvent = ({navigation}) => {
+const BookEvent = ({navigation, route}) => {
+  const {hImage, hName, hLocation, hManager} = route.params;
+
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
   const [changed, setChanged] = useState(false);
@@ -29,6 +30,20 @@ const BookEvent = ({navigation}) => {
     'Friday',
     'Saturday',
   ];
+  const monthsOfYear = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
   const handleChangeNumeric = text => {
     const numericRegex = /^[0-9]*$/;
     if (numericRegex.test(text)) {
@@ -41,6 +56,11 @@ const BookEvent = ({navigation}) => {
   };
 
   const hours = date.getHours();
+  const dateToSend = `${daysOfWeek[date.getDay()]}, ${
+    monthsOfYear[date.getMonth()]
+  } ${date.getDate().toString()} . ${
+    hours < 12 ? hours : hours - 12
+  }:${date.getMinutes()} ${hours < 12 ? 'AM' : 'PM'}`;
   return (
     <View style={{paddingHorizontal: '5%'}}>
       <TopBar onPress={() => navigation.goBack()} title={'Book Venue'} />
@@ -150,7 +170,21 @@ const BookEvent = ({navigation}) => {
         title={`Continue - PKR ${price}`}
         width="100%"
         txtSize={20}
-        onClick={() => navigation.navigate('ContactInfo')}
+        onClick={() =>
+          navigation.navigate(
+            'ContactInfo',
+            (props = {
+              hImage,
+              hName,
+              hLocation,
+              dateToSend,
+              price,
+              seats: valueNummeric,
+              category,
+              hManager,
+            }),
+          )
+        }
       />
     </View>
   );

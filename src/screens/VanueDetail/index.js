@@ -23,6 +23,8 @@ import Geolocation from '@react-native-community/geolocation';
 import {Colors} from '../../theme';
 import {MyText} from '../../assets/Fonts';
 import Swiper from 'react-native-swiper';
+import styles from './styles';
+import TopBar from '../../components/TopBar';
 const {width, height} = Dimensions.get('screen');
 const ASPECT_RATIO = width / height;
 const LATITUDE_DELTA = 0.0922;
@@ -247,7 +249,7 @@ const VanueDetail = ({navigation, route}) => {
     }
   };
   return (
-    <View>
+    <View style={{flex: 1}}>
       <View style={styles.imageContainer}>
         <Swiper
           autoplayTimeout={2}
@@ -264,24 +266,17 @@ const VanueDetail = ({navigation, route}) => {
           })}
         </Swiper>
       </View>
-      <View style={styles.topRow}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Entypo name="arrow-long-left" size={30} color="white" />
-        </TouchableOpacity>
-        <View style={{flexDirection: 'row', gap: 20}}>
-          <TouchableOpacity onPress={() => dispatch(toggleFavourite(item.key))}>
-            <Entypo
-              name={item.favourite ? 'heart' : 'heart-outlined'}
-              size={30}
-              color="white"
-            />
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={onShare}>
-            <Entypo name="share" size={30} color="white" />
-          </TouchableOpacity>
-        </View>
-      </View>
+      <TopBar
+        style={{position: 'absolute', paddingHorizontal: '5%'}}
+        leftImageColor={'white'}
+        rightImg1={item.favourite ? 'heart' : 'heart-outlined'}
+        rightImgs
+        rightImg2={'share'}
+        rightimagesColor={'white'}
+        onPress={() => navigation.goBack()}
+        right1Click={() => dispatch(toggleFavourite(item.key))}
+        right2Click={onShare}
+      />
       <ScrollView style={styles.scroll}>
         <MyText title={item.name} BigHeading />
         <View style={styles.line} />
@@ -401,124 +396,29 @@ const VanueDetail = ({navigation, route}) => {
           />
         </View>
         <ReviewItem />
-
-        <CustomButton
-          title="Booking Now"
-          bgClr={Colors.primary}
-          txtSize={20}
-          width="100%"
-          onClick={() => navigation.navigate('BookEvent')}
-          mBottom={20}
-        />
       </ScrollView>
+
+      <CustomButton
+        title="Booking Now"
+        bgClr={Colors.primary}
+        txtSize={20}
+        width="90%"
+        buttonStyle={{alignSelf: 'center'}}
+        onClick={() =>
+          navigation.navigate(
+            'BookEvent',
+            (props = {
+              hImage: item.images[0],
+              hName: item.name,
+              hLocation: item.location,
+              hManager: item.managerName,
+            }),
+          )
+        }
+        marginVertical={10}
+      />
     </View>
   );
 };
-const styles = StyleSheet.create({
-  topRow: {
-    position: 'absolute',
-    paddingTop: 20,
-    paddingHorizontal: 10,
-    width: '100%',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  scroll: {
-    width: '100%',
-    paddingHorizontal: '5%',
-    height: height - 350,
-    alignSelf: 'center',
-    marginTop: 10,
-  },
-  line: {
-    height: 0.8,
-    backgroundColor: 'rgba(0,0,0,0.1)',
-    width: '100%',
-    marginVertical: 10,
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  imageContainer: {
-    width: '100%',
-    height: 250,
-  },
-  image: {
-    width: '100%',
-    height: '100%',
-  },
-  design: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 10,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    backgroundColor: Colors.primary,
-    borderRadius: 40,
-  },
-  locBG: {
-    padding: 15,
-    backgroundColor: 'rgba(103, 27, 99, 0.1)',
-    borderRadius: 30,
-    alignSelf: 'flex-start',
-  },
-  second: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 15,
-    marginTop: 13,
-    marginBottom: 20,
-  },
-  starContainer: {
-    flexDirection: 'row',
-    marginBottom: 10,
-    alignItems: 'center',
-  },
-  managerContainer: {
-    width: '100%',
-    height: 70,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  loc: {
-    flexDirection: 'row',
-    gap: 10,
-    alignItems: 'center',
-    marginBottom: 10,
-  },
-  review: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginVertical: 3,
-  },
-  stars: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 3,
-    height: 25,
-    paddingHorizontal: 12,
-    borderColor: Colors.primary,
-    borderWidth: 1,
-    borderRadius: 30,
-  },
-  threeDots: {
-    borderColor: 'black',
-    borderRadius: 30,
-    padding: 3,
-    borderWidth: 1,
-  },
-  chatBtn: {
-    paddingHorizontal: 20,
-    paddingVertical: 6,
-    borderColor: Colors.primary,
-    borderWidth: 1,
-    borderRadius: 20,
-  },
-});
+
 export default VanueDetail;

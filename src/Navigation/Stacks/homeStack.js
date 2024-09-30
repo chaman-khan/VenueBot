@@ -9,6 +9,8 @@ import ContactInfo from '../../screens/ContactInfo';
 import Payments from '../../screens/Payments';
 import AddNewCard from '../../screens/AddNewCard';
 import ReviewSummary from '../../screens/ReviewSummary';
+import EnterYourPin from '../../screens/EnterYourPin';
+import E_Ticket from '../../screens/E_Ticket';
 
 const HomeStack = () => {
   const Stack = createNativeStackNavigator();
@@ -24,6 +26,8 @@ const HomeStack = () => {
       <Stack.Screen name="Payments" component={Payments} />
       <Stack.Screen name="AddNewCard" component={AddNewCard} />
       <Stack.Screen name="ReviewSummary" component={ReviewSummary} />
+      <Stack.Screen name="EnterYourPin" component={EnterYourPin} />
+      <Stack.Screen name="E_Ticket" component={E_Ticket} />
     </Stack.Navigator>
   );
 };
