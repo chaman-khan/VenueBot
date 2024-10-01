@@ -20,9 +20,7 @@ import {elevation} from '../../theme/appStyles';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {toggleFavourite} from '../../Features/dataSlice';
 
-const CustomItemScreen = ({navigation, type1, type2, favourites}) => {
-  const hotels = useSelector(state => state.data.hotels);
-
+const CustomItemScreen = ({data, type1, type2, favourites, navigation}) => {
   const [columns, setColumns] = useState(favourites ? 1 : 2);
   const [searchQuery, setSearchQuery] = useState('');
   const dispatch = useDispatch();
@@ -32,11 +30,8 @@ const CustomItemScreen = ({navigation, type1, type2, favourites}) => {
       text1: 'Commig Soon 👋',
     });
   };
-  const validHotels = Object.values(hotels).filter(item =>
-    favourites ? item.favourite === true : item.key,
-  );
 
-  const filteredHotels = validHotels.filter(hotel =>
+  const filteredHotels = data.filter(hotel =>
     hotel.name.toLowerCase().includes(searchQuery.toLowerCase()),
   );
   const delFromFavourite = item => {

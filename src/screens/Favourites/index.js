@@ -1,25 +1,18 @@
 import React, {useState} from 'react';
-import {
-  Dimensions,
-  FlatList,
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Dimensions, StyleSheet, View} from 'react-native';
 import CustomItemScreen from '../../components/CustomItemScreen';
 import TopBar from '../../components/TopBar';
 import {Assets} from '../../assets/images';
 import {Colors} from '../../theme';
 import Toast from 'react-native-toast-message';
-import {MyText} from '../../assets/Fonts';
-
-const {width, height} = Dimensions.get('screen');
+import {useSelector} from 'react-redux';
 
 const Favourites = ({navigation}) => {
+  const hotels = useSelector(state => state.data.hotels);
+  const validHotels = Object.values(hotels).filter(
+    item => item.favourite === true,
+  );
   const [show, setShow] = useState(false);
-  const [length, setLength] = useState(null);
   const showToast = () => {
     Toast.show({
       type: 'success',
@@ -40,7 +33,12 @@ const Favourites = ({navigation}) => {
         right1Click={() => setShow(!show)}
         style={{paddingVertical: 10}}
       />
-      <CustomItemScreen type2={show} favourites navigation={navigation} />
+      <CustomItemScreen
+        data={validHotels}
+        type2={show}
+        favourites
+        navigation={navigation}
+      />
     </View>
   );
 };

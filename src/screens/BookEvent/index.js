@@ -7,11 +7,13 @@ import DropdownComponent from '../../components/DropDown';
 import {Colors} from '../../theme';
 import {MyText} from '../../assets/Fonts';
 import CustomButton from '../../components/Buttton';
+import {useDispatch} from 'react-redux';
+import {addDataToCurrentBooking} from '../../Features/dataSlice';
 
 const {width, height} = Dimensions.get('window');
 const BookEvent = ({navigation, route}) => {
   const {hImage, hName, hLocation, hManager} = route.params;
-
+  const dispatch = useDispatch();
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
   const [changed, setChanged] = useState(false);
@@ -170,7 +172,7 @@ const BookEvent = ({navigation, route}) => {
         title={`Continue - PKR ${price}`}
         width="100%"
         txtSize={20}
-        onClick={() =>
+        onClick={() => {
           navigation.navigate(
             'ContactInfo',
             (props = {
@@ -183,8 +185,16 @@ const BookEvent = ({navigation, route}) => {
               category,
               hManager,
             }),
-          )
-        }
+          );
+          dispatch(
+            addDataToCurrentBooking({
+              dateToSend: dateToSend,
+              category: category,
+              seats: valueNummeric,
+              price,
+            }),
+          );
+        }}
       />
     </View>
   );

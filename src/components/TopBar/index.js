@@ -15,6 +15,8 @@ const TopBar = ({
   right1Click,
   right2Click,
   style,
+  rightImg2Size,
+  styleRightImage2,
 }) => {
   return (
     <View
@@ -47,8 +49,15 @@ const TopBar = ({
           <TouchableOpacity activeOpacity={1} onPress={right1Click}>
             <Entypo name={rightImg1} size={30} color={rightimagesColor} />
           </TouchableOpacity>
-          <TouchableOpacity activeOpacity={1} onPress={right2Click}>
-            <Entypo name={rightImg2} size={30} color={rightimagesColor} />
+          <TouchableOpacity
+            activeOpacity={1}
+            onPress={right2Click}
+            style={styleRightImage2}>
+            <Entypo
+              name={rightImg2}
+              size={rightImg2Size ? rightImg2Size : 30}
+              color={rightimagesColor}
+            />
           </TouchableOpacity>
         </View>
       ) : (

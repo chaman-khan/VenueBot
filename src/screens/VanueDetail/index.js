@@ -1,21 +1,19 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
-  Animated,
   Dimensions,
-  FlatList,
   Image,
-  PanResponder,
   PermissionsAndroid,
   ScrollView,
   Share,
-  StyleSheet,
   TouchableOpacity,
   View,
 } from 'react-native';
-import {Family} from '../../assets/FontFamily';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {useDispatch, useSelector} from 'react-redux';
-import {toggleFavourite} from '../../Features/dataSlice';
+import {
+  addDataToCurrentBooking,
+  toggleFavourite,
+} from '../../Features/dataSlice';
 import CustomButton from '../../components/Buttton';
 import MapView, {Marker} from 'react-native-maps';
 import {getDistance} from 'geolib';
@@ -32,9 +30,6 @@ const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 const VanueDetail = ({navigation, route}) => {
   const itemKey = route.params.itemKey;
   const hotels = useSelector(state => state.data.hotels);
-  const pan = useRef(new Animated.ValueXY()).current;
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [nextIndex, setNextIndex] = useState(null);
   const [distance, setDistance] = useState(null);
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
@@ -141,50 +136,6 @@ const VanueDetail = ({navigation, route}) => {
       />
     </View>
   );
-
-  const panResponder = useRef(
-    PanResponder.create({
-      onMoveShouldSetPanResponder: () => true,
-      onPanResponderMove: Animated.event([null, {dx: pan.x}], {
-        useNativeDriver: false,
-      }),
-      onPanResponderRelease: (e, {dx}) => {
-        if (dx > 120) {
-          // Swipe right
-          setNextIndex(
-            (currentIndex - 1 + item.images.length) % item.images.length,
-          );
-          Animated.spring(pan, {
-            toValue: {x: 300, y: 0},
-            useNativeDriver: false,
-          }).start(() => {
-            setCurrentIndex(
-              prevIndex =>
-                (prevIndex - 1 + item.images.length) % item.images.length,
-            );
-            pan.setValue({x: 0, y: 0});
-            setNextIndex(null);
-          });
-        } else if (dx < -120) {
-          // Swipe left
-          setNextIndex((currentIndex + 1) % item.images.length);
-          Animated.spring(pan, {
-            toValue: {x: -300, y: 0},
-            useNativeDriver: false,
-          }).start(() => {
-            setCurrentIndex(prevIndex => (prevIndex + 1) % item.images.length);
-            pan.setValue({x: 0, y: 0});
-            setNextIndex(null);
-          });
-        } else {
-          Animated.spring(pan, {
-            toValue: {x: 0, y: 0},
-            useNativeDriver: false,
-          }).start();
-        }
-      },
-    }),
-  ).current;
   useEffect(() => {
     const requestLocationPermission = async () => {
       if (Platform.OS === 'android') {
@@ -404,7 +355,7 @@ const VanueDetail = ({navigation, route}) => {
         txtSize={20}
         width="90%"
         buttonStyle={{alignSelf: 'center'}}
-        onClick={() =>
+        onClick={() => {
           navigation.navigate(
             'BookEvent',
             (props = {
@@ -413,8 +364,9 @@ const VanueDetail = ({navigation, route}) => {
               hLocation: item.location,
               hManager: item.managerName,
             }),
-          )
-        }
+          );
+          dispatch(addDataToCurrentBooking(item));
+        }}
         marginVertical={10}
       />
     </View>

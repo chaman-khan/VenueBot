@@ -1,22 +1,15 @@
-import React, {useState} from 'react';
-import {
-  FlatList,
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import React from 'react';
+import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
-import Entypo from 'react-native-vector-icons/Entypo';
-import CustomTextInput from '../../components/Input';
-import {Colors} from '../../theme';
 import {Assets} from '../../assets/images';
 import {MyText} from '../../assets/Fonts';
 import {elevation} from '../../theme/appStyles';
 import CustomItemScreen from '../../components/CustomItemScreen';
-import Toast from 'react-native-toast-message';
+import {useSelector} from 'react-redux';
 
 const Home = ({navigation}) => {
+  const hotels = useSelector(state => state.data.hotels);
+  const validHotels = Object.values(hotels).filter(item => item.key);
   return (
     <View style={{paddingHorizontal: '5%'}}>
       <View style={styles.header}>
@@ -39,7 +32,7 @@ const Home = ({navigation}) => {
         </TouchableOpacity>
       </View>
 
-      <CustomItemScreen type1 navigation={navigation} />
+      <CustomItemScreen type1 navigation={navigation} data={validHotels} />
     </View>
   );
 };
