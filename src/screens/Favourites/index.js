@@ -19,6 +19,7 @@ const Favourites = ({navigation}) => {
       text1: 'Commig Soon 👋',
     });
   };
+
   return (
     <View style={{paddingHorizontal: '5%'}}>
       <TopBar

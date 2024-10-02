@@ -5,17 +5,28 @@ import {MyText} from '../../assets/Fonts';
 import CustomRadioButton from '../../components/RadioButtton';
 import CustomButton from '../../components/Buttton';
 import {Colors} from '../../theme';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {
+  addDataToCurrentBooking,
+  backdatafromCurrentBooking,
+} from '../../Features/dataSlice';
 const Payments = ({navigation, route}) => {
   const item = route.params;
 
   const [selectedOption, setSelectedOption] = useState(null);
   const creditCards = useSelector(state => state.data.creditCards);
+  const dispatch = useDispatch();
   const data = {item, selectedOption};
 
   return (
     <View style={{flex: 1, paddingHorizontal: '5%'}}>
-      <TopBar title={'Payments'} onPress={() => navigation.goBack()} />
+      <TopBar
+        title={'Payments'}
+        onPress={() => {
+          navigation.goBack();
+          dispatch(backdatafromCurrentBooking());
+        }}
+      />
       <ScrollView style={{flexGrow: 1}}>
         <MyText
           title={'Select the Payment method you want to use'}
@@ -42,7 +53,10 @@ const Payments = ({navigation, route}) => {
         title={'Continue'}
         width="100%"
         txtSize={20}
-        onClick={() => navigation.navigate('ReviewSummary', (props = {data}))}
+        onClick={() => {
+          navigation.navigate('ReviewSummary', (props = {data}));
+          dispatch(addDataToCurrentBooking(selectedOption));
+        }}
       />
     </View>
   );

@@ -8,11 +8,13 @@ import {Colors} from '../../theme';
 import {MyText} from '../../assets/Fonts';
 import CustomButton from '../../components/Buttton';
 import {useDispatch} from 'react-redux';
-import {addDataToCurrentBooking} from '../../Features/dataSlice';
+import {
+  addDataToCurrentBooking,
+  backdatafromCurrentBooking,
+} from '../../Features/dataSlice';
 
 const {width, height} = Dimensions.get('window');
-const BookEvent = ({navigation, route}) => {
-  const {hImage, hName, hLocation, hManager} = route.params;
+const BookEvent = ({navigation}) => {
   const dispatch = useDispatch();
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
@@ -50,10 +52,10 @@ const BookEvent = ({navigation, route}) => {
     const numericRegex = /^[0-9]*$/;
     if (numericRegex.test(text)) {
       setValueNumeric(text);
-      if (valueNummeric <= 100) setprice(13000);
-      else if (valueNummeric <= 200) setprice(23000);
-      else if (valueNummeric <= 500) setprice(32000);
-      else setprice(50000);
+      if (valueNummeric > 500) setprice(120000);
+      else if (valueNummeric > 200) setprice(67000);
+      else if (valueNummeric > 100) setprice(44500);
+      else setprice(20000);
     }
   };
 
@@ -65,7 +67,13 @@ const BookEvent = ({navigation, route}) => {
   }:${date.getMinutes()} ${hours < 12 ? 'AM' : 'PM'}`;
   return (
     <View style={{paddingHorizontal: '5%'}}>
-      <TopBar onPress={() => navigation.goBack()} title={'Book Venue'} />
+      <TopBar
+        onPress={() => {
+          navigation.goBack();
+          dispatch(backdatafromCurrentBooking());
+        }}
+        title={'Book Venue'}
+      />
       <ScrollView
         style={{height: height - 200}}
         showsVerticalScrollIndicator={false}>
@@ -173,23 +181,11 @@ const BookEvent = ({navigation, route}) => {
         width="100%"
         txtSize={20}
         onClick={() => {
-          navigation.navigate(
-            'ContactInfo',
-            (props = {
-              hImage,
-              hName,
-              hLocation,
-              dateToSend,
-              price,
-              seats: valueNummeric,
-              category,
-              hManager,
-            }),
-          );
+          navigation.navigate('ContactInfo');
           dispatch(
             addDataToCurrentBooking({
-              dateToSend: dateToSend,
-              category: category,
+              dateToSend,
+              category,
               seats: valueNummeric,
               price,
             }),

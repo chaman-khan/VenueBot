@@ -9,10 +9,14 @@ import CustomButton from '../../components/Buttton';
 import Clipboard from '@react-native-clipboard/clipboard';
 import Toast from 'react-native-toast-message';
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
+import {useDispatch, useSelector} from 'react-redux';
+import {removeCurrentBooking} from '../../Features/dataSlice';
 
-const E_Ticket = ({navigation, route}) => {
-  const data = route.params.data;
+const E_Ticket = ({navigation}) => {
   const orderId = Date.now().toString();
+  const data = useSelector(state => state.data.currentBooking);
+  const dispatch = useDispatch();
+
   const createPDF = async () => {
     let options = {
       html: `
@@ -85,26 +89,26 @@ align-items: center;
 </div>
 <div class="view">
 <p class="heading">Venue</p>
-<p>${data.data.item.hName}</p>
+<p>${data[0]?.name}</p>
 <p class="heading">Date and Hour</p>
-<p>${data.data.item.dateToSend}</p>
+<p>${data[2]?.dateToSend}</p>
 <p class="heading">Venue Locations</p>
-<p>${data.data.item.hLocation}</p>
+<p>${data[0]?.location}</p>
 <p class="heading">Venue Manager</p>
-<p>${data.data.item.hManager} Name</p>
+<p>${data[0]?.managerName} Name</p>
 </div>
 <div class="view">
 <div class="inner">
 <p class="heading">Full Name</p>
-<p>${data.data.item.firstName} ${data.data.item.lastName}</p>
+<p>${data[2]?.firstName} ${data[2]?.lastName}</p>
 </div>
 <div class="inner">
 <p class="heading">NickName</p>
-<p>${data.data.item.userName}</p>
+<p>${data[2]?.userName}</p>
 </div>
 <div class="inner">
 <p class="heading">Gender</p>
-<p>${data.data.item.gender}</p>
+<p>${data[2]?.gender}</p>
 </div>
 <div class="inner">
 <p class="heading">Date Of Birth</p>
@@ -112,23 +116,21 @@ align-items: center;
 </div>
 <div class="inner">
 <p class="heading">City</p>
-<p>${data.data.item.city}</p>
+<p>${data[2]?.city}</p>
 </div>
 <div class="inner">
 <p class="heading">Phone</p>
-<p>${data.data.item.contact}</p>
+<p>${data[2]?.contact}</p>
 </div>
 <div class="inner">
 <p class="heading">Email</p>
-<p>${data.data.item.mail}</p>
+<p>${data[2]?.mail}</p>
 </div>
 </div>
 <div class="view">
 <div class="inner">
-<p class="heading">${data.data.item.seats} seats (${
-        data.data.item.category
-      })</p>
-<p>RS ${data.data.item.price}/-</p>
+<p class="heading">${data[1]?.seats} seats (${data[1]?.category})</p>
+<p>RS ${data[1]?.price}/-</p>
 </div>
 <div class="inner">
 <p class="heading">Tax</p>
@@ -138,7 +140,7 @@ align-items: center;
 <div class="line"></div>
 <div class="inner">
 <p class="heading">Total</p>
-<p>RS ${data.data.item.price + 500}/-</p>
+<p>RS ${data[1]?.price + 500}/-</p>
 </div>
 </div>
 <div class="view">
@@ -160,7 +162,7 @@ align-items: center;
 </body>
 </html>
       `,
-      fileName: `E-Ticket for ${data.data.item.hName}`,
+      fileName: `E-Ticket for ${data[0]?.name}`,
       directory: 'Downloads',
     };
     let file = await RNHTMLtoPDF.convert(options);
@@ -171,6 +173,7 @@ align-items: center;
       visibilityTime: 8000,
       swipeable: true,
     });
+    dispatch(removeCurrentBooking());
     navigation.reset({
       index: 0,
       routes: [
@@ -192,38 +195,36 @@ align-items: center;
       <TopBar title={'E-Ticket'} onPress={() => navigation.goBack()} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <Barcode
-          value={Date.now().toString()}
+          value={orderId}
           height={80}
           format="CODE128"
           width={2}
           lineColor="black"
-          text={Date.now().toString()}
+          text={orderId}
           style={styles.barCode}
         />
         <View style={styles.view}>
           <MyText title={'Venue'} />
-          <MyText title={data.data.item.hName} heading />
+          <MyText title={data[0]?.name} heading />
           <MyText title={'Date and Hour'} />
-          <MyText title={data.data.item.dateToSend} heading />
+          <MyText title={data[1]?.dateToSend} heading />
           <MyText title={'Venue Locations'} />
-          <MyText title={data.data.item.hLocation} heading />
+          <MyText title={data[0]?.location} heading />
           <MyText title={'Venue Manager'} />
-          <MyText title={`${data.data.item.hManager} Name`} heading />
+          <MyText title={`${data[0]?.managerName} Name`} heading />
         </View>
         <View style={styles.view}>
           <View style={styles.inner}>
             <MyText title={'Full Name'} style={{color: 'grey'}} />
-            <MyText
-              title={`${data.data.item.firstName} ${data.data.item.lastName}`}
-            />
+            <MyText title={`${data[2]?.firstName} ${data[2]?.lastName}`} />
           </View>
           <View style={styles.inner}>
             <MyText title={'NickName'} style={{color: 'grey'}} />
-            <MyText title={data.data.item.userName} />
+            <MyText title={data[2]?.userName} />
           </View>
           <View style={styles.inner}>
             <MyText title={'Gender'} style={{color: 'grey'}} />
-            <MyText title={data.data.item.gender} />
+            <MyText title={data[2]?.gender} />
           </View>
           <View style={styles.inner}>
             <MyText title={'Date Of Birth'} style={{color: 'grey'}} />
@@ -231,24 +232,24 @@ align-items: center;
           </View>
           <View style={styles.inner}>
             <MyText title={'City'} style={{color: 'grey'}} />
-            <MyText title={data.data.item.city} />
+            <MyText title={data[2]?.city} />
           </View>
           <View style={styles.inner}>
             <MyText title={'Phone'} style={{color: 'grey'}} />
-            <MyText title={data.data.item.contact} />
+            <MyText title={data[2]?.contact} />
           </View>
           <View style={styles.inner}>
             <MyText title={'Email'} style={{color: 'grey'}} />
-            <MyText title={data.data.item.mail} />
+            <MyText title={data[2]?.mail} />
           </View>
         </View>
         <View style={styles.view}>
           <View style={styles.inner}>
             <MyText
-              title={`${data.data.item.seats} seats (${data.data.item.category})`}
+              title={`${data[1]?.seats} seats (${data[1]?.category})`}
               style={{color: 'grey'}}
             />
-            <MyText title={`RS ${data.data.item.price}/-`} />
+            <MyText title={`RS ${data[1]?.price}/-`} />
           </View>
           <View style={styles.inner}>
             <MyText title={'Tax'} style={{color: 'grey'}} />
@@ -262,7 +263,7 @@ align-items: center;
           <View style={styles.line} />
           <View style={styles.inner}>
             <MyText title={'Total'} style={{color: 'grey'}} />
-            <MyText title={`RS ${data.data.item.price + 500}/-`} />
+            <MyText title={`RS ${data[1]?.price + 500}/-`} />
           </View>
         </View>
         <View style={styles.view}>

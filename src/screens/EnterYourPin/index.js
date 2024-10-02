@@ -6,8 +6,9 @@ import CustomButton from '../../components/Buttton';
 import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {Colors} from '../../theme';
-const EnterYourPin = ({navigation, route}) => {
-  const data = route.params;
+import {useDispatch, useSelector} from 'react-redux';
+import {addToBookings} from '../../Features/dataSlice';
+const EnterYourPin = ({navigation}) => {
   const [pin, setPin] = useState(['', '', '', '']);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [icon, setIcon] = useState('squared-cross');
@@ -18,6 +19,8 @@ const EnterYourPin = ({navigation, route}) => {
   const [button, setButton] = useState('Try Again');
   const [color, setColor] = useState('red');
   const inputs = useRef([]);
+  const data = useSelector(state => state.data.currentBooking);
+  const dispatch = useDispatch();
   const handleChange = (text, index) => {
     const newPin = [...pin];
     newPin[index] = text;
@@ -41,7 +44,8 @@ const EnterYourPin = ({navigation, route}) => {
   const changeState = () => {
     if (title == 'Congratulations!') {
       setIsModalVisible(false);
-      navigation.navigate('E_Ticket', (props = {data}));
+      dispatch(addToBookings({data, status: 'paid'}));
+      navigation.navigate('E_Ticket');
     } else {
       setColor(Colors.primary);
       setIcon('checksquare');

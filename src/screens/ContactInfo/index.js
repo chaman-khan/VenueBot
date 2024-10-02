@@ -1,11 +1,5 @@
 import React, {useState} from 'react';
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
 import TopBar from '../../components/TopBar';
 import {MyText} from '../../assets/Fonts';
 import CustomTextInput from '../../components/Input';
@@ -13,50 +7,33 @@ import DropdownComponent from '../../components/DropDown';
 import CustomButton from '../../components/Buttton';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {Colors} from '../../theme';
+import {useDispatch} from 'react-redux';
+import {
+  addDataToCurrentBooking,
+  backdatafromCurrentBooking,
+} from '../../Features/dataSlice';
 
-const ContactInfo = ({navigation, route}) => {
-  const {
-    hImage,
-    hName,
-    hLocation,
-    hManager,
-    dateToSend,
-    price,
-    seats,
-    category,
-  } = route.params;
-
+const ContactInfo = ({navigation}) => {
+  const dispatch = useDispatch();
   const [firstName, setFirstName] = useState('Chamman');
   const [lastName, setLastName] = useState('Khan');
   const [userName, setUserName] = useState('chaman');
   const [mail, setMail] = useState('chaman.devv@gmail.com');
   const [contact, setContact] = useState('03470549301');
   const [city, setCity] = useState('Islamabad');
-  const [gender, setGender] = useState('');
+  const [gender, setGender] = useState('Male');
   const [checked, setChecked] = useState(false);
   const [bgColor, setBgColor] = useState('transparent');
 
-  const item = {
-    hImage,
-    hName,
-    hLocation,
-    hManager,
-    dateToSend,
-    price,
-    firstName,
-    lastName,
-    userName,
-    mail,
-    contact,
-    city,
-    seats,
-    category,
-    gender,
-  };
-
   return (
     <View style={{flex: 1, paddingHorizontal: '5%'}}>
-      <TopBar onPress={() => navigation.goBack()} title={'Book Venue'} />
+      <TopBar
+        onPress={() => {
+          navigation.goBack();
+          dispatch(backdatafromCurrentBooking());
+        }}
+        title={'Book Venue'}
+      />
       <ScrollView style={{flexGrow: 1}}>
         <MyText title={'Contact Information'} heading style={{marginTop: 20}} />
         <CustomTextInput
@@ -131,7 +108,20 @@ const ContactInfo = ({navigation, route}) => {
         width="100%"
         txtSize={20}
         marginVertical={20}
-        onClick={() => navigation.navigate('Payments', (props = {item}))}
+        onClick={() => {
+          navigation.navigate('Payments');
+          dispatch(
+            addDataToCurrentBooking({
+              firstName,
+              lastName,
+              userName,
+              gender,
+              mail,
+              contact,
+              city,
+            }),
+          );
+        }}
       />
     </View>
   );

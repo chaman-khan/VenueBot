@@ -26,14 +26,13 @@ const dataSlice = createSlice({
     },
     addDataToCurrentBooking: (state, action) => {
       const newValue = action.payload;
-      const index = state.currentBooking.findIndex(
-        item => item.id === newValue.id,
-      );
-      if (index !== -1) {
-        state.currentBooking[index] = newValue;
-      } else {
-        state.currentBooking.push(newValue);
-      }
+      state.currentBooking.push(newValue);
+    },
+    backdatafromCurrentBooking: (state, action) => {
+      state.currentBooking.pop();
+    },
+    removeCurrentBooking: (state, action) => {
+      state.currentBooking = [];
     },
     addToBookings: (state, action) => {
       const newBooking = action.payload;
@@ -46,5 +45,7 @@ export const {
   addNewCardItem,
   addDataToCurrentBooking,
   addToBookings,
+  backdatafromCurrentBooking,
+  removeCurrentBooking,
 } = dataSlice.actions;
 export default dataSlice.reducer;

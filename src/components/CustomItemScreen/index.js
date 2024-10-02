@@ -1,26 +1,18 @@
-import React, {useState} from 'react';
-import {
-  Alert,
-  Dimensions,
-  FlatList,
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import TopBar from '../../components/TopBar';
-import {Assets} from '../../assets/images';
+import React, {useRef, useState} from 'react';
+import {FlatList, Image, TouchableOpacity, View} from 'react-native';
 import {Colors} from '../../theme';
 import CustomTextInput from '../../components/Input';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import Toast from 'react-native-toast-message';
 import {MyText} from '../../assets/Fonts';
-import {elevation} from '../../theme/appStyles';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {toggleFavourite} from '../../Features/dataSlice';
+import RBSheet from 'react-native-raw-bottom-sheet';
+import CustomButton from '../Buttton';
+import {styles} from './styles';
 
 const CustomItemScreen = ({data, type1, type2, favourites, navigation}) => {
+  const [selectedItem, setSelectedItem] = useState(null);
   const [columns, setColumns] = useState(favourites ? 1 : 2);
   const [searchQuery, setSearchQuery] = useState('');
   const dispatch = useDispatch();
@@ -30,24 +22,18 @@ const CustomItemScreen = ({data, type1, type2, favourites, navigation}) => {
       text1: 'Commig Soon 👋',
     });
   };
-
+  const refRBSheet = useRef();
   const filteredHotels = data.filter(hotel =>
     hotel.name.toLowerCase().includes(searchQuery.toLowerCase()),
   );
-  const delFromFavourite = item => {
-    Alert.alert(
-      'Remove From Favourites?',
-      'This Venue will not show more in this list',
-      [
-        {
-          text: 'Cancel',
-        },
-        {
-          text: 'Yes, Remove',
-          onPress: () => dispatch(toggleFavourite(item)),
-        },
-      ],
-    );
+  const delFromFavourite = () => {
+    refRBSheet.current.close();
+
+    dispatch(toggleFavourite(selectedItem?.key));
+  };
+  const showBottomSheet = item => {
+    setSelectedItem(item);
+    refRBSheet.current.open();
   };
   const renderItem = ({item}) => {
     return (
@@ -97,7 +83,7 @@ const CustomItemScreen = ({data, type1, type2, favourites, navigation}) => {
             <TouchableOpacity
               onPress={() =>
                 favourites
-                  ? delFromFavourite(item.key)
+                  ? showBottomSheet(item)
                   : dispatch(toggleFavourite(item.key))
               }>
               <Entypo
@@ -202,17 +188,57 @@ const CustomItemScreen = ({data, type1, type2, favourites, navigation}) => {
         columnWrapperStyle={columns == 2 && {justifyContent: 'space-between'}}
         ListEmptyComponent={EmptyComponent}
       />
+      <RBSheet
+        ref={refRBSheet}
+        draggable
+        height={330}
+        customStyles={{
+          container: {
+            borderRadius: 20,
+          },
+        }}>
+        <View style={{paddingHorizontal: '5%', alignItems: 'center'}}>
+          <MyText title="Remove From Favourites?" BigHeading />
+          <View style={styles.line} />
+          {selectedItem && (
+            <View style={styles.bottomView}>
+              <Image source={selectedItem.images[0]} style={styles.img} />
+              <View style={{width: '60%', gap: 10}}>
+                <MyText title={selectedItem.name} heading lines={1} />
+                <MyText
+                  title={selectedItem.availability}
+                  paragrapgh
+                  style={{color: Colors.primary}}
+                />
+                <View style={styles.bottomEndView}>
+                  <Entypo
+                    name="location-pin"
+                    size={12}
+                    color={Colors.primary}
+                  />
+                  <MyText title={selectedItem.location} lines={1} paragrapgh />
+                </View>
+              </View>
+            </View>
+          )}
+          <View style={styles.btns}>
+            <CustomButton
+              title="Cancel"
+              width="45%"
+              bgClr="rgb(249, 229, 248)"
+              txtStyle={{color: Colors.primary}}
+              onClick={() => refRBSheet.current.close()}
+            />
+            <CustomButton
+              title="Yes, Remove"
+              width="45%"
+              onClick={delFromFavourite}
+            />
+          </View>
+        </View>
+      </RBSheet>
     </View>
   );
 };
-const styles = StyleSheet.create({
-  item: {
-    padding: 10,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    marginBottom: 10,
-    gap: 6,
-    ...elevation,
-  },
-});
+
 export default CustomItemScreen;

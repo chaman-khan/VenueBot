@@ -12,6 +12,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   addDataToCurrentBooking,
+  removeCurrentBooking,
   toggleFavourite,
 } from '../../Features/dataSlice';
 import CustomButton from '../../components/Buttton';
@@ -356,15 +357,8 @@ const VanueDetail = ({navigation, route}) => {
         width="90%"
         buttonStyle={{alignSelf: 'center'}}
         onClick={() => {
-          navigation.navigate(
-            'BookEvent',
-            (props = {
-              hImage: item.images[0],
-              hName: item.name,
-              hLocation: item.location,
-              hManager: item.managerName,
-            }),
-          );
+          dispatch(removeCurrentBooking());
+          navigation.navigate('BookEvent');
           dispatch(addDataToCurrentBooking(item));
         }}
         marginVertical={10}
