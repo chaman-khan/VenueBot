@@ -14,6 +14,7 @@ import CustomTextInput from '../../components/Input';
 
 const Booking = () => {
   const bookings = useSelector(state => state.data.bookings);
+  console.log(bookings);
 
   const dispatch = useDispatch();
   const refRBSheet = useRef();
@@ -21,7 +22,7 @@ const Booking = () => {
   const [selected, setSelected] = useState('Upcoming');
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [showSeaarchBar, setShowSeaarchBar] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(null);
+  const [selectedKey, setSelectedKey] = useState(null);
   const [selectedItem, setSelectedItem] = useState(null);
   const [rating, setRating] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
@@ -32,15 +33,13 @@ const Booking = () => {
       ? 'green'
       : 'red';
   const completed = selected == 'Completed';
-  const filteredBookings = useMemo(() => {
-    return bookings.filter(booking => {
-      if (selected === 'Upcoming') {
-        return booking.status === 'Paid';
-      }
-      return booking.status === selected;
-    });
-  }, [bookings, selected]);
-  const renderItem = ({item, index}) => {
+  const filteredBookings = bookings.filter(booking => {
+    if (selected === 'Upcoming') {
+      return booking.status === 'paid';
+    }
+    return booking.status === selected;
+  });
+  const renderItem = ({item}) => {
     return (
       <View style={styles.view}>
         <View
@@ -79,7 +78,7 @@ const Booking = () => {
                   height={30}
                   txtStyle={{color: Colors.primary}}
                   onClick={() => {
-                    setSelectedIndex(index);
+                    setSelectedKey(item.key);
                     refRBSheet.current.open();
                   }}
                 />
@@ -99,7 +98,9 @@ const Booking = () => {
                       : setIsModalVisible(true);
                   }
                   setSelectedItem(item);
-                  dispatch(updateStatus({index, newStatus: 'Completed'}));
+                  dispatch(
+                    updateStatus({key: item.key, newStatus: 'Completed'}),
+                  );
                 }}
               />
             </View>
@@ -124,7 +125,7 @@ const Booking = () => {
           justifyContent: 'center',
         }}>
         <MyText
-          title={'No Relative Data'}
+          title={`No ${selected} Bookings`}
           BigHeading
           style={{color: Colors.primary}}
         />
@@ -187,6 +188,7 @@ const Booking = () => {
         data={searchedBookings}
         renderItem={renderItem}
         ListEmptyComponent={EmptyComponent}
+        keyExtractor={item => item.key.toString()}
       />
       <RBSheet
         ref={refRBSheet}
@@ -263,7 +265,7 @@ const Booking = () => {
                 !completed &&
                   dispatch(
                     updateStatus({
-                      index: selectedIndex,
+                      key: selectedKey,
                       newStatus: 'Cancelled',
                     }),
                   );

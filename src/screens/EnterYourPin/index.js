@@ -44,7 +44,9 @@ const EnterYourPin = ({navigation}) => {
   const changeState = () => {
     if (title == 'Congratulations!') {
       setIsModalVisible(false);
-      dispatch(addToBookings({data, status: 'paid'}));
+      dispatch(
+        addToBookings({data, status: 'paid', key: new Date().toISOString()}),
+      );
       navigation.navigate('E_Ticket');
     } else {
       setColor(Colors.primary);

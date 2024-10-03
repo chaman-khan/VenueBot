@@ -19,7 +19,9 @@ const Profile = ({navigation}) => {
       <Image source={Assets.dp} style={styles.dp} />
       <MyText title={'Chamman Khan'} heading />
       <View style={styles.line} />
-      <ScrollView>
+      <ScrollView
+        contentContainerStyle={{paddingBottom: 300}}
+        showsVerticalScrollIndicator={false}>
         <CustomTextInput
           value={'Manage Events'}
           touch
@@ -82,6 +84,15 @@ const Profile = ({navigation}) => {
           value={'privacy Policy'}
           touch
           leftImg={'documents'}
+          lftChkd
+          rightImg={'chevron-thin-right'}
+          width={'100%'}
+          noBorder
+        />
+        <CustomTextInput
+          value={'Log Out'}
+          touch
+          leftImg={'log-out'}
           lftChkd
           rightImg={'chevron-thin-right'}
           width={'100%'}

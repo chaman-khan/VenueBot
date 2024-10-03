@@ -39,11 +39,12 @@ const dataSlice = createSlice({
       state.bookings.push(newBooking);
     },
     updateStatus: (state, action) => {
-      const {index, newStatus} = action.payload;
-      if (state.bookings[index]) {
-        state.bookings[index].status = newStatus;
+      const {key, newStatus} = action.payload;
+      const booking = state.bookings.find(booking => booking.key === key);
+      if (booking) {
+        booking.status = newStatus;
       } else {
-        console.error('Booking not found at index:', index);
+        console.error('Booking not found with key:', key);
       }
     },
   },
