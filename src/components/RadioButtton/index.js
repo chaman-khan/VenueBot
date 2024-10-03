@@ -84,6 +84,8 @@ const styles = StyleSheet.create({
     height: 20,
     width: 20,
     borderRadius: 10,
+    borderColor: 'grey',
+    borderWidth: 2,
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 10,

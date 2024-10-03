@@ -1,17 +1,10 @@
 import React, {useState} from 'react';
-import {
-  Dimensions,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import MapView, {Marker, Polyline} from 'react-native-maps';
+import {Dimensions, StyleSheet, TouchableOpacity, View} from 'react-native';
+import MapView, {Marker} from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
-import {Family} from '../../assets/FontFamily';
-import Entypo from 'react-native-vector-icons/Entypo';
 import {Colors} from '../../theme';
 import {MyText} from '../../assets/Fonts';
+import TopBar from '../../components/TopBar';
 const {width, height} = Dimensions.get('screen');
 const ASPECT_RATIO = width / height;
 const LATITUDE_DELTA = 0.0922;
@@ -85,12 +78,11 @@ const Location = ({navigation, route}) => {
       {showRoute && (
         <MyText title={`${distance / 1000} KM`} style={styles.distance} />
       )}
-
-      <TouchableOpacity
+      <TopBar
         onPress={() => navigation.goBack()}
-        style={{position: 'absolute', margin: 20}}>
-        <Entypo name="arrow-long-left" size={30} color={Colors.primary} />
-      </TouchableOpacity>
+        style={{position: 'absolute', paddingHorizontal: '5%'}}
+        leftImageColor={Colors.primary}
+      />
     </View>
   );
 };

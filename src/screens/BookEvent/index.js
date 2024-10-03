@@ -105,6 +105,8 @@ const BookEvent = ({navigation}) => {
             }}
             onCancel={() => setOpen(false)}
             mode="datetime"
+            title={'Select Date and Time for your Events'}
+            buttonColor="red"
           />
           <View style={styles.types}>
             <MyText title={'Type of Event'} heading />

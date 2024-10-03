@@ -38,6 +38,14 @@ const dataSlice = createSlice({
       const newBooking = action.payload;
       state.bookings.push(newBooking);
     },
+    updateStatus: (state, action) => {
+      const {index, newStatus} = action.payload;
+      if (state.bookings[index]) {
+        state.bookings[index].status = newStatus;
+      } else {
+        console.error('Booking not found at index:', index);
+      }
+    },
   },
 });
 export const {
@@ -47,5 +55,6 @@ export const {
   addToBookings,
   backdatafromCurrentBooking,
   removeCurrentBooking,
+  updateStatus,
 } = dataSlice.actions;
 export default dataSlice.reducer;

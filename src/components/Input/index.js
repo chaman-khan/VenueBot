@@ -1,16 +1,7 @@
-import React, {useState} from 'react';
-import {
-  TextInput,
-  Dimensions,
-  StyleSheet,
-  View,
-  Text,
-  TouchableOpacity,
-} from 'react-native';
+import React from 'react';
+import {TextInput, StyleSheet, TouchableOpacity} from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {Family} from '../../assets/FontFamily';
-
-const {width} = Dimensions.get('screen');
 
 const CustomTextInput = ({
   placeholder,
@@ -30,6 +21,8 @@ const CustomTextInput = ({
   maxHeight,
   full,
   maxLength,
+  marginBottom,
+  noBorder,
 }) => {
   return (
     <TouchableOpacity
@@ -37,10 +30,11 @@ const CustomTextInput = ({
       onPress={onPress}
       style={{
         ...styles.mail,
+        borderColor: noBorder ? 'transparent' : 'lightgrey',
         paddingHorizontal: touch ? 20 : 10,
         width: width ? width : '90%',
-        marginBottom: 10,
-        height: maxHeight ? maxHeight : 50,
+        marginBottom: noBorder ? 0 : marginBottom ? marginBottom : 10,
+        height: noBorder ? 30 : maxHeight ? maxHeight : 50,
       }}>
       {leftImg && (
         <Entypo
