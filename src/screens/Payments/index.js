@@ -53,6 +53,7 @@ const Payments = ({navigation, route}) => {
         title={'Continue'}
         width="100%"
         txtSize={20}
+        mBottom={10}
         onClick={() => {
           navigation.navigate('ReviewSummary', (props = {data}));
           dispatch(addDataToCurrentBooking(selectedOption));

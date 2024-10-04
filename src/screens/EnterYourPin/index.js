@@ -14,12 +14,13 @@ const EnterYourPin = ({navigation}) => {
   const [icon, setIcon] = useState('squared-cross');
   const [title, setTitle] = useState('Oops, Failed!');
   const [paragraph, setParagraph] = useState(
-    'Your paymenyy failed. \n Please check your Intternet connection then try again.',
+    'Your paymenyy failed. \n Please check your Internet connection then try again.',
   );
   const [button, setButton] = useState('Try Again');
   const [color, setColor] = useState('red');
   const inputs = useRef([]);
   const data = useSelector(state => state.data.currentBooking);
+
   const dispatch = useDispatch();
   const handleChange = (text, index) => {
     const newPin = [...pin];
@@ -48,6 +49,7 @@ const EnterYourPin = ({navigation}) => {
         addToBookings({data, status: 'paid', key: new Date().toISOString()}),
       );
       navigation.navigate('E_Ticket');
+      console.log('hloooos');
     } else {
       setColor(Colors.primary);
       setIcon('checksquare');

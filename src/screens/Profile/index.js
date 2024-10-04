@@ -4,6 +4,7 @@ import TopBar from '../../components/TopBar';
 import {Assets} from '../../assets/images';
 import {MyText} from '../../assets/Fonts';
 import CustomTextInput from '../../components/Input';
+import {Colors} from '../../theme';
 
 const Profile = ({navigation}) => {
   return (
@@ -37,6 +38,18 @@ const Profile = ({navigation}) => {
           leftImg={'chat'}
           lftChkd
           rightImg={'chevron-thin-right'}
+          width={'100%'}
+          noBorder
+        />
+        <View style={styles.line} />
+        <CustomTextInput
+          value={'Do You have your own Venue?'}
+          txtColor={Colors.primary}
+          touch
+          leftImg={'shop'}
+          leftColor={Colors.primary}
+          lftChkd
+          // rightImg={'chevron-thin-right'}
           width={'100%'}
           noBorder
         />

@@ -15,13 +15,13 @@ import {
 
 const ContactInfo = ({navigation}) => {
   const dispatch = useDispatch();
-  const [firstName, setFirstName] = useState('Chamman');
-  const [lastName, setLastName] = useState('Khan');
-  const [userName, setUserName] = useState('chaman');
-  const [mail, setMail] = useState('chaman.devv@gmail.com');
-  const [contact, setContact] = useState('03470549301');
-  const [city, setCity] = useState('Islamabad');
-  const [gender, setGender] = useState('Male');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [userName, setUserName] = useState('');
+  const [mail, setMail] = useState('');
+  const [contact, setContact] = useState('');
+  const [city, setCity] = useState('');
+  const [gender, setGender] = useState('');
   const [checked, setChecked] = useState(false);
   const [bgColor, setBgColor] = useState('transparent');
 

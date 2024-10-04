@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {ScrollView, TouchableOpacity, View} from 'react-native';
 import TopBar from '../../components/TopBar';
 import Barcode from '@kichiyaki/react-native-barcode-generator';
 import {MyText} from '../../assets/Fonts';
@@ -8,16 +8,16 @@ import Feather from 'react-native-vector-icons/Feather';
 import CustomButton from '../../components/Buttton';
 import Clipboard from '@react-native-clipboard/clipboard';
 import Toast from 'react-native-toast-message';
-import RNHTMLtoPDF from 'react-native-html-to-pdf';
 import {useDispatch, useSelector} from 'react-redux';
+import {styles} from './styles';
+import RNHTMLtoPDF from 'react-native-html-to-pdf';
 import {removeCurrentBooking} from '../../Features/dataSlice';
 
 const E_Ticket = ({navigation}) => {
   const orderId = Date.now().toString();
   const data = useSelector(state => state.data.currentBooking);
   const dispatch = useDispatch();
-
-  const createPDF = async () => {
+  const createPDF = async (navigation, data) => {
     let options = {
       html: `
           <html>
@@ -173,6 +173,8 @@ align-items: center;
       visibilityTime: 8000,
       swipeable: true,
     });
+    console.log(file.filePath);
+
     dispatch(removeCurrentBooking());
     navigation.reset({
       index: 0,
@@ -190,6 +192,7 @@ align-items: center;
       ],
     });
   };
+
   return (
     <View style={{flex: 1, paddingHorizontal: '5%'}}>
       <TopBar title={'E-Ticket'} onPress={() => navigation.goBack()} />
@@ -313,35 +316,5 @@ align-items: center;
     </View>
   );
 };
-const styles = StyleSheet.create({
-  barCode: {
-    alignItems: 'center',
-    paddingVertical: 25,
-    borderRadius: 20,
-    marginTop: 20,
-  },
-  view: {
-    width: '100%',
-    padding: 20,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    marginTop: 20,
-    gap: 13,
-    justifyContent: 'space-between',
-    // ...elevation,
-  },
-  inner: {flexDirection: 'row', justifyContent: 'space-between'},
-  line: {
-    width: '100%',
-    height: 1,
-    backgroundColor: 'lightgrey',
-  },
-  status: {
-    borderColor: Colors.primary,
-    borderWidth: 1,
-    padding: 2,
-    paddingHorizontal: 7,
-    borderStyle: 'dashed',
-  },
-});
+
 export default E_Ticket;

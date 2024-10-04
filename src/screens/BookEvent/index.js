@@ -66,7 +66,7 @@ const BookEvent = ({navigation}) => {
     hours < 12 ? hours : hours - 12
   }:${date.getMinutes()} ${hours < 12 ? 'AM' : 'PM'}`;
   return (
-    <View style={{paddingHorizontal: '5%'}}>
+    <View style={{flex: 1, paddingHorizontal: '5%'}}>
       <TopBar
         onPress={() => {
           navigation.goBack();
@@ -74,9 +74,7 @@ const BookEvent = ({navigation}) => {
         }}
         title={'Book Venue'}
       />
-      <ScrollView
-        style={{height: height - 200}}
-        showsVerticalScrollIndicator={false}>
+      <ScrollView style={{flexGrow: 1}} showsVerticalScrollIndicator={false}>
         <View>
           <MyText
             title={'Select your Date and Time for your Booking'}
@@ -177,11 +175,12 @@ const BookEvent = ({navigation}) => {
           )}
         </View>
       </ScrollView>
-      <View style={{height: 1, backgroundColor: 'grey', marginBottom: 15}} />
+      <View style={{height: 1, backgroundColor: 'grey', marginVertical: 15}} />
       <CustomButton
         title={`Continue - PKR ${price}`}
         width="100%"
         txtSize={20}
+        mBottom={10}
         onClick={() => {
           navigation.navigate('ContactInfo');
           dispatch(

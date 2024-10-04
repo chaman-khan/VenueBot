@@ -12,7 +12,7 @@ import RBSheet from 'react-native-raw-bottom-sheet';
 import {styles} from './styles';
 import CustomTextInput from '../../components/Input';
 
-const Booking = () => {
+const Booking = ({navigation}) => {
   const bookings = useSelector(state => state.data.bookings);
   console.log(bookings);
 
@@ -47,7 +47,14 @@ const Booking = () => {
             flexDirection: 'row',
             justifyContent: 'space-between',
           }}>
-          <Image source={item.data[0].images[0]} style={styles.img} />
+          <Image
+            source={
+              item.data[0].images[0]
+                ? item.data[0].images[0]
+                : item.data[0].images[1]
+            }
+            style={styles.img}
+          />
           <View style={{width: '60%', gap: 15}}>
             <MyText title={item.data[0].name} heading lines={1} />
             <MyText
@@ -120,7 +127,7 @@ const Booking = () => {
       <View
         style={{
           width: '100%',
-          height: 500,
+          height: 600,
           alignItems: 'center',
           justifyContent: 'center',
         }}>
@@ -129,6 +136,37 @@ const Booking = () => {
           BigHeading
           style={{color: Colors.primary}}
         />
+        {selected == 'Upcoming' && (
+          <View style={{width: '80%', alignItems: 'center'}}>
+            <MyText
+              title={`Book new Venue for your Events and one of the best Veues in  your areas`}
+              style={{
+                color: 'grey',
+                marginVertical: 20,
+                width: '100%',
+                textAlign: 'center',
+              }}
+            />
+            <CustomButton
+              title="Book New One"
+              txtSize={20}
+              bgClr="transsparent"
+              txtStyle={{color: Colors.primary}}
+              onClick={() => navigation.navigate('Home')}
+            />
+          </View>
+        )}
+        {selected == 'Completed' && (
+          <MyText
+            title={`Try to complete your Upcoming Events showing besides ASAP, we will give you chance to rate them and give them review withh description so that other customers shouldn't get problemss,`}
+            style={{
+              color: 'grey',
+              marginVertical: 20,
+              width: '80%',
+              textAlign: 'center',
+            }}
+          />
+        )}
       </View>
     );
   };
@@ -189,6 +227,7 @@ const Booking = () => {
         renderItem={renderItem}
         ListEmptyComponent={EmptyComponent}
         keyExtractor={item => item.key.toString()}
+        style={{marginBottom: showSeaarchBar ? 180 : 90}}
       />
       <RBSheet
         ref={refRBSheet}

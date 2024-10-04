@@ -23,6 +23,7 @@ const CustomTextInput = ({
   maxLength,
   marginBottom,
   noBorder,
+  txtColor,
 }) => {
   return (
     <TouchableOpacity
@@ -50,10 +51,12 @@ const CustomTextInput = ({
         onChangeText={onChangeText}
         placeholder={placeholder}
         secureTextEntry={secure}
+        placeholderTextColor={'grey'}
         style={{
           width: rightImg ? '80%' : '92%',
           fontFamily: Family,
           height: '100%',
+          color: txtColor,
         }}
         editable={!touch}
         maxLength={maxLength}

@@ -25,6 +25,7 @@ const TopBar = ({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
+        marginTop: 20,
         ...style,
       }}>
       {leftImage ? (
