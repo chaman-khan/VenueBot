@@ -1,12 +1,5 @@
 import React, {useEffect} from 'react';
-import {
-  Dimensions,
-  Image,
-  StatusBar,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import {Dimensions, Image, View} from 'react-native';
 import {Assets} from '../../assets/images';
 
 const Splash = ({navigation}) => {
