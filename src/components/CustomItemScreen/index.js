@@ -97,23 +97,7 @@ const CustomItemScreen = ({data, type1, type2, favourites, navigation}) => {
       </TouchableOpacity>
     );
   };
-  const EmptyComponent = () => {
-    return (
-      <View
-        style={{
-          width: '100%',
-          height: 500,
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
-        <MyText
-          title={'No Relative Data'}
-          BigHeading
-          style={{color: Colors.primary}}
-        />
-      </View>
-    );
-  };
+
   return (
     <View>
       {type1 && (
@@ -186,7 +170,7 @@ const CustomItemScreen = ({data, type1, type2, favourites, navigation}) => {
         key={columns}
         keyExtractor={item => item.key}
         columnWrapperStyle={columns == 2 && {justifyContent: 'space-between'}}
-        ListEmptyComponent={EmptyComponent}
+        // ListEmptyComponent={EmptyComponent}
       />
       <RBSheet
         ref={refRBSheet}

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "187491616062",
+    "project_id": "venuebot-b5c53",
+    "storage_bucket": "venuebot-b5c53.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:187491616062:android:0007a004850cb5225c586f",
+        "android_client_info": {
+          "package_name": "com.venuebot"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqLPz-_urSXFS5UMMZzFaw6U6CIq4V_CE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

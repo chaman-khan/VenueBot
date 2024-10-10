@@ -15,6 +15,7 @@ import CustomButton from '../../../components/Buttton';
 import {Colors} from '../../../theme';
 import {Assets} from '../../../assets/images';
 import {MyText} from '../../../assets/Fonts';
+import auth from '@react-native-firebase/auth';
 
 const Signup = ({navigation}) => {
   const [date, setDate] = useState(new Date());
@@ -23,12 +24,36 @@ const Signup = ({navigation}) => {
   const [show1, setShow1] = useState(false);
   const [changed, setChanged] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   const options = ['Male', 'Female'];
   const {width, height} = Dimensions.get('screen');
 
   const showingDate = `${date.getDate().toString()}/${
     date.getMonth() + 1
   }/${date.getFullYear().toString()}`;
+
+  const CreateUser = () => {
+    auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(() => {
+        console.log('User account created & signed in!');
+        // navigation.navigate('Login');
+      })
+      .catch(error => {
+        if (error.code === 'auth/email-already-in-use') {
+          console.log('That email address is already in use!');
+        }
+
+        if (error.code === 'auth/invalid-email') {
+          console.log('That email address is invalid!');
+        }
+
+        console.error(error);
+      });
+    // navigation.navigate('Login');
+  };
   return (
     <ScrollView style={{height: height}}>
       <View style={{alignItems: 'center'}}>
@@ -62,6 +87,8 @@ const Signup = ({navigation}) => {
           keyboardType={'email-address'}
           leftImg={'mail'}
           leftColor={'black'}
+          value={email}
+          onChangeText={txt => setEmail(txt)}
           lftChkd
         />
         <CustomTextInput
@@ -108,6 +135,8 @@ const Signup = ({navigation}) => {
           secure={!show}
           rightClick={() => setShow(!show)}
           leftColor={'black'}
+          value={password}
+          onChangeText={txt => setPassword(txt)}
           lftChkd
         />
         <CustomTextInput
@@ -128,7 +157,7 @@ const Signup = ({navigation}) => {
           txtSize={20}
           marginVertical={10}
           mBottom={30}
-          onClick={() => navigation.navigate('Login')}
+          onClick={CreateUser}
         />
         <View style={styles.bottom}>
           <MyText title={'Already have an accout?'} />

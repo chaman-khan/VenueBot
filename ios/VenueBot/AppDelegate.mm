@@ -1,4 +1,5 @@
 #import "AppDelegate.h"
+#import <Firebase.h>
 #import <GoogleMaps/GoogleMaps.h>
 
 #import <React/RCTBundleURLProvider.h>
@@ -7,6 +8,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  [FIRApp configure];
   [GMSServices provideAPIKey:@"AIzaSyA-4CW3RJxhVCSTrImtIdOJ-4k9zXMZQF4"]; // add this line using the api key obtained from Google Console
   self.moduleName = @"VenueBot";
   // You can add your custom initial props in the dictionary below.

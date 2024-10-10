@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyBzpfBSDFUdtNuj0me2_-3gfIxHQ7GF7jQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>187491616062</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.reactjs.native.example.VenueBot</string>
+	<key>PROJECT_ID</key>
+	<string>venuebot-b5c53</string>
+	<key>STORAGE_BUCKET</key>
+	<string>venuebot-b5c53.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:187491616062:ios:af1133a0edb4c8eb5c586f</string>
+</dict>
+</plist>
