@@ -8,11 +8,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  [FIRApp configure];
   [GMSServices provideAPIKey:@"AIzaSyA-4CW3RJxhVCSTrImtIdOJ-4k9zXMZQF4"]; // add this line using the api key obtained from Google Console
   self.moduleName = @"VenueBot";
   // You can add your custom initial props in the dictionary below.
   // They will be passed down to the ViewController used by React Native.
+  [FIRApp configure];
   self.initialProps = @{};
 
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
